@@ -1,0 +1,254 @@
+\documentclass[a4paper,16pt,reqno]{article}
+
+\usepackage{gensymb}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{listings}
+
+\begin{document}
+
+\section{Problem A1}
+
+\begin{equation}m\ddot{x} = mg\sin(\phi) + F_{magnet} - k(x - d) - b(\dot{x}) + F_{friction}\end{equation}
+\begin{equation}F_{mag} = c \frac{I^2}{y^2}\end{equation}
+We need to find equations for $I$ and $y$.
+\begin{equation}y = \delta - x\end{equation}
+Equation for $y$ found.
+\begin{equation}V = IR + \dot{I}L \Longrightarrow V = IR + \frac{dI}{dt}L\end{equation}
+\begin{equation}V - IR = \frac{dI}{dt}L \Longrightarrow \frac{V - IR}{dI} = \frac{L}{dt} \Longrightarrow \frac{1}{V - IR}dI = \frac{1}{L}dt\end{equation}
+\begin{equation}\int \frac{1}{V - IR}dI = \int \frac{1}{L}dt\end{equation}
+
+Let $u = V - IR$,
+\begin{equation}\frac{du}{dI} = -R\end{equation}
+\begin{equation}dI = \frac{1}{-R} du\end{equation}
+
+\begin{equation}\int \frac{1}{u} \times \frac{1}{-R} du= \int \frac{1}{L} dt\end{equation}
+\begin{equation}\frac{1}{-R} \ln(u) = \frac{1}{L}t + \sigma\end{equation}
+where $\sigma$ is the constant of integration
+\begin{equation}\frac{1}{-R} \ln(V - IR) = \frac{1}{L}t + \sigma\end{equation}
+\begin{equation} [\ln(V - IR) = \frac{-R}{L}t + \sigma\end{equation}
+\begin{equation} [\ln(V - IR)]^{i}_{0} = [\frac{-R}{L}t + \sigma]^{T}_{0}\end{equation}
+\begin{equation}\ln(V - iR) - \ln(V) = \frac{-R}{L}T\end{equation}
+\begin{equation}\ln(V - IR) - \ln(V) = \frac{-R}{L}t\end{equation}
+\begin{equation}\ln(\frac{V - IR}{V}) = \frac{-R}{L}t\end{equation}
+\begin{equation}\frac{V - IR}{V} = e^{\frac{-R}{L}t}\end{equation}
+
+\[V - IR = Ve^{\frac{-R}{L}t}\]
+\[V - Ve^{\frac{-R}{L}t} = IR\]
+\[I = \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t}\]
+Equation for $I$ found.
+
+\bigskip
+\[F_{mag} = c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2}\]
+
+Now we need to find an equation for $F_{friction}$
+\bigskip
+\[-F_{friction} \times r = - I_{inertia} \ddot{\theta}\]
+"Pizza Slice Theorm":
+\[x = \theta r\]
+Intertia of a Solid Sphere:
+\[I_{inertia} = \frac{2}{5}mr^2\]
+\[F_{friction} \times r =\frac{2}{5}mr^2 \times \frac{\ddot{x}}{r}\]
+\[F_{friction} \times r =\frac{2}{5}mr  \ddot{x}\]
+\[F_{friction} =\frac{2}{5}m  \ddot{x}\]
+Equation for $F_{friction}$ found.
+
+\bigskip
+Substituting everything in.
+\begin{equation}m\ddot{x} = mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2} - k(x - d) - b(\dot{x}) + \frac{2}{5}m \ddot{x}\end{equation}
+
+\bigskip
+Simplify Everything
+\[m\ddot{x} - \frac{2}{5}m \ddot{x} = mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2} - k(x - d) - b(\dot{x}) \]
+\[(1 - \frac{2}{5})m \ddot{x} = mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2} - k(x - d) - b(\dot{x}) \]
+\[\frac{3m}{5} \ddot{x} = mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2} - k(x - d) - b(\dot{x}) \]
+\[\ddot{x} = (\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2} - k(x - d) - b(\dot{x})) \]
+
+
+\section{Problem A2}
+\bigskip
+State Space Time.
+2nd Order ODE $\therefore$ introduce 2 new variables.
+\[x_1 = x\]
+\[x_2 = \dot{x}\]
+\[\dot{x_2} = \ddot{x}\]
+
+\begin{equation*}
+\underbar{$x$} = 
+\begin{bmatrix}
+x_1 \cr
+x_2 \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\underbar{$\dot{x}$} = 
+\begin{bmatrix}
+\dot{x_1} \cr
+\dot{x_2} \cr
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_2 \cr
+\dot{x_2} \cr
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_2 \cr
+(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - k(x_{1} - d) - b(x_{2})) \cr
+\end{bmatrix}
+\end{equation*}
+
+States of the system are:
+\begin{equation*}
+\underbar{$x$} = 
+\begin{bmatrix}
+x_1 \cr
+x_2 \cr
+\end{bmatrix}
+\end{equation*}
+
+and Inputs to the system are:\\
+$V$
+
+\section{Problem A3}
+
+Proposition 3.4 in the textbook:
+\[\dot{x} = f(x(t), u(t))\]
+\[\dot{x} = 0 = f(x^e, u^e)\]
+
+\bigskip
+Equilibrium Values are:
+\begin{equation*}
+\underbar{$x$}^e = 
+\begin{bmatrix}
+x_{1}^e \cr
+x_{2}^e \cr
+\end{bmatrix}
+\end{equation*}
+
+$V^e$
+
+Substituting in value,
+\begin{equation*}
+0
+= 
+\begin{bmatrix}
+x_{2}^e \cr
+(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1}^e - d) - b(x_{2}^e)) \cr
+\end{bmatrix}
+\end{equation*}
+
+Defining Deviation Values
+\[\bar{x_{1}} = x_{1} - x_{1}^e\]
+\[\bar{x_{2}} = x_{2} - x_{2}^e\]
+\[\bar{V} = V - V^e\]
+\[\underbar{$\bar{x}$} = \underbar{$x$} - \underbar{$x$}^e\]
+\[\frac{d}{dx}[\underbar{$\bar{x}$}] = \frac{d}{dx}[\underbar{$x$} - \underbar{$x$}^e]\]
+\[\underbar{$\dot{\bar{x}}$} = \underbar{$\dot{x}$}\]
+
+Subtracting Equation from Equilibrium Equation
+\[\underbar{$\dot{\bar{x}}$} = \underbar{$\dot{x}$} - 0\]
+
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+x_2 \cr
+(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - k(x_{1} - d) - b(x_{2})) \cr
+\end{bmatrix}
+-
+\begin{bmatrix}
+x_{2}^e \cr
+(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1}^e - d) - b(x_{2}^e)) \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+x_2 - x_{2}^e \cr
+(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - k(x_{1} - d) - b(x_{2})) - (\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1}^e - d) - b(x_{2}^e)) \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+x_2 - x_{2}^e \cr
+(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - k(x_{1} - d) - b(x_{2}) - mg\sin(\phi) - c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} + k(x_{1}^e - d) + b(x_{2}^e)) \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+x_2 - x_{2}^e \cr
+(\frac{5}{3m})(mg\sin(\phi) - mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1} - d) + k(x_{1}^e - d) - b(x_{2})  + b(x_{2}^e)) \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+x_2 - x_{2}^e \cr
+(\frac{5}{3m})(c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1} - d) - k(-x_{1}^e + d) - b(x_{2})  - b(-x_{2}^e)) \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+x_2 - x_{2}^e \cr
+(\frac{5}{3m})(c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1} -x_{1}^e - d + d) - b(x_{2} - x_{2}^e)) \cr
+\end{bmatrix}
+\end{equation*}
+
+Simplest Form Before Linearisation:
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+(\frac{5}{3m})(c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(\bar{x_{1}}) - b(\bar{x_{2}})) \cr
+\end{bmatrix}
+\end{equation*}
+
+\newpage
+\section{Problem A4}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
