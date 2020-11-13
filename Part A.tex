@@ -1,7 +1,7 @@
 \documentclass[a4paper,16pt,reqno]{article}
 
 \usepackage{gensymb}
-\usepackage[left=2cm, right=2cm, top=1cm, bottom=2cm]{geometry}
+\usepackage[left=1cm, right=2cm, top=1cm, bottom=2cm]{geometry}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{siunitx}
@@ -18,13 +18,25 @@
 
 \section{Problem A1}
 
-\begin{equation}m\ddot{x} = mg\sin(\phi) + F_{magnet} - k(x - d) - b(\dot{x}) + F_{friction}\end{equation}
+\begin{equation}m\ddot{x} = mg\sin \left( \phi \right)  
++ F_{magnet} 
+- k \left( x - d \right)  
+- b \left( \dot{x} \right)  
++ F_{friction}
+\end{equation}
+
 \begin{equation}F_{mag} = c \frac{I^2}{y^2}\end{equation}
+
 We need to find equations for $I$ and $y$.
 \begin{equation}y = \delta - x\end{equation}
 Equation for $y$ found.
+
 \begin{equation}V = IR + \dot{I}L \Longrightarrow V = IR + \frac{dI}{dt}L\end{equation}
-\begin{equation}V - IR = \frac{dI}{dt}L \Longrightarrow \frac{V - IR}{dI} = \frac{L}{dt} \Longrightarrow \frac{1}{V - IR}dI = \frac{1}{L}dt\end{equation}
+
+\begin{equation}V - IR = \frac{dI}{dt}L \Longrightarrow 
+\frac{V - IR}{dI} = \frac{L}{dt} \Longrightarrow 
+\frac{1}{V - IR}dI = \frac{1}{L}dt\end{equation}
+
 \begin{equation}\int \frac{1}{V - IR}dI = \int \frac{1}{L}dt\end{equation}
 
 Let $u = V - IR$,
@@ -32,14 +44,14 @@ Let $u = V - IR$,
 \begin{equation}dI = \frac{1}{-R} du\end{equation}
 
 \begin{equation}\int \frac{1}{u} \times \frac{1}{-R} du= \int \frac{1}{L} dt\end{equation}
-\begin{equation}\frac{1}{-R} \ln(u) = \frac{1}{L}t + \sigma\end{equation}
+\begin{equation}\frac{1}{-R} \ln \left( u \right)  = \frac{1}{L}t + \sigma\end{equation}
 where $\sigma$ is the constant of integration
-\begin{equation}\frac{1}{-R} \ln(V - IR) = \frac{1}{L}t + \sigma\end{equation}
-\begin{equation} [\ln(V - IR) = \frac{-R}{L}t + \sigma\end{equation}
-\begin{equation} [\ln(V - IR)]^{i}_{0} = [\frac{-R}{L}t + \sigma]^{T}_{0}\end{equation}
-\begin{equation}\ln(V - iR) - \ln(V) = \frac{-R}{L}T\end{equation}
-\begin{equation}\ln(V - IR) - \ln(V) = \frac{-R}{L}t\end{equation}
-\begin{equation}\ln(\frac{V - IR}{V}) = \frac{-R}{L}t\end{equation}
+\begin{equation}\frac{1}{-R} \ln \left( V - IR \right)  = \frac{1}{L}t + \sigma\end{equation}
+\begin{equation} [\ln \left( V - IR \right)  = \frac{-R}{L}t + \sigma\end{equation}
+\begin{equation} [\ln \left( V - IR \right) ]^{i}_{0} = [\frac{-R}{L}t + \sigma]^{T}_{0}\end{equation}
+\begin{equation}\ln \left( V - iR \right)  - \ln \left( V \right)  = \frac{-R}{L}T\end{equation}
+\begin{equation}\ln \left( V - IR \right)  - \ln \left( V \right)  = \frac{-R}{L}t\end{equation}
+\begin{equation}\ln \left( \frac{V - IR}{V} \right)  = \frac{-R}{L}t\end{equation}
 \begin{equation}\frac{V - IR}{V} = e^{\frac{-R}{L}t}\end{equation}
 
 \[V - IR = Ve^{\frac{-R}{L}t}\]
@@ -48,7 +60,7 @@ where $\sigma$ is the constant of integration
 Equation for $I$ found.
 
 \bigskip
-\[F_{mag} = c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2}\]
+\[F_{mag} = c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x \right) }^2}\]
 
 Now we need to find an equation for $F_{friction}$
 \bigskip
@@ -64,14 +76,42 @@ Equation for $F_{friction}$ found.
 
 \bigskip
 Substituting everything in.
-\begin{equation}m\ddot{x} = mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2} - k(x - d) - b(\dot{x}) + \frac{2}{5}m \ddot{x}\end{equation}
+\begin{equation}m\ddot{x} = 
+mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x \right) }^2} 
+- k \left( x - d \right)  - b \left( \dot{x} \right)  
++ \frac{2}{5}m \ddot{x}\end{equation}
 
 \bigskip
 Simplify Everything
-\[m\ddot{x} - \frac{2}{5}m \ddot{x} = mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2} - k(x - d) - b(\dot{x}) \]
-\[(1 - \frac{2}{5})m \ddot{x} = mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2} - k(x - d) - b(\dot{x}) \]
-\[\frac{3m}{5} \ddot{x} = mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2} - k(x - d) - b(\dot{x}) \]
-\[\ddot{x} = (\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x)}^2} - k(x - d) - b(\dot{x})) \]
+\[m\ddot{x} - \frac{2}{5}m \ddot{x} = 
+mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V}{R} 
+- \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x \right) }^2} 
+- k \left( x - d \right)  
+- b \left( \dot{x} \right)  \]
+
+\[ \left( 1 - \frac{2}{5} \right) m \ddot{x} = 
+mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V}{R} 
+- \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x \right) }^2} 
+- k \left( x - d \right)  
+- b \left( \dot{x} \right)  \]
+
+\[\frac{3m}{5} \ddot{x} = 
+mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V}{R} 
+- \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x \right) }^2} 
+- k \left( x - d \right)  
+- b \left( \dot{x} \right)  \]
+
+\[\ddot{x} = 
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V}{R} 
+- \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x \right) }^2} 
+- k \left( x - d \right)  
+- b \left( \dot{x} \right)  \right)  \]
 
 
 \section{Problem A2}
@@ -104,7 +144,12 @@ x_2 \cr
 =
 \begin{bmatrix}
 x_2 \cr
-(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - k(x_{1} - d) - b(x_{2})) \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V}{R} 
+- \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- k \left( x_{1} - d \right)  
+- b \left( x_{2} \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
@@ -123,8 +168,8 @@ $V$
 \section{Problem A3}
 
 Proposition 3.4 in the textbook:
-\[\dot{x} = f(x(t), u(t))\]
-\[\dot{x} = 0 = f(x^e, u^e)\]
+\[\dot{x} = f \left( x \left( t \right) , u \left( t \right)  \right) \]
+\[\dot{x} = 0 = f \left( x^e, u^e \right) \]
 
 \bigskip
 Equilibrium Values are:
@@ -144,7 +189,12 @@ Substituting in value,
 = 
 \begin{bmatrix}
 x_{2}^e \cr
-(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1}^e - d) - b(x_{2}^e)) \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1}^e - d \right)  
+- b \left( x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
@@ -164,12 +214,21 @@ Subtracting Equation from Equilibrium Equation
 =
 \begin{bmatrix}
 x_2 \cr
-(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - k(x_{1} - d) - b(x_{2})) \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V}{R} 
+- \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- k \left( x_{1} - d \right)  
+- b \left( x_{2} \right)  \right)  \cr
 \end{bmatrix}
 -
 \begin{bmatrix}
 x_{2}^e \cr
-(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1}^e - d) - b(x_{2}^e)) \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1}^e - d \right)  
+- b \left( x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
@@ -178,7 +237,16 @@ x_{2}^e \cr
 =
 \begin{bmatrix}
 x_2 - x_{2}^e \cr
-(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - k(x_{1} - d) - b(x_{2})) - (\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1}^e - d) - b(x_{2}^e)) \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- k \left( x_{1} - d \right)  
+- b \left( x_{2} \right)  \right)  
+-  \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1}^e - d \right)  
+- b \left( x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
@@ -187,7 +255,15 @@ x_2 - x_{2}^e \cr
 =
 \begin{bmatrix}
 x_2 - x_{2}^e \cr
-(\frac{5}{3m})(mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - k(x_{1} - d) - b(x_{2}) - mg\sin(\phi) - c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} + k(x_{1}^e - d) + b(x_{2}^e)) \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V}{R} 
+- \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- k \left( x_{1} - d \right)  - b \left( x_{2} \right)  - mg\sin \left( \phi \right)  
+- c \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
++ k \left( x_{1}^e - d \right)  
++ b \left( x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
@@ -196,7 +272,15 @@ x_2 - x_{2}^e \cr
 =
 \begin{bmatrix}
 x_2 - x_{2}^e \cr
-(\frac{5}{3m})(mg\sin(\phi) - mg\sin(\phi) + c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1} - d) + k(x_{1}^e - d) - b(x_{2})  + b(x_{2}^e)) \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
+- mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1} - d \right)  
++ k \left( x_{1}^e - d \right)  
+- b \left( x_{2} \right)   
++ b \left( x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
@@ -205,7 +289,13 @@ x_2 - x_{2}^e \cr
 =
 \begin{bmatrix}
 x_2 - x_{2}^e \cr
-(\frac{5}{3m})(c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1} - d) - k(-x_{1}^e + d) - b(x_{2})  - b(-x_{2}^e)) \cr
+ \left( \frac{5}{3m} \right) 
+ \left( c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1} - d \right)  
+- k \left( -x_{1}^e + d \right)  
+- b \left( x_{2} \right)   
+- b \left( -x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
@@ -214,7 +304,11 @@ x_2 - x_{2}^e \cr
 =
 \begin{bmatrix}
 x_2 - x_{2}^e \cr
-(\frac{5}{3m})(c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(x_{1} -x_{1}^e - d + d) - b(x_{2} - x_{2}^e)) \cr
+ \left( \frac{5}{3m} \right) 
+ \left( c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1} -x_{1}^e - d + d \right)  
+- b \left( x_{2} - x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
@@ -224,12 +318,246 @@ Simplest Form Before Linearisation:
 =
 \begin{bmatrix}
 \bar{x_{2}} \cr
-(\frac{5}{3m})(c \frac{{(\frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1})}^2} - c \frac{{(\frac{V_{e}}{R} - \frac{V_{e}}{R}e^{\frac{-R}{L}t})}^2}{{(\delta - x_{1}^e)}^2} - k(\bar{x_{1}}) - b(\bar{x_{2}})) \cr
+ \left( \frac{5}{3m} \right) 
+ \left( c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
 \newpage
 \section{Problem A4}
+Linearise $f \left( \underbar{$\dot{\bar{x}}$}, \bar{V} \right) $ at $\underbar{$x$}^e$,$V^{e}$
+
+\bigskip
+To Linearise $f$, $\psi = \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2}$ needs to be Linearised.
+
+Taylors Theorm is used for Linearisation.
+\[\psi \left( \bar{x_{1}},\bar{V} \right)  \approx \psi \left( x_{1}^{e},V^{e} \right) 
++ \frac{\partial \psi}{\partial \bar{x_{1}}}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+ \left( \bar{x_{1}} - x_{1}^e \right)  
++ \frac{\partial \psi}{\partial \bar{V}}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) } \left( \bar{V} - V^{e} \right) \]
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) } ( \bar{V} - V^{e} ) \]
+
+\[\psi \left( \bar{x_{1}},\bar{V} \right)  \approx 
+\frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2}
++ \frac{\partial }{\partial \bar{x_{1}}}
+\frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+%\times
+ \left( \bar{x_{1}} - x_{1}^e \right)  
++ \frac{\partial }{\partial \bar{V}}
+\frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+%\times
+ \left( \bar{V} - V^{e} \right) \]
+
+Find Each Derivative
+\begin{align*}
+\frac{\partial }{\partial \bar{x_{1}}}
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2
+{ \left( \delta - x_{1} \right) }^{-2}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+&=
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2
+\frac{\partial }{\partial \bar{x_{1}}}
+{ \left( \delta - x_{1} \right) }^{-2}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\cr
+&=
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2
+\left( -2 \right) \left( -1 \right)
+{ \left( \delta - x_{1} \right) }^{-3}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\cr
+&=
+\left( 2 \right)
+\frac
+{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}
+{{ \left( \delta - x_{1} \right) }^{3}}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\cr
+&=
+\left( 2 \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}
+{{ \left( \delta -  x_{1}^{e} \right) }^{3}}
+\end{align*}
+ 
+\begin{align*}
+\frac{\partial }{\partial \bar{V}}
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^{2}
+{ \left( \delta - x_{1} \right) }^{-2}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+&=
+{ \left( \delta - x_{1} \right) }^{-2}
+\frac{\partial }{\partial \bar{V}}
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^{2}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\cr
+&=
+{ \left( \delta - x_{1} \right) }^{-2}
+\left( 2 \right)
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\cr
+&=
+\left( 2 \right)
+\frac
+{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }}
+{{ \left( \delta - x_{1} \right) }^{2}}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\cr
+&=
+\left( 2 \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }}
+{{ \left( \delta - x_{1}^{e} \right) }^{2}}
+\end{align*}
+
+\noindent
+Derivatives Found\\
+Now to Substitue in the values.
+\[\psi \left( \bar{x_{1}},\bar{V} \right)  \approx 
+\frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2}
++ \left( 2 \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}
+{{ \left( \delta -  x_{1}^{e} \right) }^{3}}
+ \left( \bar{x_{1}} - x_{1}^e \right)  
++ \left( 2 \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }}
+{{ \left( \delta - x_{1}^{e} \right) }^{2}}
+ \left( \bar{V} - V^{e} \right)
+\]
+
+\noindent
+Now Substitue in $\psi$ into $\underbar{$\dot{\bar{x}}$}$.\\
+Simplest Form Before Linearisation:
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right) 
+ \left( 
+ c \times
+ \left(
+ \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2}
++ \left( 2 \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}
+{{ \left( \delta -  x_{1}^{e} \right) }^{3}}
+ \left( \bar{x_{1}} - x_{1}^e \right)  
++ \left( 2 \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }}
+{{ \left( \delta - x_{1}^{e} \right) }^{2}}
+ \left( \bar{V} - V^{e} \right)
+ \right)
+- c \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right) 
+ \left( 
+ \left( c \right)
+ \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2}
++ \left( 2c \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}
+{{ \left( \delta -  x_{1}^{e} \right) }^{3}}
+ \left( \bar{x_{1}} - x_{1}^e \right)  
++ \left( 2c \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }}
+{{ \left( \delta - x_{1}^{e} \right) }^{2}}
+ \left( \bar{V} - V^{e} \right)
+- c \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right) 
+ \left( 
+ \left( c \right)
+ \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2}
+ - c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
++ \left( 2c \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}
+{{ \left( \delta -  x_{1}^{e} \right) }^{3}}
+ \left( \bar{x_{1}} - x_{1}^e \right)  
++ \left( 2c \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }}
+{{ \left( \delta - x_{1}^{e} \right) }^{2}}
+ \left( \bar{V} - V^{e} \right)
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right) 
+ \left( 
+\left( 2c \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}
+{{ \left( \delta -  x_{1}^{e} \right) }^{3}}
+ \left( \bar{x_{1}} - x_{1}^e \right)  
++ \left( 2c \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }}
+{{ \left( \delta - x_{1}^{e} \right) }^{2}}
+ \left( \bar{V} - V^{e} \right)
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
 
 
 \end{document}
