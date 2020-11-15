@@ -1,4 +1,4 @@
 # ELE2024 Coursework - Group 3
-Michael Allen, JoHnathan Lockhart, Alduin Smells Bino
+Michael Allen, Jonathan Lockhart and Allwyn Bino.
 
-ELE2024 (Circuits and Control) Group Coursework
+ELE2024 (Circuits and Control) Group Coursework.
