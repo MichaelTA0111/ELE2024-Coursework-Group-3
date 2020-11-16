@@ -169,7 +169,8 @@ $V$
 
 Proposition 3.4 in the textbook:
 \[\dot{x} = f \left( x \left( t \right) , u \left( t \right)  \right) \]
-\[\dot{x} = 0 = f \left( x^e, u^e \right) \]
+$\dot{x} = 0 = f \left( x^e, u^e \right) $ for all t, such that, $ 0\leq t<\infty$\\
+$\dot{x} = 0 = f \left( x^e, u^e \right) $ for all t, such that, $ 0\leqslant t<\infty$
 
 \bigskip
 Equilibrium Values are:
@@ -309,6 +310,132 @@ x_2 - x_{2}^e \cr
 - c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
 - k \left( x_{1} -x_{1}^e - d + d \right)  
 - b \left( x_{2} - x_{2}^e \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+%\lim_{t\to\infty}
+\underbar{$\dot{\bar{x}}$}
+=
+\lim_{t\to\infty}
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right) 
+ \left( c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+%\lim_{t\to\infty}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right) \times
+ \lim_{t\to\infty}
+ \left( c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+%\lim_{t\to\infty}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right)
+ \left( c \times \lim_{t\to\infty} \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \times \lim_{t\to\infty} \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+%\lim_{t\to\infty}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right)
+ \left( c \frac{\lim_{t\to\infty}{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{\lim_{t\to\infty}{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+%\lim_{t\to\infty}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right)
+ \left( c \frac{{ \left( \frac{V}{R} - \frac{V}{R}\lim_{t\to\infty}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{\lim_{t\to\infty}{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}\lim_{t\to\infty}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+%MultiLine Comment
+\iffalse
+\begin{equation*}
+%\lim_{t\to\infty}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right)
+ \left( c \frac{{ \left( \frac{V}{R} 
+ - \frac{V}{R}e^{-\infty} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{-\infty} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+\fi
+
+\begin{equation*}
+%\lim_{t\to\infty}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right)
+ \left( c \frac{{ \left( \frac{V}{R} 
+ - \frac{V}{R} \times 0 \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R} \times 0 \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+%\lim_{t\to\infty}
+\underbar{$\dot{\bar{x}}$}
+=
+\begin{bmatrix}
+\bar{x_{2}} \cr
+ \left( \frac{5}{3m} \right)
+ \left( c \frac{{ \left( \frac{V}{R}\right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( \bar{x_{1}} \right)  
+- b \left( \bar{x_{2}} \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
