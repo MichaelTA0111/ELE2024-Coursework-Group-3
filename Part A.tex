@@ -1,58 +1,141 @@
-\documentclass[a4paper,16pt,reqno]{article}
+\documentclass[a4paper,11pt,reqno]{amsart}
 
-\usepackage{gensymb}
-\usepackage[left=1cm, right=2cm, top=1cm, bottom=2cm]{geometry}
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage{siunitx}
-\usepackage{subfig}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{epstopdf}
-\usepackage{inputenc}
-\usepackage{array}
-\usepackage{booktabs}
+% --------------------------------------------------------
+% Packages
+% --------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{mathtools,graphicx}
+\usepackage{tcolorbox}
 \usepackage{listings}
+\usepackage{textcomp}
+\usepackage{hyperref}
 
+% --------------------------------------------------------
+% Custom Colours
+% --------------------------------------------------------
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+%WE DONT HAVE ANY COULOR YET
+
+% --------------------------------------------------------
+% Typesetting Python code
+% --------------------------------------------------------
+\lstloadlanguages{Python}%
+\lstset{
+    language=Python, upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{yellow!30},
+    keywordstyle=[1]\color{NavyBlue}\bfseries,
+    keywordstyle=[2]\color{RubineRed},
+    keywordstyle=[3]\color{orange!90}\bfseries,
+    keywordstyle=[4]\color{Green!90}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MidnightBlue}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=4, morekeywords={import,as},
+    morekeywords=[2]{args,__init__},
+    morekeywords=[3]{@property},
+    morekeywords=[4]{self},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+%WE DONT HAVE ANY PYTHON CODE YET
+
+\synctex=1 %WHATS THIS?
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+% --------------------------------------------------------
+% CUSTOM COMMANDS
+% --------------------------------------------------------
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+% --------------------------------------------------------
+% Opening: Title and Author Names
+%          Modify this section
+% --------------------------------------------------------
+\title[ELE2024 Coursework]{ELE2024 Coursework: Group 3}
+
+\author[Mikel]{Micheal Allen}
+\author[Alduin]{Allwyn Bino}
+\author[JoHnny]{Jonathan Lockhart}
+\address[F. Author and A. Someone]{Email addresses: \href{mailto:f.author@qub.ac.uk}%WHOSE EMAIL?
+{f.author@qub.ac.uk} and 
+\href{mailto:a.someone.ac.uk}{a.someone@qub.ac.uk}.}
+\thanks{Thanks to Geralt of Rivia, Butcher of Blaviken. Version 0.0.1. Last updated:~\today.}%WHOM TO THANK
+
+
+
+% --------------------------------------------------------
+% Beginning of your document
+% --------------------------------------------------------
 \begin{document}
 
 \section{Problem A1}
 
-\begin{equation}m\ddot{x} = mg\sin \left( \phi \right)  
+\subsection{Problem A1}
+
+\begin{equation*}
+m\ddot{x} = 
+mg\sin \left( \phi \right)  
 + F_{magnet} 
 - k \left( x - d \right)  
 - b \left( \dot{x} \right)  
 + F_{friction}
-\end{equation}
+\end{equation*}
 
-\begin{equation}F_{mag} = c \frac{I^2}{y^2}\end{equation}
+\begin{equation*}F_{mag} = c \frac{I^2}{y^2}\end{equation*}
 
 We need to find equations for $I$ and $y$.
-\begin{equation}y = \delta - x\end{equation}
+\begin{equation*}y = \delta - x\end{equation*}
 Equation for $y$ found.
 
-\begin{equation}V = IR + \dot{I}L \Longrightarrow V = IR + \frac{dI}{dt}L\end{equation}
+\begin{equation*}V = IR + \dot{I}L \Longrightarrow V = IR + \frac{dI}{dt}L\end{equation*}
 
-\begin{equation}V - IR = \frac{dI}{dt}L \Longrightarrow 
+\begin{equation*}V - IR = \frac{dI}{dt}L \Longrightarrow 
 \frac{V - IR}{dI} = \frac{L}{dt} \Longrightarrow 
-\frac{1}{V - IR}dI = \frac{1}{L}dt\end{equation}
+\frac{1}{V - IR}dI = \frac{1}{L}dt\end{equation*}
 
-\begin{equation}\int \frac{1}{V - IR}dI = \int \frac{1}{L}dt\end{equation}
+\begin{equation*}\int \frac{1}{V - IR}dI = \int \frac{1}{L}dt\end{equation*}
 
 Let $u = V - IR$,
-\begin{equation}\frac{du}{dI} = -R\end{equation}
-\begin{equation}dI = \frac{1}{-R} du\end{equation}
+\begin{equation*}\frac{du}{dI} = -R\end{equation*}
+\begin{equation*}dI = \frac{1}{-R} du\end{equation*}
 
-\begin{equation}\int \frac{1}{u} \times \frac{1}{-R} du= \int \frac{1}{L} dt\end{equation}
-\begin{equation}\frac{1}{-R} \ln \left( u \right)  = \frac{1}{L}t + \sigma\end{equation}
+\begin{equation*}\int \frac{1}{u} \times \frac{1}{-R} du= \int \frac{1}{L} dt\end{equation*}
+\begin{equation*}\frac{1}{-R} \ln \left( u \right)  = \frac{1}{L}t + \sigma\end{equation*}
 where $\sigma$ is the constant of integration
-\begin{equation}\frac{1}{-R} \ln \left( V - IR \right)  = \frac{1}{L}t + \sigma\end{equation}
-\begin{equation} [\ln \left( V - IR \right)  = \frac{-R}{L}t + \sigma\end{equation}
-\begin{equation} [\ln \left( V - IR \right) ]^{i}_{0} = [\frac{-R}{L}t + \sigma]^{T}_{0}\end{equation}
-\begin{equation}\ln \left( V - iR \right)  - \ln \left( V \right)  = \frac{-R}{L}T\end{equation}
-\begin{equation}\ln \left( V - IR \right)  - \ln \left( V \right)  = \frac{-R}{L}t\end{equation}
-\begin{equation}\ln \left( \frac{V - IR}{V} \right)  = \frac{-R}{L}t\end{equation}
-\begin{equation}\frac{V - IR}{V} = e^{\frac{-R}{L}t}\end{equation}
+\begin{equation*}\frac{1}{-R} \ln \left( V - IR \right)  = \frac{1}{L}t + \sigma\end{equation*}
+\begin{equation*} [\ln \left( V - IR \right)  = \frac{-R}{L}t + \sigma\end{equation*}
+\begin{equation*} [\ln \left( V - IR \right) ]^{i}_{0} = [\frac{-R}{L}t + \sigma]^{T}_{0}\end{equation*}
+\begin{equation*}\ln \left( V - iR \right)  - \ln \left( V \right)  = \frac{-R}{L}T\end{equation*}
+\begin{equation*}\ln \left( V - IR \right)  - \ln \left( V \right)  = \frac{-R}{L}t\end{equation*}
+\begin{equation*}\ln \left( \frac{V - IR}{V} \right)  = \frac{-R}{L}t\end{equation*}
+\begin{equation*}\frac{V - IR}{V} = e^{\frac{-R}{L}t}\end{equation*}
 
 \[V - IR = Ve^{\frac{-R}{L}t}\]
 \[V - Ve^{\frac{-R}{L}t} = IR\]
@@ -76,11 +159,11 @@ Equation for $F_{friction}$ found.
 
 \bigskip
 Substituting everything in.
-\begin{equation}m\ddot{x} = 
+\begin{equation*}m\ddot{x} = 
 mg\sin \left( \phi \right)  
 + c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x \right) }^2} 
 - k \left( x - d \right)  - b \left( \dot{x} \right)  
-+ \frac{2}{5}m \ddot{x}\end{equation}
++ \frac{2}{5}m \ddot{x}\end{equation*}
 
 \bigskip
 Simplify Everything
@@ -114,7 +197,7 @@ mg\sin \left( \phi \right)
 - b \left( \dot{x} \right)  \right)  \]
 
 
-\section{Problem A2}
+\subsection{Problem A2}
 \bigskip
 State Space Time.
 2nd Order ODE $\therefore$ introduce 2 new variables.
@@ -165,7 +248,7 @@ x_2 \cr
 and Inputs to the system are:\\
 $V$
 
-\section{Problem A3}
+\subsection{Problem A3}
 
 %Which one to use?
 %Is this even correct?
@@ -457,7 +540,7 @@ Simplest Form Before Linearisation:
 \end{equation*}
 
 \newpage
-\section{Problem A4}
+\subsection{Problem A4}
 Linearise $f \left( \underbar{$\dot{\bar{x}}$}, \bar{V} \right) $ at $\underbar{$x$}^e$,$V^{e}$
 
 \bigskip
