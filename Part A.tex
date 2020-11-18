@@ -83,7 +83,7 @@
 \author[Mikel]{Micheal Allen}
 \author[Alduin]{Allwyn Bino}
 \author[JoHnny]{Jonathan Lockhart}
-\address[F. Author and A. Someone]{Email addresses: \href{mailto:f.author@qub.ac.uk}%WHOSE EMAIL?
+\address[]{Email addresses: \href{mailto:f.author@qub.ac.uk}%WHOSE EMAIL?
 {f.author@qub.ac.uk} and 
 \href{mailto:a.someone.ac.uk}{a.someone@qub.ac.uk}.}
 \thanks{Thanks to Geralt of Rivia, Butcher of Blaviken. Version 0.0.1. Last updated:~\today.}%WHOM TO THANK
@@ -94,6 +94,8 @@
 % Beginning of your document
 % --------------------------------------------------------
 \begin{document}
+
+%\maketitle
 
 \section{Problem A1}
 
@@ -271,15 +273,90 @@ x_{2}^e \cr
 V^e$
 
 Using Proposition 3.4 and substituting in these value,
-\begin{equation} %APPLY LIMIT HERE
+\begin{equation}
 0
 = 
+ \lim_{t\to\infty}
 \begin{bmatrix}
 x_{2}^e \cr
  \left( \frac{5}{3m} \right) 
  \left( mg\sin \left( \phi \right)  
 + c \frac{{ \left( \frac{V^{e}}{R} 
 - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1}^e - d \right)  
+- b \left( x_{2}^e \right)  \right)  \cr
+\end{bmatrix}
+\end{equation}
+
+\begin{equation*}
+0
+= 
+\begin{bmatrix}
+x_{2}^e \cr
+ \left( \frac{5}{3m} \right) 
+ \times \lim_{t\to\infty}
+ \left( mg\sin \left( \phi \right)  
++ c \frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1}^e - d \right)  
+- b \left( x_{2}^e \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+0
+= 
+\begin{bmatrix}
+x_{2}^e \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c  \times \lim_{t\to\infty}
+\frac{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1}^e - d \right)  
+- b \left( x_{2}^e \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+0
+= 
+\begin{bmatrix}
+x_{2}^e \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c  \frac
+{\lim_{t\to\infty}
+{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1}^e - d \right)  
+- b \left( x_{2}^e \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+0
+= 
+\begin{bmatrix}
+x_{2}^e \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c  \frac
+{{ \left( \frac{V^{e}}{R} 
+- \frac{V^{e}}{R} \times 0 \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- k \left( x_{1}^e - d \right)  
+- b \left( x_{2}^e \right)  \right)  \cr
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation}
+0
+= 
+\begin{bmatrix}
+x_{2}^e \cr
+ \left( \frac{5}{3m} \right) 
+ \left( mg\sin \left( \phi \right)  
++ c  \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
 - k \left( x_{1}^e - d \right)  
 - b \left( x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
@@ -293,7 +370,7 @@ Defining Deviation Values
 \begin{equation*}\frac{d}{dx}[\underbar{$\bar{x}$}] = \frac{d}{dx}[\underbar{$x$} - \underbar{$x$}^e]\end{equation*}
 \begin{equation*}\underbar{$\dot{\bar{x}}$} = \underbar{$\dot{x}$}\end{equation*}
 
-Subtracting Equation from Equilibrium Equation
+Subtracting (9) from (8)
 \begin{equation*}\underbar{$\dot{\bar{x}}$} = \underbar{$\dot{x}$} - 0\end{equation*}
 
 \begin{equation*}
@@ -313,7 +390,7 @@ x_2 \cr
 x_{2}^e \cr
  \left( \frac{5}{3m} \right) 
  \left( mg\sin \left( \phi \right)  
-+ c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
++ c  \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
 - k \left( x_{1}^e - d \right)  
 - b \left( x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
@@ -331,7 +408,7 @@ x_2 - x_{2}^e \cr
 - b \left( x_{2} \right)  \right)  
 -  \left( \frac{5}{3m} \right) 
  \left( mg\sin \left( \phi \right)  
-+ c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
++ c  \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
 - k \left( x_{1}^e - d \right)  
 - b \left( x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
@@ -347,8 +424,7 @@ x_2 - x_{2}^e \cr
 + c \frac{{ \left( \frac{V}{R} 
 - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
 - k \left( x_{1} - d \right)  - b \left( x_{2} \right)  - mg\sin \left( \phi \right)  
-- c \frac{{ \left( \frac{V^{e}}{R} 
-- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
 + k \left( x_{1}^e - d \right)  
 + b \left( x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
@@ -363,7 +439,7 @@ x_2 - x_{2}^e \cr
  \left( mg\sin \left( \phi \right)  
 - mg\sin \left( \phi \right)  
 + c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
-- c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
 - k \left( x_{1} - d \right)  
 + k \left( x_{1}^e - d \right)  
 - b \left( x_{2} \right)   
@@ -378,7 +454,7 @@ x_2 - x_{2}^e \cr
 x_2 - x_{2}^e \cr
  \left( \frac{5}{3m} \right) 
  \left( c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
-- c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
 - k \left( x_{1} - d \right)  
 - k \left( -x_{1}^e + d \right)  
 - b \left( x_{2} \right)   
@@ -393,28 +469,28 @@ x_2 - x_{2}^e \cr
 x_2 - x_{2}^e \cr
  \left( \frac{5}{3m} \right) 
  \left( c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
-- c \frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
 - k \left( x_{1} -x_{1}^e - d + d \right)  
 - b \left( x_{2} - x_{2}^e \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
 
-\begin{equation*}
-%\lim_{t\to\infty}
+
+\begin{equation}
 \underbar{$\dot{\bar{x}}$}
 =
-\lim_{t\to\infty}
 \begin{bmatrix}
 \bar{x_{2}} \cr
  \left( \frac{5}{3m} \right) 
  \left( c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
-- c \frac{{ \left( \frac{V^{e}}{R} 
-- \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
+- c \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
 - k \left( \bar{x_{1}} \right)  
 - b \left( \bar{x_{2}} \right)  \right)  \cr
 \end{bmatrix}
-\end{equation*}
+\end{equation}
 
+%MULTILINE COMMENT
+\iffalse
 %LIMIT applied here is wrong.
 \begin{equation*}
 %\lim_{t\to\infty}
@@ -525,130 +601,201 @@ x_2 - x_{2}^e \cr
 - b \left( \bar{x_{2}} \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
+\fi
 
-Simplest Form Before Linearisation:
-\begin{equation*}
-%\lim_{t\to\infty}
-\underbar{$\dot{\bar{x}}$}
-=
-\begin{bmatrix}
-\bar{x_{2}} \cr
- \left( \frac{5}{3m} \right)
- \left( c \frac{{ \left( \frac{V}{R}\right) }^2}{{ \left( \delta - x_{1} \right) }^2} 
-- c \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2} 
-- k \left( \bar{x_{1}} \right)  
-- b \left( \bar{x_{2}} \right)  \right)  \cr
-\end{bmatrix}
-\end{equation*}
+Equation (11) represents the simplest form before Linearisation.
 
 \newpage
 \subsection{Problem A4}
 Linearise $f \left( \underbar{$\dot{\bar{x}}$}, \bar{V} \right) $ at $\underbar{$x$}^e$,$V^{e}$ as time $t\to \infty$
 
 \bigskip
-To Linearise $f$, $\psi = \frac{{ \left( \frac{V}{R}\right) }^2}{{ \left( \delta - x_{1} \right) }^2} $ needs to be Linearised.
+To Linearise $f$, $\psi = \frac{{ \left( \frac{V}{R} 
+- \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1} \right) }^2} $ needs to be Linearised.
 
-Taylors theorem is used for Linearisation.
-\begin{equation*}\psi \left( x_{1},V \right)  \approx \psi \left( x_{1}^{e},V^{e} \right) 
+Taylors Theorm is used for Linearisation. It is modified a little to account for $t \to \infty$ .
+\begin{equation}
+\psi \left( x_{1},V \right)  \approx 
+ \lim_{t\to\infty}
+\left(
+\psi \left( x_{1}^{e},V^{e} \right) 
 + \frac{\partial \psi}{\partial x_{1}}
 %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
 \Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
  \left( x_{1} - x_{1}^e \right)  
 + \frac{\partial \psi}{\partial V}
-%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) } \left( \bar{V} - V^{e} \right) \end{equation*}
-\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) } ( \bar{V} - V^{e} ) \end{equation*}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) } \left( V - V^{e} \right) \]
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e} ) }} ( V - V^{e} ) 
+\right)
+\end{equation}
 
-\begin{equation*}\psi \left( x_{1},V \right)  \approx 
-\frac{{ \left( \frac{V}{R}\right) }^2}{{ \left( \delta - x_{1} \right) }^2}
-+ \frac{\partial }{\partial x_{1}}
-\frac{{ \left( \frac{V}{R}\right) }^2}{{ \left( \delta - x_{1} \right) }^2}
+\begin{equation}
+\psi \left( x_{1},V \right)  \approx 
+ \lim_{t\to\infty}
+\psi \left( x_{1}^{e},V^{e} \right) 
++  \lim_{t\to\infty}
+\frac{\partial \psi}{\partial x_{1}}
 %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
 \Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
-%\times
  \left( x_{1} - x_{1}^e \right)  
-+ \frac{\partial }{\partial V}
-\frac{{ \left( \frac{V}{R}\right) }^2}{{ \left( \delta - x_{1} \right) }^2}
-%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
-\Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
-%\times
- \left( V - V^{e} \right) \end{equation*}
++  \lim_{t\to\infty}
+\frac{\partial \psi}{\partial V}
+%\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) } \left( V - V^{e} \right) \]
+\Bigr|_{\substack{ ( x_{1}^{e},V^{e} ) }} ( V - V^{e} ) 
+\end{equation}
+ 
+ Find $\psi \left( x_{1},V \right)$.
+ \begin{align*}
+\lim_{t\to\infty}
+ \psi \left( x_{1},V \right)  
+ &=
+\lim_{t\to\infty}
+\frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2}
+\cr
+&=
+\frac{{ \lim_{t\to\infty}
+\left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2}
+\cr
+&=
+\frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R} \times 0 \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2}
+\cr
+&=
+\frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2}
+\end{align*}
 
 Find Each Derivative
 \begin{align*}
+\lim_{t\to\infty} \left(
 \frac{\partial }{\partial x_{1}}
-{ \left( \frac{V}{R} \right) }^2
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2
 { \left( \delta - x_{1} \right) }^{-2}
 %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
 \Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\right)
 &=
-{ \left( \frac{V}{R} \right) }^2
+\lim_{t\to\infty} \left(
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2
 \frac{\partial }{\partial x_{1}}
 { \left( \delta - x_{1} \right) }^{-2}
 %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
 \Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\right)
 \cr
 &=
-{ \left( \frac{V}{R} \right) }^2
+\lim_{t\to\infty} \left(
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2
 \left( -2 \right) \left( -1 \right)
 { \left( \delta - x_{1} \right) }^{-3}
 %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
 \Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\right)
 \cr
 &=
+\lim_{t\to\infty} \left(
 \left( 2 \right)
 \frac
-{{ \left( \frac{V}{R} \right) }^2}
+{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}
 {{ \left( \delta - x_{1} \right) }^{3}}
 %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
 \Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\right)
+\cr
+&=
+\lim_{t\to\infty} \left(
+\left( 2 \right)
+\frac
+{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}
+{{ \left( \delta -  x_{1}^{e} \right) }^{3}}
+\right)
 \cr
 &=
 \left( 2 \right)
 \frac
-{{ \left( \frac{V^{e}}{R} \right) }^2}
+{\lim_{t\to\infty}
+{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }^2}
+{{ \left( \delta -  x_{1}^{e} \right) }^{3}}
+\cr
+&=
+\left( 2 \right)
+\frac{{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R} \times 0 \right) }^2}
+{{ \left( \delta -  x_{1}^{e} \right) }^{3}}
+\cr
+&=
+\left( 2 \right)
+\frac{{ \left( \frac{V^{e}}{R} \right) }^2}
 {{ \left( \delta -  x_{1}^{e} \right) }^{3}}
 \end{align*}
  
 \begin{align*}
+\lim_{t\to\infty} \left(
 \frac{\partial }{\partial V}
-{ \left( \frac{V}{R} \right) }^2
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^{2}
 { \left( \delta - x_{1} \right) }^{-2}
 %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
 \Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\right)
 &=
+\lim_{t\to\infty} \left(
 { \left( \delta - x_{1} \right) }^{-2}
 \frac{\partial }{\partial V}
-{ \left( \frac{V}{R} \right) }^{2}
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^{2}
 %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
 \Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\right)
 \cr
 &=
+\lim_{t\to\infty} \left(
 { \left( \delta - x_{1} \right) }^{-2}
 \left( 2 \right)
-{ \left( \frac{V}{R} \right) }
-{ \left( \frac{1}{R} \right) }
+{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }
 %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
 \Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\right)
 \cr
 &=
+\lim_{t\to\infty} \left(
 \left( 2 \right)
 \frac
-{{ \left( \frac{V}{R} \right) }
-{ \left( \frac{1}{R} \right) }}
+{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }}
 {{ \left( \delta - x_{1} \right) }^{2}}
 %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
 \Bigr|_{\substack{ ( x_{1}^{e},V^{e}} ) }
+\right)
 \cr
 &=
 \left( 2 \right)
 \frac
-{ \left( \frac{V^{e}}{R^{2}} \right) }
+{\lim_{t\to\infty}
+{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R}e^{\frac{-R}{L}t} \right) }
+\lim_{t\to\infty}
+{ \left( \frac{1}{R} - \frac{1}{R}e^{\frac{-R}{L}t} \right) }}
+{{ \left( \delta - x_{1}^{e} \right) }^{2}}
+\cr
+&=
+\left( 2 \right)
+\frac{
+{ \left( \frac{V^{e}}{R} - \frac{V^{e}}{R} \times 0 \right) }
+{ \left( \frac{1}{R} - \frac{1}{R} \times 0 \right) }}
+{{ \left( \delta - x_{1}^{e} \right) }^{2}}
+\cr
+&=
+\left( 2 \right)
+\frac{
+{ \left( \frac{V^{e}}{R} \right) }
+{ \left( \frac{1}{R} \right) }}
+{{ \left( \delta - x_{1}^{e} \right) }^{2}}
+\cr
+&=
+\left( 2 \right)
+\frac{
+{ \left( \frac{V^{e}}{R^2} \right) }}
 {{ \left( \delta - x_{1}^{e} \right) }^{2}}
 \end{align*}
 
 \noindent
-Derivatives Found\\
-Now to Substitue in the values.
+Now Substitue in the values.
 \begin{equation*}\psi \left( x_{1},V \right)  \approx 
 \frac{{ \left( \frac{V^{e}}{R} \right) }^2}{{ \left( \delta - x_{1}^e \right) }^2}
 + \left( 2 \right)
@@ -783,10 +930,6 @@ Now Substitue in $\psi$ into $\underbar{$\dot{\bar{x}}$}$.
 - b \left( \bar{x_{2}} \right)  \right)  \cr
 \end{bmatrix}
 \end{equation*}
-
-%Commented because wrong equation used
-\iffalse
-\fi
 
 
 \end{document}
