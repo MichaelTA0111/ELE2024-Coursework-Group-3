@@ -1,6 +1,5 @@
-\subsection{Problem A1}\label{sec:qa1}\hfill
+\subsection{Problem A1}\label{sec:qa1}
 
-\medskip
 \begin{equation}
     m\ddot{x} =
     mg\sin \left( \phi \right)
@@ -36,40 +35,27 @@
 \begin{align*}
     \Longrightarrow \frac{du}{dI} &= -R\\
     dI &= \frac{1}{-R} du\\
-    \int \frac{1}{u} \times \frac{1}{-R} du &= \int \frac{1}{L} dt\\
-    \frac{1}{-R} \int \frac{1}{u} du &= \int \frac{1}{L} dt \\
-    \frac{1}{-R} \ln \left( u \right) &= \frac{1}{L}t + \sigma \\
-    \ln \left( u \right) &= \frac{-R}{L}t + \sigma \\
-    \ln \left( V - IR \right) &= \frac{-R}{L}t + \sigma
+   \int_{0}^{u} \frac{1}{u} \times \frac{1}{-R} du &= \int_{0}^{t} \frac{1}{L} dt\\
+   \frac{1}{-R} \int_{0}^{u} \frac{1}{u} du &= \int_{0}^{t} \frac{1}{L} dt\\
+   \frac{1}{-R} \left[ \ln \left( u \right) \right]_{0}^{u} &= \frac{1}{L}t\\
+   \frac{1}{-R} \left[ \ln \left( V - IR \right) \right]_{0}^{I}  &= \frac{1}{L}t\\
+   \left[ \ln \left( V - IR \right) \right]_{0}^{I} &= \frac{-R}{L}t\\
+   \ln \left( V - IR \right)  - \ln \left( V \right) &= \frac{-R}{L}t\\
+   \ln \left( \frac{V - IR}{V} \right) &= \frac{-R}{L}t\\
+   \frac{V - IR}{V} &= e^{\frac{-R}{L}t}\\
+   V - IR &= Ve^{\frac{-R}{L}t}\\
+   V - Ve^{\frac{-R}{L}t} &= IR\\
+   I &= \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t}\\
 \end{align*}
-
-\noindent where $\sigma$ is the constant of integration.
-
-\bigskip \noindent Let $I = i$ when $t = T$
-
-\begin{align*}
-    \Longrightarrow [\ln \left( V - IR \right)]^{I = i}_{I = 0} &= [\frac{-R}{L}t + \sigma]^{t = T}_{t = 0}\\
-    \ln \left( V - iR \right) - \ln \left( V \right) &= \frac{-R}{L}T\\
-    \ln \left( V - iR \right) &= \frac{-R}{L}T + \ln \left( V \right)\\
-    \therefore \sigma &= \ln \left( V \right)
-\end{align*}
-
-\begin{align}
-    \Longrightarrow \ln \left( V - IR \right)  - \ln \left( V \right) &= \frac{-R}{L}t\notag\\
-    \ln \left( \frac{V - IR}{V} \right) &= \frac{-R}{L}t\notag\\
-    \frac{V - IR}{V} &= e^{\frac{-R}{L}t}\notag\\
-    V - IR &= Ve^{\frac{-R}{L}t}\notag\\
-    IR &= V - Ve^{\frac{-R}{L}t}\notag\\
-    I &= \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t}\notag\\
-    I &= \frac{V}{R} \left( 1 - e^{\frac{-R}{L}t}\right)
-\end{align}
 
 \noindent Equation for $I$ found.
 
+\noindent Substituting $I$ and $y$ into $F_{magnet}$.
+
 \bigskip
-\begin{equation*}
+\begin{equation}
     F_{magnet} = c \frac{{ \left( \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t} \right) }^2}{{ \left( \delta - x \right) }^2}
-\end{equation*}
+\end{equation}
 
 \noindent Now we need to find an equation for $F_{friction}$
 
