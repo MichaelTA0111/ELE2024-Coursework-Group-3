@@ -8,9 +8,9 @@
 
 \begin{align*}
     x_1 &= x\\
-    x_2 &= \dot{x}\\
-    \dot{x_2} &= \ddot{x}\\
-    \underbar{$x$} &= 
+    x_2 &= \dot{x_1}\\
+    \dot{x_2} &= \ddot{x_1}\\
+    \Longrightarrow \underbar{$x$} &= 
     \begin{bmatrix}
         x_1 \cr
         x_2 \cr
@@ -18,11 +18,6 @@
     \underbar{$\dot{x}$} &= 
     \begin{bmatrix}
         \dot{x_1} \cr
-        \dot{x_2} \cr
-    \end{bmatrix}\\
-    \underbar{$\dot{x}$} &=
-    \begin{bmatrix}
-        x_2 \cr
         \dot{x_2} \cr
     \end{bmatrix}
 \end{align*}
@@ -32,7 +27,7 @@
         x_2 \cr
         \left( \frac{5}{3m} \right)
         \left( mg\sin \left( \phi \right)
-        + c \left( \frac{{ V \left( 1 - e^{\frac{-R}{L}t}\right) }}{{ R \left( \delta - x \right) }} \right)^2
+        + c \left( \frac{ V - Ae^{\frac{-R}{L}t}}{ R \left( \delta - x \right) } \right)^2
         - k \left( x - d \right)
         - b \dot{x} \right)\cr
     \end{bmatrix}
