@@ -15,6 +15,9 @@
 \usepackage{textcomp}
 \usepackage{hyperref}
 
+%\usepackage[T2A,T1]{fontenc}
+
+%TODO: DO WE NEED COLOURS?
 % --------------------------------------------------------
 % Custom Colours
 % --------------------------------------------------------
@@ -23,7 +26,7 @@
 \definecolor{lrow}{rgb}{0.914,0.918,0.922}
 \definecolor{drow}{rgb}{0.725,0.745,0.769}
 
-
+%TODO DO WE HAVE PYTHON CODE WE WANT TO INSERT?
 % --------------------------------------------------------
 % Typesetting Python code
 % --------------------------------------------------------
@@ -73,6 +76,19 @@
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
 
+\newcommand{\cyrillicB}{Б}
+\newcommand{\cyrillicG}{Г}
+\newcommand{\cyrillicD}{Д}
+\newcommand{\cyrillicZH}{Ж}
+\newcommand{\cyrillicZ}{З}
+\newcommand{\cyrillicI}{И}
+\newcommand{\cyrillicCH}{Ч}
+
+% --------------------------------------------------------
+% Block words hyphenating and splitting over 2 lines
+% --------------------------------------------------------
+\hyphenpenalty=10000
+
 % --------------------------------------------------------
 % Opening: Title and Author Names
 %          Modify this section
@@ -85,8 +101,6 @@
 \address[M. Allen, J. Lockhart, and A. Bino]{Email addresses: \href{mailto:mallen34@qub.ac.uk}{mallen34@qub.ac.uk}, \href{mailto:jlockhart11@qub.ac.uk}{jlockhart11@qub.ac.uk}, and \href{mailto:abino01@qub.ac.uk}{abino01@qub.ac.uk}.}
 \thanks{Some note goes here.  Version 0.0.1. Last updated:~\today.}
 
-
-
 % --------------------------------------------------------
 % Beginning of your document
 % --------------------------------------------------------
@@ -94,6 +108,8 @@
 
 \maketitle
 
+%OLD ABANDONED:
+%https://www.overleaf.com/2946491251fcwxwbfwrqrs
 
 \input{Part A/Part A}
 \newpage

@@ -1,166 +1,104 @@
-\subsection{Problem A1}\label{sec:qa1}
+\subsection{Problem A1}\label{sec:qa1}\hfill
 
+\medskip
+\noindent For this system, the inertial frame of reference is that parallel to and down the plane; perpendicular and away from the plane; and counter-clockwise rotations are all positive.
+
+\medskip
 \begin{equation}
-    m\ddot{x} =
-    mg\sin \left( \phi \right)
+    F_{total} = 
+    F_{weight} 
     + F_{magnet}
-    - k \left( x - d \right)
-    - b \dot{x}
+    - F_{spring}
+    - F_{damper}
     - F_{friction}
 \end{equation}
 
+\medskip
+\noindent Equation for the total force:
 \begin{equation}
-    F_{magnet} = c \frac{I^2}{y^2}
-\end{equation}
-
-\noindent We need to find equations for $I$ and $y$.
-
-\begin{equation}
-    y = \delta - x
-\end{equation}
-
-\noindent Equation for $y$ found.
-\begin{align*}
-    V &= IR + \dot{I}L\\
-    V &= IR + \frac{dI}{dt}L\\
-    V - IR &= \frac{dI}{dt}L\\
-    \frac{V - IR}{dI} &= \frac{L}{dt}\\
-    \frac{1}{V - IR}dI &= \frac{1}{L}dt\\
-    \int \frac{1}{V - IR}dI &= \int \frac{1}{L}dt
-\end{align*}
-
-\noindent \\Let $u = V - IR$
-
-\begin{align*}
-    \Longrightarrow \frac{du}{dI} &= -R\\
-    dI &= \frac{1}{-R} du\\
-    \int \frac{1}{u} \times \frac{1}{-R} du &= \int \frac{1}{L} dt\\
-    \frac{1}{-R} \int \frac{1}{u} du &= \int \frac{1}{L} dt \\
-    \frac{1}{-R} \ln \left( u \right) &= \frac{1}{L}t + \sigma \\
-    \ln \left( u \right) &= \frac{-R}{L}t + \sigma \\
-    \ln \left( V - IR \right) &= \frac{-R}{L}t + \sigma
-\end{align*}
-\noindent where $\sigma$ is the constant of integration.
-
-\begin{align*}
-    \Longrightarrow e^{\ln \left( V - IR \right)} &= e^{\frac{-R}{L}t + \sigma}\\
-    V - IR &= e^{\frac{-R}{L}t} \times e^{\sigma}\\
-    V - IR &= Ae^{\frac{-R}{L}t}\\
-    -IR &= Ae^{\frac{-R}{L}t} - V\\
-    IR &= V - Ae^{\frac{-R}{L}t}\\
-    I &= \frac{1}{R} \left( V - Ae^{\frac{-R}{L}t}\right)
-\end{align*}
-\noindent where $A$ = $e^{\sigma}$.\\
-\noindent Equation for $I$ found.
-
-%COMMENT BEGINS
-\iffalse
-\begin{align*}
-    \Longrightarrow \frac{du}{dI} &= -R\\
-    dI &= \frac{1}{-R} du\\
-    \int \frac{1}{u} \times \frac{1}{-R} du &= \int \frac{1}{L} dt\\
-    \frac{1}{-R} \int \frac{1}{u} du &= \int \frac{1}{L} dt \\
-    \frac{1}{-R} \ln \left( u \right) &= \frac{1}{L}t + \sigma \\
-    \ln \left( u \right) &= \frac{-R}{L}t + \sigma \\
-    \ln \left( V - IR \right) &= \frac{-R}{L}t + \sigma
-\end{align*}
-\noindent where $\sigma$ is the constant of integration.
-\medskip \noindent Let $I = i$ when $t = T$
-\begin{align*}
-    \Longrightarrow [\ln \left( V - IR \right)]^{I = i}_{I = 0} &= [\frac{-R}{L}t + \sigma]^{t = T}_{t = 0}\\
-    \ln \left( V - iR \right) - \ln \left( V \right) &= \frac{-R}{L}T\\
-    \ln \left( V - iR \right) &= \frac{-R}{L}T + \ln \left( V \right)\\
-    \therefore \sigma &= \ln \left( V \right)
-\end{align*}
-
-\begin{align}
-    \Longrightarrow \ln \left( V - IR \right)  - \ln \left( V \right) &= \frac{-R}{L}t\notag\\
-    \ln \left( \frac{V - IR}{V} \right) &= \frac{-R}{L}t\notag\\
-    \frac{V - IR}{V} &= e^{\frac{-R}{L}t}\notag\\
-    V - IR &= Ve^{\frac{-R}{L}t}\notag\\
-    IR &= V - Ve^{\frac{-R}{L}t}\notag\\
-    I &= \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t}\notag\\
-    I &= \frac{V}{R} \left( 1 - e^{\frac{-R}{L}t}\right)
-\end{align}
-\noindent Equation for $I$ found.
-
-%NEW STUFF BEGINS HERE
-%THE COMMENTS AND PREVIOUS STUFF WILL BE REMOVED 
-%ON CONSENSUS
-\begin{align*}
-    \Longrightarrow \frac{du}{dI} &= -R\\
-    dI &= \frac{1}{-R} du\\
-    \int_{0}^{u} \frac{1}{u} \times \frac{1}{-R} du &= \int_{0}^{t} \frac{1}{L} dt\\
-    \frac{1}{-R} \int_{0}^{u} \frac{1}{u} du &= \int_{0}^{t} \frac{1}{L} dt\\
-    \frac{1}{-R} \left[ \ln \left( u \right) \right]_{u = 0}^{u = U} &= \left[ \frac{1}{L}t\right]_{t = 0}^{t = T}\\
-\end{align*}
-
-\begin{align*}
-    \frac{1}{-R} \left[ \ln \left( V - IR \right) \right]_{I = 0}^{I = i}  &= \left[ \frac{1}{L}t\right]_{t = 0}^{t = T}\\
-    \left[ \ln \left( V - IR \right) \right]_{0}^{I} &= \frac{-R}{L}t\\
-    \ln \left( V - IR \right)  - \ln \left( V \right) &= \frac{-R}{L}t\\
-    \ln \left( \frac{V - IR}{V} \right) &= \frac{-R}{L}t\\
-    \frac{V - IR}{V} &= e^{\frac{-R}{L}t}\\
-    V - IR &= Ve^{\frac{-R}{L}t}\\
-    V - Ve^{\frac{-R}{L}t} &= IR\\
-    I &= \frac{V}{R} - \frac{V}{R}e^{\frac{-R}{L}t}
-\end{align*}
-
-\noindent Equation for $I$ found.
-
-\noindent Substituting $I$ and $y$ into $F_{magnet}$.
-%NEW STUFF ENDS HERE
-\fi
-%COMMENT ENDS
-
-\begin{equation}
-    F_{magnet} &= c \frac{ \left( \frac{1}{R} \left( V - Ae^{\frac{-R}{L}t}\right)  \right)^2 }{ \left( \delta - x \right)^2 }
+    F_{total} = m\ddot{x}
 \end{equation}
 
 \medskip
-\noindent Now we need to find an equation for $F_{friction}$
+\noindent Equation for the component of the weight acting down the plane:
+\begin{equation}
+    F_{weight} = mg\sin \left( \phi \right)
+\end{equation}
+
+\medskip
+\noindent Equation for the force of the spring:
+\begin{equation}
+    F_{spring} = k \left( x - d \right)
+\end{equation}
+
+\medskip
+\noindent Equation for the force of the damper:
+\begin{equation}
+    F_{damper} = b \dot{x}
+\end{equation}
+
+\medskip
+\noindent Equation for the force of friction:
 \begin{equation*}
     F_{friction} \times r = - I_{inertia} \ddot{\theta}
 \end{equation*}
 
-\noindent ``Pizza Slice Theorem'':
-\begin{equation*}
-    \ddot{x} = \ddot{\theta} r
-\end{equation*}
+\noindent From the ``Pizza Slice Theorem'':
+\begin{align*}
+    \ddot{x} &= \ddot{\theta} r\\
+    \ddot{\theta} &= \frac{\ddot{x}}{r}
+\end{align*}
 
 \noindent Inertia of a solid sphere:
 \begin{align}
-    I_{inertia} &= \frac{2}{5}mr^2\notag\\
-    \Longrightarrow F_{friction} \times r &= - \frac{2}{5}mr^2 \times \frac{\ddot{x}}{r}\notag\\
-    F_{friction} \times r &= - \frac{2}{5}mr \ddot{x}\notag\\
+    I_{inertia} &= \frac{2}{5}mr^2 \cr
+    \Longrightarrow F_{friction} \times r &= - \frac{2}{5}mr^2 \times \frac{\ddot{x}}{r} \cr
+    F_{friction} \times r &= - \frac{2}{5}mr \ddot{x} \cr
     F_{friction} &= - \frac{2}{5}m \ddot{x}
 \end{align}
 
-\noindent Equation for $F_{friction}$ found.
+\medskip
+\noindent Equation for the force of the magnet:
+\begin{equation}
+    F_{magnet} = c \frac{I^2}{y^2}
+\end{equation}
 
 \medskip
-\noindent Substituting (2), (3), (4) and (5) into (1).
+\noindent Equation for the distance $y$:
+\begin{equation}
+    y = \delta - x
+\end{equation}
+
+\medskip
+\noindent Equation for the differential of the current:
+\begin{equation}
+    \dot{I} = \frac{1}{L} \left(V - I R \right)
+\end{equation}
+
+\medskip
+\noindent Equation for the inductance:
+\begin{equation}
+    L = L_0 + L_1 e^{-\alpha y}
+\end{equation}
+
+\medskip
+\noindent Substitute equations (2) to (10) into (1):
 \begin{align}
     m\ddot{x} &=
     mg\sin \left( \phi \right)
-    + c \frac{ \left( \frac{1}{R} \left( V - Ae^{\frac{-R}{L}t}\right)  \right)^2 }{ \left( \delta - x \right)^2 }
+    + c \frac{I^2}{ \left( \delta - x \right)^2 }
     - k \left( x - d \right)
     - b \dot{x}
-    + \frac{2}{5}m \ddot{x}\notag \\
-    m\ddot{x} - \frac{2}{5}m \ddot{x} &=
-    mg\sin \left( \phi \right)
-    + c \frac{\frac{1}{R^2} \left( V - Ae^{\frac{-R}{L}t}\right)^2}{ \left( \delta - x \right)^2 }
-    - k \left( x - d \right)
-    - b \dot{x}\notag \\
+    + \frac{2}{5}m \ddot{x} \cr
     \frac{3m}{5} \ddot{x} &=
     mg\sin \left( \phi \right)
-    + c \frac{ \left( V - Ae^{\frac{-R}{L}t}\right)^2}{ R^2 \left( \delta - x \right)^2 }
+    + c \frac{I^2}{\left( \delta - x \right)^2 }
     - k \left( x - d \right)
-    - b \dot{x}\notag \\
+    - b \dot{x} \cr
     \ddot{x} &=
     \left( \frac{5}{3m} \right)
     \left( mg\sin \left( \phi \right)
-    + c \left( \frac{ V - Ae^{\frac{-R}{L}t}}{ R \left( \delta - x \right) } \right)^2
+    + c \frac{I^2}{ \left( \delta - x \right)^2 }
     - k \left( x - d \right)
     - b \dot{x} \right)
 \end{align}
