@@ -8,16 +8,15 @@
     \bar{x}_2 &= x_{2} - x_{2}^e \cr
     \bar{I} &= I - I^e \cr
     \bar{V} &= V - V^e \cr
-    \underbar{$\bar{x}$} &= \underbar{$x$} - \underbar{$x$}^e \cr
-    \frac{d}{dx} \left( \underbar{$\bar{x}$} \right) &= \frac{d}{dx} \left( \underbar{$x$} - \underbar{$x$}^e \right) \cr
+    %\underbar{$\bar{x}$} &= \underbar{$x$} - \underbar{$x$}^e \cr
     \underbar{$\dot{\bar{x}}$} &= \underbar{$\dot{x}$}
 \end{align*}
 
 \medskip
-Subtracting (13) from (12):
-\begin{equation*}
-    \underbar{$\dot{\bar{x}}$}
-    =
+\noindent Subtracting (13) from (12):
+\begin{align}
+    \underbar{$\dot{x}$}
+    =&
     \begin{bmatrix}
         x_2 \cr
         \left( \frac{5}{3m} \right)
@@ -26,8 +25,8 @@ Subtracting (13) from (12):
         - k \left( x_1 - d \right)
         - b x_2 \right)\cr
         \frac{1}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}} \left(V - I R \right)  \cr
-    \end{bmatrix}
-    -
+    \end{bmatrix} \cr
+    &-
     \begin{bmatrix}
         x_{2}^e \cr
         \left( \frac{5}{3m} \right)
@@ -36,12 +35,9 @@ Subtracting (13) from (12):
         - k \left( x_{1}^e - d \right)
         - b x_{2}^e \right)\cr
         \frac{1}{L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \left(V^e - I^e R \right) \cr
-    \end{bmatrix}
-\end{equation*}
-
-\begin{equation*}
-    \underbar{$\dot{\bar{x}}$}
-    =
+    \end{bmatrix} \cr
+    \underbar{$\dot{x}$}
+    =&
     \begin{bmatrix}
         x_2 - x_{2}^e \cr
         \left( \frac{5}{3m} \right)
@@ -52,288 +48,224 @@ Subtracting (13) from (12):
         + b \left(x_{2}^e \right) \right)\cr
         \frac{V}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}
         - \frac{IR}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}
-        - \frac{V^e}{L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}}
-        + \frac{I^e R}{L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \cr
-    \end{bmatrix}
-\end{equation*}
-
-\begin{equation*}
-    \underbar{$\dot{\bar{x}}$}
-    =
+        - \frac{V^e - I^e R}{L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \cr
+    \end{bmatrix} \cr
+    \underbar{$\dot{x}$}
+    =&
     \begin{bmatrix}
         x_2 - x_{2}^e \cr
         \left( \frac{5}{3m} \right)
-        \left(c \frac{I^2}{ \left( \delta - x_1 \right)^2} - c \frac{ \left(I^{e} \right)^2}{ \left( \delta - x_{1}^e \right)^2 }
-        + k \left(x_{1} - x_{1}^e \right)
-        + b \left(x_{2} - x_{2}^e \right) \right)\cr
+        \left( c \left( \frac{I^2}{ \left( \delta - x_1 \right)^2} - \frac{ \left(I^{e} \right)^2}{ \left( \delta - x_{1}^e \right)^2 } \right)
+        - k \left(x_{1} - x_{1}^e \right)
+        - b \left(x_{2} - x_{2}^e \right) \right)\cr
         \frac{V}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}
         - \frac{IR}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}
-        - \frac{V^e}{L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}}
-        + \frac{I^e R}{L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \cr
+        - \frac{V^e - I^e R}{L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \cr
     \end{bmatrix}
-\end{equation*}
+\end{align}
+
+\medskip
+\noindent Linearise $f \left( \underbar{$\dot{x}$}, V \right)$, at $\left( \underbar{$x$}^e, V^{e} \right)$.
+
+\medskip
+\noindent To linearise $f$, $\psi = \frac{I^2}{ \left( \delta - x_1 \right)^2}$, and $\lambda =\frac{\zeta \beta}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}$ needs to be linearised, where $\zeta$ is a constant and $\beta$ is a variable.
+
+\medskip
+\noindent Taylor's Theorem is used for linearisation.
+
+\medskip
+\noindent Linearise $\psi$:
+\begin{equation}
+    \psi \left( I, x_{1} \right) \approx 
+    \psi \left( I^{e}, x_{1}^{e} \right)
+    + \frac{\partial \psi}{\partial I}
+    \Bigr|_{\substack{I^{e}, x_{1}^{e}}}
+     \left( I - I^e \right)  
+    + \frac{\partial \psi}{\partial x_1}
+    \Bigr|_{\substack{I^{e}, x_{1}^{e}}} (x_{1} - x_{1}^{e} )
+\end{equation}
+ 
+\medskip
+\noindent Find the partial derivatives:
+\begin{align*}
+    \frac{\partial \psi}{\partial I} \Bigr|_{\substack{I^{e}, x_{1}^{e}}}
+    &= \frac{d}{d I} \left ( \frac{I^2}{ \left( \delta - x_1 \right)^2} \right ) \Bigr|_{\substack{I^{e}, x_{1}^{e}}} \cr 
+    &= \frac{2 I}{ \left( \delta - x_1 \right)^2} \Bigr|_{\substack{I^{e}, x_{1}^{e}}} \cr 
+    &= \frac{2 I^e}{ \left( \delta - x_1^e \right)^2}
+\end{align*}
+
+\begin{align*}
+    \frac{\partial \psi}{\partial x_1} \Bigr|_{\substack{I^{e}, x_{1}^{e}}}
+    &= \frac{d}{d x_1} \left ( \frac{I^2}{ \left( \delta - x_1 \right)^2} \right ) \Bigr|_{\substack{I^{e}, x_{1}^{e}}} \cr
+    &= I^2 \frac{d}{d x_1} \left ( \left( \delta - x_1 \right)^{-2} \right ) \Bigr|_{\substack{I^{e}, x_{1}^{e}}} \cr 
+    &= \frac{-2 I^2}{ \left (\delta - x_1 \right)^3} \times \frac{d}{d x_1} \left( - x_1 \right) \Bigr|_{\substack{I^{e}, x_{1}^{e}}} \cr
+    &= \frac{2 I^2}{ \left (\delta - x_1 \right)^3} \Bigr|_{\substack{I^{e}, x_{1}^{e}}} \cr
+    &= \frac{2 \left(I^{e} \right)^{2}}{ \left (\delta - x_1^e \right)^3} \cr
+\end{align*}
 
 \begin{equation}
-    \underbar{$\dot{\bar{x}}$}
-    =
-    \begin{bmatrix}
-        \bar{x_2} \cr
-        \left( \frac{5}{3m} \right)
-        \left(c \frac{I^2}{ \left( \delta - x_1 \right)^2} - c \frac{ \left(I^{e} \right)^2}{ \left( \delta - x_{1}^e \right)^2 }
-        + k \bar{x_1}
-        + b \bar{x_2} \right )\cr
-        \frac{V}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}
-        - \frac{IR}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}
-        - \frac{V^e}{L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}}
-        + \frac{I^e R}{L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \cr
-    \end{bmatrix}
+    \psi \left( I, x_{1} \right)
+    \approx \frac{ \left(I^{e} \right)^2}{ \left( \delta - x_{1}^e \right)^2 } + \frac{2 I^e}{ \left( \delta - x_{1}^e \right)^2} \left( I - I^e \right) + \frac{2  \left(I^{e} \right)^2}{ \left (\delta - x_{1}^e \right)^3} (x_{1} - x_{1}^{e} )
 \end{equation}
 
 \medskip
-Linearise $f \left( \underbar{$\dot{\bar{x}}$}, \bar{V} \right)$, at  $\underbar{$x$}^e$, $I^{e}$, $V^{e}$.
-
-\bigskip
-To linearise $f$, $\psi = \frac{I^2}{ \left( \delta - x_1 \right)^2} $ and $\lambda =\frac{\beta \zeta}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}$ needs to be linearised.\\
-
-NOTE: $\beta$ and $\zeta$ represent a variable, and a constant respectively.
-
-Taylor's Theorem is used for linearisation. \\
-
-\bigskip
-Linearise $\psi$:
-\begin{equation}
-    \psi \left( I, x_{1} \right)  \approx 
-    \psi \left( I^{e}, x_{1}^{e} \right)
-    + \frac{\partial \psi}{\partial I}
-    %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) }
-    \Bigr|_{\substack{ ( I^{e}, x_{1}^{e}} ) }
-     \left( I - I^e \right)  
-    + \frac{\partial \psi}{\partial x_1}
-    %\Bigr|_{\substack{ \left( x_{1}^{e},V^{e}} \right) } \left( V - V^{e} \right) \]
-    \Bigr|_{\substack{ ( I^{e}, x_{1}^{e}) }} (x_{1} - x_{1}^{e} ) 
-\end{equation}
- 
-\bigskip
-Find the partial derivatives:
-\begin{align*}
-    \frac{\partial \psi}{\partial I}
-    \Bigr|_{\substack{ ( I^{e}, x_{1}^{e}} )} 
-    &=
-    \frac{d}{d I} \left ( \frac{I^2}{ \left( \delta - x_1 \right)^2} \right ) 
-    \Bigr|_{\substack{ ( I^{e}, x_{1}^{e}} )} 
-    \cr 
-    &=
-    \frac{2 I}{ \left( \delta - x_1 \right)^2}
-    \Bigr|_{\substack{ ( I^{e}, x_{1}^{e}} )} 
-    \cr 
-    &=
-    \frac{2 I^e}{ \left( \delta - x_1^e \right)^2}
-\end{align*}
-
-\begin{align*}
-    \frac{\partial \psi}{\partial x_1}
-    \Bigr|_{\substack{ ( I^{e}, x_{1}^{e}} )}
-    &=
-    \frac{d}{d x_1} \left (I^2 \frac{1}{ \left( \delta - x_1 \right)^2} \right ) 
-    \Bigr|_{\substack{ ( I^{e}, x_{1}^{e}} )}
-    \cr
-    &=
-    I^2 \frac{d}{d x_1} \left ( \left( \delta - x_1 \right)^{-2} \right ) 
-    \Bigr|_{\substack{ ( I^{e}, x_{1}^{e}} )}
-    \cr 
-    &=
-    \frac{-2 I^2}{ \left (\delta - x_1 \right)^3} \times
-    \frac{d}{d x_1} \left( - x_1 \right)
-    \Bigr|_{\substack{ ( I^{e}, x_{1}^{e}} )}
-    \cr
-    &=
-    \frac{2 I^2}{ \left (\delta - x_1 \right)^3}
-    \Bigr|_{\substack{ ( I^{e}, x_{1}^{e}} )}
-    \cr
-    &=
-    \frac{2 \left(I^{e} \right)^{2}}{ \left (\delta - x_1^e \right)^3}
-    \cr
-\end{align*}
-
-\begin{align}
-    \psi \left( I, x_{1} \right)  &\approx 
-    \frac{ \left(I^{e} \right)^2}{ \left( \delta - x_{1}^e \right)^2 }
-    + \frac{2 I^e}{ \left( \delta - x_{1}^e \right)^2}
-     \left( I - I^e \right)  
-    + \frac{2  \left(I^{e} \right)^2}{ \left (\delta - x_{1}^e \right)^3} 
-    (x_{1} - x_{1}^{e} ) \cr
-    &\approx \frac{ \left(I^{e} \right)^2}{ \left( \delta - x_{1}^e \right)^2 }
-    + \frac{2 I^e}{ \left( \delta - x_{1}^e \right)^2} \bar{I}  
-    + \frac{2  \left(I^{e} \right)^2}{ \left (\delta - x_{1}^e \right)^3} \bar{x_{1}}
-\end{align}
-
-\bigskip 
 \noindent Linearise $\lambda$: 
 \begin{equation}
-    \lambda \left( \beta, x_{1} \right)  \approx 
+    \lambda \left( \beta, x_{1} \right) \approx 
     \lambda \left( \beta^{e}, x_{1}^{e} \right)
     + \frac{\partial \lambda}{\partial \beta}
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} ) }
+    \Bigr|_{\substack{\beta^{e}, x_{1}^{e}}}
      \left( \beta - \beta^e \right)  
     + \frac{\partial \lambda}{\partial x_1}
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}) }} (x_{1} - x_{1}^{e} ) 
+    \Bigr|_{\substack{\beta^{e}, x_{1}^{e}}} (x_{1} - x_{1}^{e} ) 
 \end{equation}
 
-\bigskip
-Find the partial derivatives:
+\medskip
+\noindent Find the partial derivatives:
 \begin{align*}
-    \frac{\partial \lambda}{\partial \beta}
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} ) }
-    &=
-    \frac{\partial}{\partial \beta}\left(
-    \frac{\beta \zeta} { L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}} \right)
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} ) }
-    \cr
-    &=
-    \frac{\zeta} { L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}}
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} ) }
-    \cr
-    &=
-    \frac{\zeta} { L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^{e} \right)}}
-    \cr
+    \frac{\partial \lambda}{\partial \beta} \Bigr|_{\substack{\beta^{e}, x_{1}^{e}}}
+    &= \frac{\partial}{\partial \beta}\left( \frac{\zeta \beta} { L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}} \right) \Bigr|_{\substack{\beta^{e}, x_{1}^{e}}} \cr
+    &= \frac{\zeta} { L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}} \Bigr|_{\substack{\beta^{e}, x_{1}^{e}}} \cr
+    &= \frac{\zeta} { L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^{e} \right)}}
 \end{align*}
 
 \begin{align*}
-    \frac{\partial \lambda}{\partial x_1}
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} )} 
-    &=
-    \frac{\partial}{\partial x_1}\left(
-    \frac{\beta \zeta} { L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}} \right)
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} ) }
-    \cr
-    &=
-    \beta \zeta 
-    \frac{\partial}{\partial x_1}\left(
-    \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}\right)^{-1} \right)
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} ) }
-    \cr
-    &=
-    \beta \zeta \left( - 1 \right)
-    \left( 
-            L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}
-    \right)^{-2}
-    \frac{\partial}{\partial x_1}
-    \left(
-        L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}
-    \right)
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} ) }
-    \cr
-    &=
-    \beta \zeta \left( - 1 \right)
-    \left( 
-            L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}
-    \right)^{-2}
-    \left(
-        L_1 e^{- \alpha \left( \delta - x_{1} \right)}
-    \right)
-    \frac{\partial}{\partial x_1}
-    \left(
-        - \alpha x_{1}
-    \right)
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} ) }
-    \cr
-    &=
-    \beta \zeta \left( - 1 \right)
-    \left( 
-            L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}
-    \right)^{-2}
-    \left(
-        L_1 e^{- \alpha \left( \delta - x_{1} \right)}
-    \right)
-    \left(
-        - \alpha
-    \right)
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} ) }
-    \cr
-    &= 
-    -\beta \zeta \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)} \right)^{-2} \left( L_1 - \alpha e^{- \alpha \left(  \delta - x_1 \right)} \right) 
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} ) }
-    \cr
-    &=
-    \frac{- \beta \zeta \left( L_1 - \alpha e^{- \alpha \left(  \delta - x_1 \right)} \right)}{\left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)} \right)^{2}} 
-    \Bigr|_{\substack{ ( \beta^{e}, x_{1}^{e}} )}
-    \cr
-    &= 
-    \frac{- \beta^e \zeta \left( L_1 - \alpha e^{- \alpha \left(  \delta - x_{1}^e \right)} \right)}{\left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)} \right)^{2}}
-    \cr
+    \frac{\partial \lambda}{\partial x_1} \Bigr|_{\substack{\beta^{e}, x_{1}^{e}}} 
+    &= \frac{\partial}{\partial x_1}\left( \frac{\zeta \beta} { L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}} \right) \Bigr|_{\substack{ \beta^{e}, x_{1}^{e}}} \cr
+    &= \zeta \beta
+        \frac{\partial}{\partial x_1}\left( \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)}\right)^{-1} \right) \Bigr|_{\substack{  \beta^{e}, x_{1}^{e}}} \cr
+    &= \zeta \beta \left( - 1 \right) \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)} \right)^{-2}
+        \frac{\partial}{\partial x_1} \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)} \right) \Bigr|_{\substack{  \beta^{e}, x_{1}^{e}}} \cr
+    &= \zeta \beta \left( - 1 \right) \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)} \right)^{-2} \left( L_1 e^{- \alpha \left( \delta - x_{1} \right)} \right)
+        \frac{\partial}{\partial x_1} \left( - \alpha \left( \delta - x_{1} \right) \right) \Bigr|_{\substack{  \beta^{e}, x_{1}^{e}}  } \cr
+    &= \zeta \beta \left( - 1 \right) \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)} \right)^{-2} \left( L_1 e^{- \alpha \left( \delta - x_{1} \right)} \right) \left( \alpha \right) \Bigr|_{\substack{  \beta^{e}, x_{1}^{e}}} \cr
+    &= \frac{- \alpha \zeta \beta \left( L_1 e^{- \alpha \left( \delta - x_1 \right)} \right)}{\left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1} \right)} \right)^{2}} \Bigr|_{\substack{ \beta^{e}, x_{1}^{e}}}
 \end{align*}
 
-\begin{align}
-    \lambda \left( \beta, x_{1} \right)  &\approx 
-    \frac{\beta^e \zeta}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}}
-    + \frac{\zeta}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} (\beta - \beta^e )
-    + \frac{- \beta^e \zeta L_1 - \alpha e^{- \alpha (\delta - x_{1}^e)}}{ \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)} \right)^2} (x_{1} - x_{1}^{e} ) \cr
-    &\approx 
-    \frac{\beta^e \zeta}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}}
-    + \frac{\zeta}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \bar{\beta}
-    + \frac{- \beta^e \zeta L_1 - \alpha e^{- \alpha (\delta - x_{1}^e)}}{ \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)} \right)^2} \bar{x_1}
-\end{align}
+\begin{align*}
+    \Longrightarrow \frac{\partial \lambda}{\partial x_1} \Bigr|_{\substack{\beta^{e}, x_{1}^{e}}}
+    &= \frac{- \alpha \zeta \beta^e \left( L_1 e^{- \alpha \left(  \delta - x_{1}^e \right)} \right)}{\left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)} \right)^{2}}
+\end{align*}
 
-\bigskip \noindent
-Using (18), the linearisation of $\dot{I}$ can be found.\\
-By substituting $\beta$ as $V$, and $\zeta$ as $1$, $\frac{V}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}$ can be found.
-\begin{equation}
-    \frac{V}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}
+\begin{equation*}
+    \lambda \left( \beta, x_{1} \right)  
     \approx
-    \frac{V^e}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}}
-    + \frac{1}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \bar{V}
-    + \frac{- V^e L_1 - \alpha e^{- \alpha (\delta - x_{1}^e)}}{ \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)} \right)^2} \bar{x_1}
+    \frac{\zeta \beta^e}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}}
+    + \frac{\zeta}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} (\beta - \beta^e )
+    - \frac{ \alpha \zeta \beta^e L_1 e^{- \alpha (\delta - x_{1}^e)}}{ \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)} \right)^2} (x_{1} - x_{1}^{e} )
+\end{equation*}
+
+\begin{equation}
+    \mbox{Let } N = \frac{1}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}}
+\end{equation}
+
+\begin{equation}
+    \Longrightarrow \lambda \left( \beta, x_{1} \right)  
+    \approx
+    \zeta \beta^e N
+    + \zeta N (\beta - \beta^e )
+    - \alpha \zeta \beta^e L_1 e^{- \alpha (\delta - x_{1}^e)} N^2 (x_{1} - x_{1}^{e} )
 \end{equation}
 
 \medskip \noindent
-By substituting $\beta$ as $I$, and $\zeta$ as $R$, $\frac{IR}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}$ can be found.
+\noindent Using (18), the linearisation of $\dot{I}$ can be found.\\
+\noindent By substituting $\zeta$ as $1$ and $\beta$ as $V$, $\frac{V}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}$ can be approximated as:
 \begin{equation}
     \frac{V}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}
     \approx
-    \frac{I^e R}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}}
-    + \frac{R}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \bar{I}
-    + \frac{- I^e R L_1 - \alpha e^{- \alpha (\delta - x_{1}^e)}}{ \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)} \right)^2} \bar{x_1}
+    V^e N
+    + N \left( V - V^e \right)
+    - V^e L_1 \alpha e^{- \alpha (\delta - x_{1}^e)} N^2 \left( x_1 - x_1^e \right)
 \end{equation}
 
-\bigskip \noindent
-
-Substituting (19) into (14) gives
+\medskip
+\noindent By substituting $\zeta$ as $R$ and $\beta$ as $I$, $\frac{IR}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}$ can be approximated as:
 \begin{equation}
-    \underbar{$\dot{\bar{x}}$}
+    \frac{IR}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}
+    \approx
+    I^e R N
+    + R N \left( I - I^e \right)
+    - I^e R L_1 \alpha e^{- \alpha (\delta - x_{1}^e)} N^2 \left( x_1 - x_1^e \right)
+\end{equation}
+
+\medskip
+\noindent Subtracting (21) from (20) gives:
+\begin{align}
+    &\frac{V - IR}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}} \cr
+    \approx
+    &\left( V^e - I^e R \right) N
+    + N \left( V - V^e \right)
+    - R N \left( I - I^e \right)
+    - \left( V^e - I^e R \right) L_1 \alpha e^{- \alpha (\delta - x_{1}^e)} N^2 \left( x_1 - x_1^e \right)
+\end{align}
+
+\medskip
+\noindent Substituting (16) and (22) into (14) gives:
+\begin{equation}
+    \underbar{$\dot{x}$}
     =
     \begin{bmatrix}
-        \bar{x_2} 
-        \cr
+        x_2 - x_2^e \cr
         \left( \frac{5}{3m} \right)
-        \left(c \frac{I^2}{ \left( \delta - x_1 \right)^2} - c \frac{ \left(I^{e} \right)^2}{ \left( \delta - x_{1}^e \right)^2 }
-        + k \bar{x_1}
-        + b \bar{x_2} \right )
-        \cr
-        \frac{1}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \bar{V}
-        + \frac{- V^e L_1\alpha e^{- \alpha (\delta - x_{1}^e)}}{ \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)} \right)^2} \bar{x_1}
-        - \frac{IR}{L_0 + L_1 e^{- \alpha \left( \delta - x_1 \right)}}
-        + \frac{I^e R}{L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \cr
+        \left(c \left( \frac{2 I^e}{ \left( \delta - x_{1}^e \right)^2} \left( I - I^e \right) + \frac{ 2 \left(I^{e} \right)^2}{ \left (\delta - x_{1}^e \right)^3} (x_{1} - x_{1}^{e} ) \right)
+        - k \left( x_1 - x_1^e \right)
+        - b \left( x_2 - x_2^e \right) \right ) \cr
+        N \left( V - V^e \right)
+        - R N \left( I - I^e \right)
+        - \left( V^e - I^e R \right) L_1 \alpha e^{- \alpha (\delta - x_{1}^e)} N^2 \left( x_1 - x_1^e \right) \cr
     \end{bmatrix}
 \end{equation}
 
 \noindent
-Substituting (20) into (21) gives
+Substituting deviation variables into (23) gives:
+\begin{align}
+    \underbar{$\dot{\bar{x}}$}
+    &=
+    \begin{bmatrix}
+        \bar{x}_2 \cr
+        \left( \frac{5}{3m} \right)
+        \left( \frac{2c I^e}{ \left( \delta - x_{1}^e \right)^2} \bar{I}
+        + \frac{ 2c \left(I^{e} \right)^2}{ \left (\delta - x_{1}^e \right)^3} \bar{x}_1
+        - k \bar{x}_1
+        - b \bar{x}_2 \right) \cr
+        N \bar{V}
+        - R N \bar{I}
+        - \left( V^e - I^e R \right) L_1 \alpha e^{- \alpha (\delta - x_{1}^e)} N^2 \bar{x}_1 \cr
+    \end{bmatrix} \cr
+    \underbar{$\dot{\bar{x}}$}
+    &=
+    \begin{bmatrix}
+        \bar{x}_2 \cr
+        \left( \frac{5}{3m} \right)
+        \left( \frac{2c I^e}{ \left( \delta - x_{1}^e \right)^2} \bar{I}
+        + \left( \frac{ 2c \left(I^{e} \right)^2}{ \left (\delta - x_{1}^e \right)^3} - k \right) \bar{x}_1
+        - b \bar{x}_2 \right) \cr
+        N \bar{V}
+        - R N \bar{I}
+        - \left( V^e - I^e R \right) L_1 \alpha e^{- \alpha (\delta - x_{1}^e)} N^2 \bar{x}_1 \cr
+    \end{bmatrix}
+\end{align}
+
+\medskip
+\noindent Define the following constants for notational convenience:
+\begin{align}
+    D &= \left( \frac{5}{3m} \right) \left( \frac{2c I^e}{ \left( \delta - x_{1}^e \right)^2} \right) \\
+    F &= \left( \frac{5}{3m} \right) \left( \frac{ 2c \left(I^{e} \right)^2}{ \left (\delta - x_{1}^e \right)^3} - k \right) \\
+    H &= \left( \frac{5}{3m} \right) \left( b \right) \\
+    P &= RN = \frac{R}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \\
+    Q &= \left( V^e - I^e R \right) L_1 \alpha e^{- \alpha (\delta - x_{1}^e)} N^2 = \frac{ \left( V^e - I^e R \right) L_1 \alpha e^{- \alpha (\delta - x_{1}^e)}}{ \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)} \right)^2}
+\end{align}
+
+\medskip
+\noindent Substitute equations (25) through (29) into equation (23):
 \begin{equation}
     \underbar{$\dot{\bar{x}}$}
     =
     \begin{bmatrix}
-        \bar{x_2} 
-        \cr
-        \left( \frac{5}{3m} \right)
-        \left(c \frac{I^2}{ \left( \delta - x_1 \right)^2} - c \frac{ \left(I^{e} \right)^2}{ \left( \delta - x_{1}^e \right)^2 }
-        + k \bar{x_1}
-        + b \bar{x_2} \right )
-        \cr
-        \frac{1}{ L_0 + L_1 e^{\alpha \left( \delta - x_{1}^e \right)}} \bar{V}
-        -\frac{R}{ L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)}} \bar{I}
-        - \frac{ \left( V^e - I^e R \right) L_1 - \alpha e^{- \alpha (\delta - x_{1}^e)}}{ \left( L_0 + L_1 e^{- \alpha \left( \delta - x_{1}^e \right)} \right)^2}
-        \bar{x_1}
-        \cr
+        \bar{x}_2 \cr
+        D \bar{I} + F \bar{x}_1 - H \bar{x}_2 \cr
+        N \bar{V} - P \bar{I} - Q \bar{x}_1 \cr
     \end{bmatrix}
 \end{equation}
-This is the linearised form of (14).
+
+\noindent This is the linearised form of (14).
