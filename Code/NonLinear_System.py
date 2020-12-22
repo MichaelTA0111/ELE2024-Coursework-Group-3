@@ -45,7 +45,7 @@ class Ball:
     @staticmethod
     def ball_dynamics(time, states, input_voltage, mass, gravity, slope_angle, constant_c,
                       inductor_distance, spring_constant, natural_spring_length, damping_coefficient,
-                      nominal_inductance, constant_L1, constant_alpha, resistance):
+                      nominal_inductance, constant_ell1, constant_alpha, resistance):
         x_1_dot = states[1]
         x_2_dot = (5.0 / (3.0 * mass)) * \
                   (mass * gravity * np.sin(slope_angle)
@@ -53,12 +53,12 @@ class Ball:
                    ((states[2]) / (inductor_distance - states[0])) ** 2
                    - spring_constant * (states[0] - natural_spring_length)
                    - damping_coefficient * states[1])
-        I_dot = (1.0 /
+        i_dot = (1.0 /
                  (nominal_inductance
-                  + constant_L1
+                  + constant_ell1
                   * np.exp(-constant_alpha * (inductor_distance - states[0]))
                   * (input_voltage - states[2] * resistance)))
-        return [x_1_dot, x_2_dot, I_dot]
+        return [x_1_dot, x_2_dot, i_dot]
 
 
 steel_Ball = Ball()
