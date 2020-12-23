@@ -3,34 +3,33 @@ import numpy as np
 
 
 class LinearSystem:
-    def __init__(self, mass=0.425, gravity=9.81, slope_angle=np.deg2rad(42), c=6815, inductor_distance=0.65,
-                 spring_constant=1880, natural_spring_length=0.42, damping_coefficient=10.4, nominal_inductance=0.12,
-                 ell_1=0.025, alpha=1.2, resistance=53):
-        self.__x_1_e = 0.75 * (natural_spring_length + mass * gravity * np.sin(slope_angle))
+    def __init__(self, mass=0.425, gravity=9.81, theta=np.deg2rad(42), c_const=6815, delta=0.65, k_spring=1880,
+                 d_length=0.42, b_damper=10.4, ell_0=0.12, ell_1=0.025, alpha=1.2, resistance=53):
+        self.__x_1_e = 0.75 * (d_length + mass * gravity * np.sin(theta))
         self.__x_2_e = 0
-        self.__i_e = np.sqrt((mass * gravity * np.sin(slope_angle)
-                             - spring_constant * (self.__x_1_e - natural_spring_length))
-                             / (-c)
-                             * (inductor_distance - self.__x_1_e)**2)
+        self.__i_e = np.sqrt((mass * gravity * np.sin(theta)
+                             - k_spring * (self.__x_1_e - d_length))
+                             / (-c_const)
+                             * (delta - self.__x_1_e)**2)
         self.__v_e = self.__i_e * resistance
 
-        self.__d = (5 / (3 * mass)) * (2 * c * self.__i_e / (inductor_distance - self.__x_1_e)**2)
-        self.__f = (5 / (3 * mass)) * (2 * c * self.__i_e**2 / (inductor_distance - self.__x_1_e)**3 - spring_constant)
-        self.__h = (5 / (3 * mass)) * damping_coefficient
-        self.__n = 1 / (nominal_inductance + ell_1 * np.exp(-alpha * (inductor_distance - self.__x_1_e)))
+        self.__d = (5 / (3 * mass)) * (2 * c_const * self.__i_e / (delta - self.__x_1_e)**2)
+        self.__f = (5 / (3 * mass)) * (2 * c_const * self.__i_e**2 / (delta - self.__x_1_e)**3 - k_spring)
+        self.__h = (5 / (3 * mass)) * b_damper
+        self.__n = 1 / (ell_0 + ell_1 * np.exp(-alpha * (delta - self.__x_1_e)))
         self.__p = resistance * self.__n
 
         self.__x_1_bar = None
         self.__x_2_bar = None
         self.__i_bar = None
 
-    def move(self, v_bar, dt):
+    def move(self, v_bar, dt=50):
         initial_values = (self.__x_1_bar, self.__x_2_bar, self.__i_bar)
         state_values = solve_ivp(lambda time, z:
                                  self.ball_dynamics(time, z, v_bar),
                                  [0, dt],
                                  initial_values,
-                                 t_eval=np.linspace(0, dt, 1000))
+                                 t_eval=np.linspace(0, dt, 51))
 
         final_state = state_values.y.T[-1]
         self.__x_1_bar = final_state[0]
