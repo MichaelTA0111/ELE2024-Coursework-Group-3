@@ -25,6 +25,22 @@ class LinearSystem:
         self.__x_2_bar = 10.
         self.__i_bar = 1.
 
+    def d(self):
+        return self.__d
+
+    def f(self):
+        return self.__f
+
+    def h(self):
+        return self.__h
+
+    def n(self):
+        return self.__n
+
+    def p(self):
+        return self.__p
+
+
     def move(self, v_bar=0, dt=1, num_points=1001):
         initial_values = (self.__x_1_bar, self.__x_2_bar, self.__i_bar)
         state_values = solve_ivp(lambda time, z:
@@ -51,11 +67,11 @@ if __name__ == '__main__':
     ball_trajectory = ball.move(0)
 
     # Transfer function
-    G_x = ctrl.TransferFunction([ball.d * ball.n], [1, (ball.h + ball.p), (ball.h * ball.p - ball.f ), (-1 * (ball.f * ball.p))]) # DN / (s^3 (H + P)s^2 (HP - F)s -FP)
+    G_x = ctrl.TransferFunction([ball.d() * ball.n()], [1, (ball.h() + ball.p()), (ball.h() * ball.p() - ball.f() ), (-1 * (ball.f() * ball.p()))]) # DN / (s^3 (H + P)s^2 (HP - F)s -FP)
 
     # Response of the system
-    t_imp, ball_imp = ctrl.impulse_response(G_x, ball.final_state[0])
-    t_step, ball_step = ctrl.step_response(G_x, ball.final_state[0])
+    t_imp, ball_imp = ctrl.impulse_response(G_x, ball_trajectory[0])
+    t_step, ball_step = ctrl.step_response(G_x, ball.ball_trajectory[0])
 
 
     plt.plot(t_imp, ball_imp)
