@@ -70,8 +70,8 @@ if __name__ == '__main__':
     G_x = ctrl.TransferFunction([ball.d() * ball.n()], [1, (ball.h() + ball.p()), (ball.h() * ball.p() - ball.f() ), (-1 * (ball.f() * ball.p()))]) # DN / (s^3 (H + P)s^2 (HP - F)s -FP)
 
     # Response of the system
-    t_imp, ball_imp = ctrl.impulse_response(G_x, ball_trajectory[0])
-    t_step, ball_step = ctrl.step_response(G_x, ball.ball_trajectory[0])
+    t_imp, ball_imp = ctrl.impulse_response(G_x, ball_trajectory.y[0].T)
+    t_step, ball_step = ctrl.step_response(G_x, ball.ball_trajectory.y[0].T)
 
 
     plt.plot(t_imp, ball_imp)
