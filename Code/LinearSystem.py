@@ -71,6 +71,6 @@ class LinearSystem:
 
 if __name__ == '__main__':
     ball = LinearSystem()
-    ball_trajectory = ball.move(0)
+    ball_trajectory = ball.move()
 
     ball.plotter(ball_trajectory.t, ball_trajectory.y[0].T, '.\\Figures\\linear_system.svg')

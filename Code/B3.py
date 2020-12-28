@@ -7,7 +7,7 @@ if __name__ == '__main__':
     dt = 1
     num_points = 1001
     ball = LinearSystem()
-    ball.move(0)
+    ball.move()
 
     # Transfer function
     G_x = ctrl.TransferFunction([ball.get_d() * ball.get_n()],
