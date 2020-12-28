@@ -44,6 +44,21 @@ class LinearSystem:
         i_bar_dot = self.__n * v_bar - self.__p * states[2]
         return [x_1_bar_dot, x_2_bar_dot, i_bar_dot]
 
+    def get_d(self):
+        return self.__d
+
+    def get_f(self):
+        return self.__f
+
+    def get_h(self):
+        return self.__h
+
+    def get_n(self):
+        return self.__n
+
+    def get_p(self):
+        return self.__p
+
 
 if __name__ == '__main__':
     ball = LinearSystem()
