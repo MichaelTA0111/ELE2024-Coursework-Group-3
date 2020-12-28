@@ -59,14 +59,18 @@ class LinearSystem:
     def get_p(self):
         return self.__p
 
+    @staticmethod
+    def plotter(x_axis, y_axis, file_path):
+        plt.plot(x_axis, y_axis)
+        plt.xlabel('Time (s)')
+        plt.ylabel('$\overline{x}_1$ (m)')
+        plt.grid()
+        plt.savefig(file_path)  # Save the graph
+        plt.show()
+
 
 if __name__ == '__main__':
     ball = LinearSystem()
     ball_trajectory = ball.move(0)
 
-    plt.plot(ball_trajectory.t, ball_trajectory.y[0].T)
-    plt.xlabel('Time (s)')
-    plt.ylabel('$\overline{x}_1$ (m)')
-    plt.grid()
-    plt.savefig('.\\Figures\\linear_system.svg', format='svg')  # Save the graph as a .svg file
-    plt.show()
+    ball.plotter(ball_trajectory.t, ball_trajectory.y[0].T, '.\\Figures\\linear_system.svg')
