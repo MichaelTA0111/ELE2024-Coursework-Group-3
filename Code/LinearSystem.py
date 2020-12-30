@@ -2,11 +2,10 @@ from scipy.integrate import solve_ivp
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 class LinearSystem:
     def __init__(self, mass=0.425, gravity=9.81, theta=np.deg2rad(42), c_const=6.815, delta=0.65, k_spring=1880,
                  d_length=0.42, b_damper=10.4, ell_0=0.12, ell_1=0.025, alpha=1.2, resistance=53):
-        self.__x_1_e = 0.75 * (d_length + mass * gravity * np.sin(theta))
+        self.__x_1_e = 0.75 * (d_length + (mass * gravity * np.sin(theta)/k_spring)) + 0.25 * delta
         self.__x_2_e = 0
         self.__i_e = np.sqrt((mass * gravity * np.sin(theta)
                               - k_spring * (self.__x_1_e - d_length))
@@ -65,6 +64,7 @@ class LinearSystem:
         plt.xlabel('Time (s)')
         plt.ylabel('$\overline{x}_1$ (m)')
         plt.grid()
+        plt.title("Linear")
         plt.savefig(file_path)  # Save the graph
         plt.show()
 
