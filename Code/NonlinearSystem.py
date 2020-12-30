@@ -17,18 +17,14 @@ class NonlinearSystem:
         self.__ell_0 = ell_0
         self.__ell_1 = ell_1
         self.__alpha = alpha
-        self.resistance = resistance
+        self.__resistance = resistance
 
         self.__x_1 = 0.75 * (d_length + (mass * gravity * np.sin(phi) / k_spring)) + 0.25 * delta
-        self.__x_2 = 0
-        # self.i = np.sqrt((mass * gravity * np.sin(phi) - k_spring * (self.__x_1 - d_length))
-        #                  / (-c_const)
-        #                  * (delta - self.__x_1) ** 2)
-        self.i = 0
-        # self.__v = self.__i * resistance
+        self.__x_2 = 0.
+        self.__i = 0.
 
-    def move(self, input_voltage=0, dt=10, num_points=1001):
-        initial_values = (self.__x_1, self.__x_2, self.i)
+    def move(self, input_voltage=0, dt=1, num_points=1001):
+        initial_values = (self.__x_1, self.__x_2, self.__i)
         state_values = solve_ivp(lambda time, z:
                                  self.ball_dynamics(time, z, input_voltage),
                                  [0, dt],
@@ -38,7 +34,7 @@ class NonlinearSystem:
         final_state = state_values.y.T[-1]
         self.__x_1 = final_state[0]
         self.__x_2 = final_state[1]
-        self.i = final_state[2]
+        self.__i = final_state[2]
         return state_values
 
     def ball_dynamics(self, time, states, input_voltage):
@@ -52,11 +48,17 @@ class NonlinearSystem:
 
         i_dot = ((1.0 / (self.__ell_0 + self.__ell_1
                          * np.exp(-1 * self.__alpha * (self.__delta - states[0]))))
-                 * (input_voltage - (states[2] * self.resistance)))
+                 * (input_voltage - (states[2] * self.__resistance)))
 
-        self.__x_1, self.__x_2, self.i = [x_1_dot, x_2_dot, i_dot]
+        self.__x_1, self.__x_2, self.__i = [x_1_dot, x_2_dot, i_dot]
 
         return [x_1_dot, x_2_dot, i_dot]
+
+    def get_i(self):
+        return self.__i
+
+    def get_resistance(self):
+        return self.__resistance
 
     @staticmethod
     def plotter(x_axis, y_axis, file_path):
@@ -64,16 +66,13 @@ class NonlinearSystem:
         plt.xlabel('Time (s)')
         plt.ylabel('${x}_1$ (m)')
         plt.grid()
-        plt.title("Nonlinear System")
         plt.savefig(file_path)  # Save the graph
         plt.show()
 
 
 if __name__ == '__main__':
     ball = NonlinearSystem()
-    input_voltage = ball.i * ball.resistance  # equil voltage
-    ball_trajectory = ball.move(input_voltage)
-
-    print(ball_trajectory.y.T[-1])
+    ball_voltage = ball.get_i() * ball.get_resistance()
+    ball_trajectory = ball.move(ball_voltage)
 
     ball.plotter(ball_trajectory.t, ball_trajectory.y[0].T, '.\\Figures\\nonlinear_system.svg')
