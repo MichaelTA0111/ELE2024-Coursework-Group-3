@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 class LinearSystem:
-    def __init__(self, mass=0.425, gravity=9.81, theta=np.deg2rad(42), c_const=6815, delta=0.65, k_spring=1880,
+    def __init__(self, mass=0.425, gravity=9.81, theta=np.deg2rad(42), c_const=6.815, delta=0.65, k_spring=1880,
                  d_length=0.42, b_damper=10.4, ell_0=0.12, ell_1=0.025, alpha=1.2, resistance=53):
         self.__x_1_e = 0.75 * (d_length + mass * gravity * np.sin(theta))
         self.__x_2_e = 0

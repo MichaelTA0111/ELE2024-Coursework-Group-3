@@ -3,7 +3,7 @@ import numpy as np
 
 
 class NonlinearSystem:
-    def __init__(self, mass=0.425, gravity=9.81, theta=np.deg2rad(42), c_const=6815, delta=0.65, k_spring=1880,
+    def __init__(self, mass=0.425, gravity=9.81, theta=np.deg2rad(42), c_const=6.815, delta=0.65, k_spring=1880,
                  d_length=0.42, b_damper=10.4, ell_0=0.12, ell_1=0.025, alpha=1.2, resistance=53):
         self.__mass = mass
         self.__gravity = gravity

@@ -1,29 +1,23 @@
 from Code.LinearSystem import LinearSystem
-from scipy import signal
+import numpy as np
 import matplotlib.pyplot as plt
+import control as ctrl
 
 
 if __name__ == '__main__':
-    dt = 1
-    num_points = 1001
     ball = LinearSystem()
-    ball.move(0)
 
-    sys = signal.TransferFunction([ball.get_d() * ball.get_n()],
-                                  [1,
-                                   (ball.get_h() + ball.get_p()),
-                                   (ball.get_h() * ball.get_p() - ball.get_f() ),
-                                   (-1 * (ball.get_f() * ball.get_p()))])
-    w, mag, phase = signal.bode(sys)
+    # Transfer function
+    G_x = ctrl.TransferFunction([ball.get_d() * ball.get_n()],
+                                [1,
+                                 (ball.get_h() + ball.get_p()),
+                                 (ball.get_h() * ball.get_p() - ball.get_f()),
+                                 -(ball.get_f() * ball.get_p())])
+    # G_x = DN / (s^3 + (H + P)s^2 + (HP - F)s - FP)
 
-    # Graph for bode plots
-    plt.figure()
-    plt.semilogx(w, mag)    # Bode magnitude plot
-    plt.grid()
-    plt.xlabel('ω (Log Scale)')
-    plt.ylabel('|G$_x$(jω)|$_{dB}$')
-    plt.figure()
-    plt.semilogx(w, phase)  # Bode phase plot
-    plt.xlabel('ω (Log Scale)')
-    plt.ylabel('arg[G$_x$(jω)]')
+    # Bode plot
+    f = np.logspace(-1, 3, 1000)
+    w = 2 * np.pi * f
+    bode_plot = ctrl.bode(G_x, w, dB=True, Hz=True, deg=True)
+    plt.savefig('.\\Figures\\bode_plot.svg')  # Save the graph
     plt.show()
