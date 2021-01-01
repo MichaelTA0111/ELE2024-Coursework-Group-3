@@ -43,6 +43,10 @@ class LinearSystem:
         x_2_bar_dot = self.__d * states[2] + self.__f * states[0] - self.__h * states[1]
         i_bar_dot = self.__n * v_bar - self.__p * states[2]
         return [x_1_bar_dot, x_2_bar_dot, i_bar_dot]
+    
+    def transferFunction():
+        return ctrl.TransferFunction([__d * __n],
+                                [1, (__h + __p), (__h * __p - __f), -(__f * __p)])
 
     def get_d(self):
         return self.__d
@@ -105,19 +109,32 @@ class PidController:
         self.__sum_errors += error
         self.__previous_error = error                   # Means that next time we need the previous error
         return ball_voltage
+    
+    def pid(self):
+        return ctrl.TransferFunction([__kd, __kp, __ki], [1, 0])
 
 if __name__ == '__main__':
     dt = 1
     num_points = 1001
     ball = LinearSystem()
-    ball_pid = PidController(kp=0.5, kd=0.5, ki=0.1, ts=dt)
-    x_cache = np.array([ball.get_x_1_bar()])                        # Inserted current first value of y into the cache
-    for k in range(num_points):
-        ball_voltage = ball_pid.control(ball.get_x_1_bar())
-        ball.move(ball_voltage, dt)
-        x_cache = np.vstack((x_cache, [ball.get_x_1_bar()]))
+    ball_controller = PidController(kp=0.5, kd=0.5, ki=0.1, ts=dt)
+    controller_tf = ball_controller.pid()
+    
+    #x_cache = np.array([ball.get_x_1_bar()]) # Inserted current first value of y into the cache
+    
+    #for k in range(num_points):
+    #    ball_voltage = ball_controller.control(ball.get_x_1_bar())
+    #    ball.move(ball_voltage, dt)
+    #    x_cache = np.vstack((x_cache, [ball.get_x_1_bar()]))
 
-    t_span = dt * np.arange(num_points + 1)
-    plt.plot(t_span, x_cache)
-    plt.grid()
-    plt.show()
+    #t_span = dt * np.arange(num_points + 1)
+    #plt.plot(t_span, x_cache)
+    #plt.grid()
+    #plt.show()
+    t_span = np.linspace(0, dt, num_points)
+    
+    #Feedback TF
+    system_tf = ctrl.feedback(ball.transferFunction(), controller_tf)
+    
+    # Kick the system
+    t_imp, theta_imp = ctrl.impulse_response(system_tf, T=time_span)
