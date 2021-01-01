@@ -3,6 +3,7 @@ import numpy as np
 from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
 
+
 class LinearSystem:
     def __init__(self, mass=0.425, gravity=9.81, phi=np.deg2rad(42), c_const=6.815, delta=0.65, k_spring=1880,
                  d_length=0.42, b_damper=10.4, ell_0=0.12, ell_1=0.025, alpha=1.2, resistance=53):
@@ -43,10 +44,10 @@ class LinearSystem:
         x_2_bar_dot = self.__d * states[2] + self.__f * states[0] - self.__h * states[1]
         i_bar_dot = self.__n * v_bar - self.__p * states[2]
         return [x_1_bar_dot, x_2_bar_dot, i_bar_dot]
-    
-    def transferFunction():
-        return ctrl.TransferFunction([__d * __n],
-                                [1, (__h + __p), (__h * __p - __f), -(__f * __p)])
+
+    def transferFunction(self):
+        return ctrl.TransferFunction([self.__d * self.__n],
+                                     [1, (self.__h + self.__p), (self.__h * self.__p - self.__f), -(self.__f * self.__p)])
 
     def get_d(self):
         return self.__d
@@ -86,10 +87,10 @@ class PidController:
         :param ts: The sampling time
         """
         self.__kp = kp
-        self.__kd = kd/ts
-        self.__ki = ki*ts
+        self.__kd = kd / ts
+        self.__ki = ki * ts
         self.__ts = ts
-        self.__previous_error = None                    # None i.e. 'Not defined yet'
+        self.__previous_error = None  # None i.e. 'Not defined yet'
         self.__sum_errors = 0.0
 
     def control(self, x, x_set_point=2):
@@ -98,20 +99,21 @@ class PidController:
         :param y_set_point: The desired y-position of the car
         :return:
         """
-        error = x_set_point - x                        # Calculates the control error
-        ball_voltage = self.__kp*error                # P control
+        error = x_set_point - x  # Calculates the control error
+        ball_voltage = self.__kp * error  # P control
 
         if self.__previous_error is not None:
-            ball_voltage += self.__kd*(error - self.__previous_error)  # D control
+            ball_voltage += self.__kd * (error - self.__previous_error)  # D control
 
-        ball_voltage += self.__ki*self.__sum_errors   # I Control
+        ball_voltage += self.__ki * self.__sum_errors  # I Control
 
         self.__sum_errors += error
-        self.__previous_error = error                   # Means that next time we need the previous error
+        self.__previous_error = error  # Means that next time we need the previous error
         return ball_voltage
-    
+
     def pid(self):
-        return ctrl.TransferFunction([__kd, __kp, __ki], [1, 0])
+        return ctrl.TransferFunction([self.__kd, self.__kp, self.__ki], [1, 0])
+
 
 if __name__ == '__main__':
     dt = 1
@@ -119,22 +121,28 @@ if __name__ == '__main__':
     ball = LinearSystem()
     ball_controller = PidController(kp=0.5, kd=0.5, ki=0.1, ts=dt)
     controller_tf = ball_controller.pid()
-    
-    #x_cache = np.array([ball.get_x_1_bar()]) # Inserted current first value of y into the cache
-    
-    #for k in range(num_points):
+
+    # x_cache = np.array([ball.get_x_1_bar()]) # Inserted current first value of y into the cache
+
+    # for k in range(num_points):
     #    ball_voltage = ball_controller.control(ball.get_x_1_bar())
     #    ball.move(ball_voltage, dt)
     #    x_cache = np.vstack((x_cache, [ball.get_x_1_bar()]))
 
-    #t_span = dt * np.arange(num_points + 1)
-    #plt.plot(t_span, x_cache)
-    #plt.grid()
-    #plt.show()
+    # t_span = dt * np.arange(num_points + 1)
+    # plt.plot(t_span, x_cache)
+    # plt.grid()
+    # plt.show()
     t_span = np.linspace(0, dt, num_points)
-    
-    #Feedback TF
+
+    # Feedback TF
     system_tf = ctrl.feedback(ball.transferFunction(), controller_tf)
-    
+
     # Kick the system
-    t_imp, theta_imp = ctrl.impulse_response(system_tf, T=time_span)
+    t_imp, system_imp = ctrl.impulse_response(system_tf, T=t_span)
+
+    plt.plot(t_imp, system_imp)
+    plt.grid()
+    plt.xlabel('Time (s)')
+    plt.ylabel('Angle of the Rod (°)')
+    plt.show()
