@@ -43,6 +43,10 @@ class LinearSystem:
         x_2_bar_dot = self.__d * states[2] + self.__f * states[0] - self.__h * states[1]
         i_bar_dot = self.__n * v_bar - self.__p * states[2]
         return [x_1_bar_dot, x_2_bar_dot, i_bar_dot]
+    
+    def transferFunction():
+        return ctrl.TransferFunction([__d * __n],
+                                [1, (__h + __p), (__h * __p - __f), -(__f * __p)])
 
     def get_d(self):
         return self.__d
