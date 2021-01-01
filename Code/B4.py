@@ -5,7 +5,7 @@ import control as ctrl
 
 
 if __name__ == '__main__':
-    ball = LinearSystem()
+    ball = LinearSystem(x_1_bar=0.1)
 
     # Transfer function
     G_x = ctrl.TransferFunction([ball.get_d() * ball.get_n()],

@@ -6,7 +6,7 @@ import control as ctrl
 if __name__ == '__main__':
     dt = 1
     num_points = 1001
-    ball = LinearSystem()
+    ball = LinearSystem(x_1_bar=0.1)
     ball.move()
 
     # Transfer function

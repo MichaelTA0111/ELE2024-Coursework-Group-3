@@ -1,21 +1,49 @@
-from control import TransferFunction as Tf
+from Code.PdController import PdController
 
 
-class PidController:
+class PidController(PdController):
     """
-    Class to define static methods which are used in multiple questions
+    Class to define the PidController object
     """
 
-    @staticmethod
-    def pid(kp, ki, kd):
+    def __init__(self,
+                 kp=0,
+                 kd=0,
+                 ki=0,
+                 ts=0.01):
         """
-        This function constructs the transfer function of a PID controller with given parameters
+        Constructor for the PidController class
         :param kp: The continuous-time gain for the proportional controller
-        :param ki: The continuous-time gain for the integral controller
         :param kd: The continuous-time gain for the differential controller
-        :return: The transfer function for the PID controller
+        :param ki: The continuous-time gain for the integral controller
+        :param ts: The sampling time of the controller
         """
-        diff = Tf([1, 0], 1)
-        intgr = Tf(1, [1, 0])
-        pid_tf = kp + kd * diff + ki * intgr
-        return pid_tf
+        super().__init__(kp, kd, ts)  # Construct a PdController to inherit from
+        self.__ki = ki * ts  # Discrete-time ki
+        self.__sum_errors = 0.  # The sum of all previous errors calculated
+        self.__u = 0.
+
+    def control(self, x_1_bar, set_point=0.):
+        """
+        Method to calculate the control error
+        :param x_1_bar: The measured value of x_1_bar
+        :param set_point: The set point value of x_1_bar
+        :return: The PID control variable
+        """
+        # Use the control function from the PdController
+        u = super().control(x_1_bar, set_point)
+
+        # Add to u based on the integral controller
+        u += self.__ki * self.__sum_errors
+
+        self.__sum_errors += self._error  # Add the error to the sum of all previous errors
+        self.__u = u
+
+        return u
+
+    def get_u(self):
+        """
+        Getter for the steering angle
+        :return: The steering angle
+        """
+        return self.__u
