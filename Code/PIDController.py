@@ -1,3 +1,5 @@
+import control as ctrl
+
 class PIDController:
     """
     PIDController class can be used give PID controls to one input of a given system.
@@ -58,3 +60,7 @@ class PIDController:
         self.__err_previous = error  # Previous Error
 
         return output
+    
+    #Pyhton Control Module
+    def pid(self):
+        return ctrl.TransferFunction([__kd, __kp, __ki], [1, 0])
