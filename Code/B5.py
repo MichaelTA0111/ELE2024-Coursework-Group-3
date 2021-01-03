@@ -11,15 +11,13 @@ if __name__ == '__main__':
 
     # Declare the global variables
     t_final = 1  # The final time of the simulation
-    t_sampling = 0.03  # Time between consecutive samples, 30 ms
+    t_sampling = 0.001  # Time between consecutive samples, 30 ms
     ticks = int(t_final / t_sampling)  # Total number of samples taken
     t_span = t_sampling * np.arange(ticks + 1)  # All values of time which were used for sampling
 
     # Declare the array to store the x_1_bar cache and PID controllers
     x_cache = []
-    pid_controllers = [PidCtrl(kp=2, kd=0.6, ki=250, ts=t_sampling),
-                       PidCtrl(kp=2, kd=0.7, ki=250, ts=t_sampling),
-                       PidCtrl(kp=2, kd=0.8, ki=250, ts=t_sampling)]
+    pid_controllers = [PidCtrl(kp=2, kd=1.9, ki=250, ts=t_sampling)]
 
     for i in range(len(pid_controllers)):
         # Simulation of the ball with each PID controller

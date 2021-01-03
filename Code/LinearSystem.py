@@ -59,9 +59,17 @@ class LinearSystem:
                                       -(self.__f * self.__p)])
 
     def get_d(self):
+        """
+        Getter for the value of the constant d
+        :return: The constant d
+        """
         return self.__d
 
     def get_f(self):
+        """
+        Getter for the value of the constant f
+        :return: The constant f
+        """
         return self.__f
 
     def get_h(self):

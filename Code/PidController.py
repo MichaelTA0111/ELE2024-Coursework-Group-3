@@ -1,4 +1,5 @@
 from Code.PdController import PdController
+from control import TransferFunction as Tf
 
 
 class PidController(PdController):
@@ -41,9 +42,6 @@ class PidController(PdController):
 
         return u
 
-    def get_u(self):
-        """
-        Getter for the steering angle
-        :return: The steering angle
-        """
-        return self.__u
+    def transfer_function(self):
+        return Tf([self._kd, self._kp, self.__ki], [1, 0])
+
