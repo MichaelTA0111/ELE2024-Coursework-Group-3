@@ -15,9 +15,9 @@ if __name__ == '__main__':
                                  -(ball.get_f() * ball.get_p())])
     # G_x = DN / (s^3 + (H + P)s^2 + (HP - F)s - FP)
 
-    # Bode plot
+    # Graph for the Bode plot
     f = np.logspace(-1, 3, 1000)
     w = 2 * np.pi * f
-    bode_plot = ctrl.bode(G_x, w, dB=True, Hz=True, deg=True)
-    plt.savefig('.\\Figures\\bode_plot.svg')  # Save the graph
-    plt.show()
+    bode_plot = ctrl.bode(G_x, w, dB=True, Hz=True, deg=True)  # Produce the bode plot of G_x against w
+    plt.savefig('.\\Figures\\bode_plot.svg')  # Save the graph as an .svg
+    plt.show()  # Display the bode plot

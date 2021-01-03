@@ -43,5 +43,11 @@ class PidController(PdController):
         return u
 
     def transfer_function(self):
+        """
+        Function to get the value of the transfer function
+        Returns: The value of the transfer function
+        -------
+
+        """
         return Tf([self._kd, self._kp, self.__ki], [1, 0])
 
