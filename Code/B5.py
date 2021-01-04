@@ -1,5 +1,5 @@
-from Code.LinearSystem import LinearSystem
-from Code.PidController import PidController as PidCtrl
+from LinearSystem import LinearSystem
+from PidController import PidController as PidCtrl
 import numpy as np
 import matplotlib.pyplot as plt
 
