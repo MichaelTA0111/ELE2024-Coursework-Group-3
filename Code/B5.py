@@ -1,11 +1,11 @@
-from LinearSystem import LinearSystem
-from PidController import PidController as PidCtrl
+from Code.LinearSystem import LinearSystem
+from Code.PidController import PidController as PidCtrl
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 if __name__ == '__main__':
-    applied_voltage = 1.  # Input voltage (in volts) applied to the linear system, relative to the equilibrium voltage
+    applied_voltage = 5.  # Input voltage (in volts) applied to the linear system, relative to the equilibrium voltage
     ball_position = 0.1  # Initial position (in metres) of the ball relative to the equilibrium point
     set_point = 0.  # Set point (in metres) for the ball to tend to, relative to the equilibrium point
 

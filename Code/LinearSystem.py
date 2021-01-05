@@ -104,13 +104,13 @@ class LinearSystem:
 
     def transfer_function(self):
         """
-        Transfer function of the system
-        Returns: The value of the transfer function
-        -------
-
+        Function to calculate the value of the transfer function of the liinear system
+        :return: The value of the transfer function
         """
         return ctrl.TransferFunction([self.__d * self.__n],
-                                     [1, (self.__h + self.__p), (self.__h * self.__p - self.__f),
+                                     [1,
+                                      (self.__h + self.__p),
+                                      (self.__h * self.__p - self.__f),
                                       -(self.__f * self.__p)])
 
     def get_d(self):

@@ -1,10 +1,9 @@
-from Code.PdController import PdController
 from control import TransferFunction as Tf
 
 
-class PidController(PdController):
+class PidController:
     """
-    Class to define the PidController object
+    Class to define the PID Controller object
     """
 
     def __init__(self,
@@ -19,35 +18,50 @@ class PidController(PdController):
         :param ki: The continuous-time gain for the integral controller
         :param ts: The sampling time of the controller
         """
-        super().__init__(kp, kd, ts)  # Construct a PdController to inherit from
+        self.__kp = kp
+        self.__kd = kd / ts  # Discrete-time kd
         self.__ki = ki * ts  # Discrete-time ki
+
+        self.__error = 0.
+        self.__error_previous = None  # The error recorded the previous time it was calculated
         self.__sum_errors = 0.  # The sum of all previous errors calculated
+
+        self.__ts = ts
+
         self.__u = 0.
 
     def control(self, x_1_bar, set_point=0.):
         """
-        Method to calculate the control error
+        Method to calculate the control variable
         :param x_1_bar: The measured value of x_1_bar
         :param set_point: The set point value of x_1_bar
         :return: The PID control variable
         """
-        # Use the control function from the PdController
-        u = super().control(x_1_bar, set_point)
+        # Calculate the error
+        self.__error = set_point - x_1_bar
+
+        # Define u from the proportional controller
+        u = self.__kp * self.__error
+
+        # Add to u based on the differential controller
+        if self.__error_previous is not None:
+            u += self.__kd * (self.__error - self.__error_previous)
+
+        # Store the calculated error as the previous error for future use
+        self.__error_previous = self.__error
 
         # Add to u based on the integral controller
         u += self.__ki * self.__sum_errors
 
-        self.__sum_errors += self._error  # Add the error to the sum of all previous errors
-        self.__u = u
+        # Add the error to the sum of all previous errors
+        self.__sum_errors += self.__error
 
         return u
 
     def transfer_function(self):
         """
-        Function to get the value of the transfer function
-        Returns: The value of the transfer function
-        -------
-
+        Function to calculate the value of the transfer function of the PID controller
+        :return: The value of the transfer function
         """
-        return Tf([self._kd, self._kp, self.__ki], [1, 0])
+        return Tf([self.__kd, self.__kp, self.__ki], [1, 0])
 
