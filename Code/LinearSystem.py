@@ -8,6 +8,7 @@ class LinearSystem:
     """
         Class to define the LinearSystem
     """
+
     def __init__(self, mass=0.425, gravity=9.81, phi=np.deg2rad(42), c_const=6.815, delta=0.65, k_spring=1880,
                  d_length=0.42, b_damper=10.4, ell_0=0.12, ell_1=0.025, alpha=1.2, resistance=53, x_1_bar=0.,
                  x_2_bar=0., i_bar=0., v_bar=0.):
@@ -50,7 +51,6 @@ class LinearSystem:
         self.__x_2_bar = x_2_bar
         self.__i_bar = i_bar
         self.__v_bar = v_bar
-
 
     def move(self, voltage=0, dt=1, num_points=1001):
         """
