@@ -78,41 +78,6 @@ class LinearSystem(DynamicalSystem):
                    (self.__h * self.__p - self.__f),
                    -(self.__f * self.__p)])
 
-    def get_d(self):
-        """
-        Getter for the value of the constant d
-        :return: The constant d
-        """
-        return self.__d
-
-    def get_f(self):
-        """
-        Getter for the value of the constant f
-        :return: The constant f
-        """
-        return self.__f
-
-    def get_h(self):
-        """
-        Getter for the value of the constant h
-        :return: The constant h
-        """
-        return self.__h
-
-    def get_n(self):
-        """
-        Getter for the value of the constant n
-        :return: The constant n
-        """
-        return self.__n
-
-    def get_p(self):
-        """
-        Getter for the value of the constant p
-        :return: The constant p
-        """
-        return self.__p
-
     def get_x_1_bar(self):
         """
         Getter for the value of x_1_bar
