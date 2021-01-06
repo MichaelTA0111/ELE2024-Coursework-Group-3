@@ -1,18 +1,11 @@
 from Code.LinearSystem import LinearSystem
 import numpy as np
 import matplotlib.pyplot as plt
-from control import TransferFunction as Tf
 import control as ctrl
 
 if __name__ == '__main__':
-    ball = LinearSystem()
-
-    # Transfer function
-    G_x = Tf([ball.get_d() * ball.get_n()],
-             [1,
-              (ball.get_h() + ball.get_p()),
-              (ball.get_h() * ball.get_p() - ball.get_f()),
-              -(ball.get_f() * ball.get_p())])
+    ball = LinearSystem()  # Create a linear system
+    G_x = ball.transfer_function()  # Transfer function of the linear system
     # G_x = DN / (s^3 + (H + P)s^2 + (HP - F)s - FP)
 
     # Graph for the Bode plot

@@ -1,26 +1,24 @@
 from Code.DynamicalSystem import DynamicalSystem
 from scipy.integrate import solve_ivp
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 class NonlinearSystem(DynamicalSystem):
     """
-    Class to define the NonlinearSystem
+    Class to define the non-linear system
     """
 
     def __init__(self, states=None):
         """
-        Constructor for the NonlinearSystem class
-        Parameters
-        ----------
-        states: dictionary containing the following,
+        Constructor for the linear system class
+        :param states: dictionary containing the following,
             x_1: initial position of ball in metres
             x_2: initial velocity of the ball in metres per second^2
             i: initial value of current in Amps
         """
-        super().__init__()
+        super().__init__()  # Construct a dynamical system to inherit from
 
+        # Set the initial conditions of the system
         if states is not None:
             self.__x_1 = states['x_1']
             self.__x_2 = states['x_2']
@@ -30,44 +28,13 @@ class NonlinearSystem(DynamicalSystem):
             self.__x_2 = self._x_2_e
             self.__i = self._i_e
 
-    def ball_dynamics(self, time, states, input_voltage):
+    def move(self, voltage=0, dt=1, num_points=1001):
         """
-        Function to assign the value of x_1_bar_dot, x_2_bar_dot and i_bar_dot
-        Parameters
-        ----------
-        param time: Time for the simulation of the system in seconds
-        states: The value of the states i.e. x_1_bar_dot, x_2_bar_dot or i_bar_dot
-        voltage: Input voltage of the system in volts
-
-        :return: Value of x_1_bar_dot, x_2_bar_dot and i_bar_dot
-        -------
-
-        """
-        x_1_dot = states[1]
-
-        x_2_dot = (5.0 / (3.0 * self._mass)) * \
-                  (self._mass * self._gravity * np.sin(self._phi)
-                   + self._c_const * ((states[2]) / (self._delta - states[0])) ** 2
-                   - self._k_spring * (states[0] - self._d_length)
-                   - self._b_damper * states[1])
-
-        i_dot = (1.0 / (self._ell_0 + self._ell_1 * np.exp(-1.0 * self._alpha * (self._delta - states[0])))) * \
-                (input_voltage - (states[2] * self._resistance))
-
-        return [x_1_dot, x_2_dot, i_dot]
-
-    def move(self, voltage, dt=1, num_points=1001):
-        """
-        Function to move the ball
-        Parameters
-        ----------
-        voltage: Input voltage of the system in volts
-        dt: Time for the simulation of the system in seconds
-        num_points: Resolution
-
-        Returns: x positions and current
-        -------
-
+        Method to make the ball object move according to the dynamics of the system
+        :param voltage: Input voltage of the system in volts
+        :param dt: The difference between the end and start times in seconds
+        :param num_points: The resolution of the graph
+        :return: The solution describing the system dynamics over time
         """
         initial_values = (self.__x_1, self.__x_2, self.__i)
         state_values = solve_ivp(lambda time, z:
@@ -82,27 +49,43 @@ class NonlinearSystem(DynamicalSystem):
         self.__i = final_state[2]
         return state_values
 
+    def ball_dynamics(self, time, states, voltage):
+        """
+        Method to calculate the values of x_1_dot, x_2_dot, and i_dot
+        :param time: Time for the simulation of the system in seconds
+        :param states: The current value of x_1, x_2, and i
+        :param voltage: Input voltage of the system in volts
+        :return: Value of x_1_dot, x_2_dot and i_dot
+        """
+        x_1_dot = states[1]
+
+        x_2_dot = (5.0 / (3.0 * self._mass)) * \
+                  (self._mass * self._gravity * np.sin(self._phi)
+                   + self._c_const * ((states[2]) / (self._delta - states[0])) ** 2
+                   - self._k_spring * (states[0] - self._d_length)
+                   - self._b_damper * states[1])
+
+        i_dot = (1.0 / (self._ell_0 + self._ell_1 * np.exp(-1.0 * self._alpha * (self._delta - states[0])))) * \
+                (voltage - (states[2] * self._resistance))
+
+        return [x_1_dot, x_2_dot, i_dot]
+
     @staticmethod
     def plotter(x_axis, y_axis, file_path, title=None):
         """
-        Function that plots a graph
-        Parameters
-        ----------
-        x_axis: For values that are required to be plotted on the x-axis
-        y_axis: For values that are required to be plotted on the y-axis
-        file_path: The file path or location to save the image
-
-        Returns: Nothing
-        -------
-
+        Method to plot a graph of x_1 (m) against time (s)
+        :param x_axis: Values of time to be plotted on the x-axis
+        :param y_axis: Values of x_1 to be plotted on the y-axis
+        :param title: The title of the graph
+        :param file_path: The file path where the image will be saved
+        :return: None
         """
-        plt.plot(x_axis, y_axis)  # Plots the x-axis and y-axis values on a graph
-        plt.title(title)
-        plt.xlabel('Time (s)')
-        plt.ylabel('${x}_1$ (m)')
-        plt.grid()  # Produces a grid on the graph
-        plt.savefig(file_path)  # Save the graph
-        plt.show()  # Displays the graph
+        super(NonlinearSystem, NonlinearSystem).system_plotter(x_axis,
+                                                               y_axis,
+                                                               title=title,
+                                                               file_path=file_path,
+                                                               x_label='Time (s)',
+                                                               y_label='${x}_1$ (m)')
 
 
 if __name__ == '__main__':

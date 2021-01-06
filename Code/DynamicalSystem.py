@@ -1,8 +1,7 @@
-from scipy.integrate import solve_ivp
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Dictionary containing values for the Linear and Non-Linear System
+# Dictionary containing values for the dynamical system
 constants = {
     'mass': 0.425,
     'gravity': 9.81,
@@ -21,19 +20,17 @@ constants = {
 
 class DynamicalSystem:
     """
-    Class to define the NonlinearSystem
+    Class to define the dynamical system
     """
 
-    def __init__(self, attributes=constants):
+    def __init__(self, attributes=None):
         """
-        Constructor for the NonlinearSystem class
-        Parameters
-        ----------
-        attributes: dictionary containing the following;
+        Constructor for the dynamical system parent class
+        :param attributes: dictionary containing the following;
             mass: Mass of the steel ball in Kg
-            gravity: acceleration due to gravity of the system in metres per second^2
+            gravity: Acceleration due to gravity of the system in metres per second^2
             phi: Angle of the slope in radians
-            c_const: Constant in gm/a^2s^2
+            c_const: Constant in kg m / (a^2 s^2)
             delta: Distance between the centre of the electromagnet and the wall in metres
             k_spring: Spring constant
             d_length: Natural length of the spring in Newtons per metre
@@ -43,6 +40,9 @@ class DynamicalSystem:
             alpha: Constant in per metre
             resistance: Resistance of the electromagnet in ohms
         """
+        if attributes is None:
+            attributes = constants
+
         self._mass = attributes['mass']
         self._gravity = attributes['gravity']
         self._phi = attributes['phi']
@@ -93,3 +93,27 @@ class DynamicalSystem:
         :return: The constant v_e
         """
         return self._v_e
+
+    @staticmethod
+    def system_plotter(x_axis, y_axis, title=None, x_label=None, y_label=None, file_path=None):
+        """
+        Method to plot a graph of x_1 (m) against time (s)
+        :param x_axis: Values of time to be plotted on the x-axis
+        :param y_axis: Values of x_1 to be plotted on the y-axis
+        :param title: The title of the graph
+        :param x_label: The label of the x-axis
+        :param y_label: The label of the y-axis
+        :param file_path: The file path where the image will be saved
+        :return: None
+        """
+        plt.title(title)
+        plt.plot(x_axis, y_axis)  # Plots the x-axis and y-axis values on a graph
+        plt.xlabel(x_label)
+        plt.ylabel(y_label)
+        plt.grid()  # Produces a grid on the graph
+        plt.savefig(file_path)  # Save the graph
+        plt.show()  # Displays the graph
+
+
+if __name__ == '__main__':
+    print('Please run a different source file.')
