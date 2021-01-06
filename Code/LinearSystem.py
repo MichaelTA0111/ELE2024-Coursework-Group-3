@@ -6,7 +6,7 @@ import control as ctrl
 
 class LinearSystem:
     """
-        Class to define the LinearSystem
+    Class to define the LinearSystem
     """
 
     def __init__(self, mass=0.425, gravity=9.81, phi=np.deg2rad(42), c_const=6.815, delta=0.65, k_spring=1880,
@@ -156,7 +156,7 @@ class LinearSystem:
         return self.__x_1_bar
 
     @staticmethod
-    def plotter(x_axis, y_axis, file_path):
+    def plotter(x_axis, y_axis, file_path=None, title=None):
         """
         Function that plots a graph
         Parameters
@@ -170,6 +170,7 @@ class LinearSystem:
 
         """
         plt.plot(x_axis, y_axis)  # Plots the x-axis and y-axis values on a graph
+        plt.title(title)
         plt.xlabel('Time (s)')
         plt.ylabel('$\overline{x}_1$ (m)')
         plt.grid()  # Produces a grid on the graph
@@ -178,8 +179,4 @@ class LinearSystem:
 
 
 if __name__ == '__main__':
-    ball = LinearSystem(x_1_bar=0.1)
-    ball_trajectory = ball.move()
-
-    # Plot the graph
-    ball.plotter(ball_trajectory.t, ball_trajectory.y[0].T, '.\\Figures\\linear_system.svg')  # x position against time
+    print('Please run a different source file.')

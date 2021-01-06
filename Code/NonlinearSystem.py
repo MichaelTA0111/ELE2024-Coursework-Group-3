@@ -5,9 +5,8 @@ import matplotlib.pyplot as plt
 
 class NonlinearSystem:
     """
-        Class to define the NonlinearSystem
+    Class to define the NonlinearSystem
     """
-
     def __init__(self, states, attributes):
         """
         Constructor for the NonlinearSystem class
@@ -53,7 +52,7 @@ class NonlinearSystem:
         Function to assign the value of x_1_bar_dot, x_2_bar_dot and i_bar_dot
         Parameters
         ----------
-        @:param time: Time for the simulation of the system in seconds
+        :param time: Time for the simulation of the system in seconds
         states: The value of the states i.e. x_1_bar_dot, x_2_bar_dot or i_bar_dot
         input_voltage: Input voltage of the system in volts
 
@@ -99,3 +98,17 @@ class NonlinearSystem:
         self.__x_2 = final_state[1]
         self.__i = final_state[2]
         return state_values
+
+    @staticmethod
+    def plotter(x_axis, y_axis, file_path, title=None):
+        plt.plot(x_axis, y_axis)  # Plots the x-axis and y-axis values on a graph
+        plt.title(title)
+        plt.xlabel('Time (s)')
+        plt.ylabel('${x}_1$ (m)')
+        plt.grid()  # Produces a grid on the graph
+        plt.savefig(file_path)  # Save the graph
+        plt.show()  # Displays the graph
+
+
+if __name__ == '__main__':
+    print('Please run a different source file.')

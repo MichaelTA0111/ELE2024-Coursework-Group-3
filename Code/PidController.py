@@ -28,8 +28,6 @@ class PidController:
 
         self.__ts = ts
 
-        self.__u = 0.
-
     def control(self, x_1_bar, set_point=0.):
         """
         Method to calculate the control variable
@@ -40,23 +38,23 @@ class PidController:
         # Calculate the error
         self.__error = set_point - x_1_bar
 
-        # Define u from the proportional controller
-        u = self.__kp * self.__error
+        # Define the control variable from the proportional controller
+        control = self.__kp * self.__error
 
-        # Add to u based on the differential controller
+        # Add to the control variable based on the differential controller
         if self.__error_previous is not None:
-            u += self.__kd * (self.__error - self.__error_previous)
+            control += self.__kd * (self.__error - self.__error_previous)
 
         # Store the calculated error as the previous error for future use
         self.__error_previous = self.__error
 
-        # Add to u based on the integral controller
-        u += self.__ki * self.__sum_errors
+        # Add to the control variable based on the integral controller
+        control += self.__ki * self.__sum_errors
 
         # Add the error to the sum of all previous errors
         self.__sum_errors += self.__error
 
-        return u
+        return control
 
     def transfer_function(self):
         """
@@ -65,3 +63,6 @@ class PidController:
         """
         return Tf([self.__kd, self.__kp, self.__ki], [1, 0])
 
+
+if __name__ == '__main__':
+    print('Please run a different source file.')

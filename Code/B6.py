@@ -16,7 +16,7 @@ if __name__ == '__main__':
     # Moving the ball and PID controller
     ball = LinearSystem()
     ball_tf = ball.transfer_function()
-    pid = PidCtrl(kp=0.125, kd=0.00001, ki=25, ts=t_sampling)  # PID controller
+    pid = PidCtrl(kp=0.125, kd=0.00001, ki=0., ts=t_sampling)  # PID controller
     pid_tf = pid.transfer_function()
 
     # Measurements from laser
@@ -30,4 +30,6 @@ if __name__ == '__main__':
     t_imp, system_imp = ir(system_tf, T=t_span)
 
     # Plot graph
-    ball.plotter(t_imp, system_imp, '.\\Figures\\system_impulse_response.svg')  # x position of the ball against time
+    ball.plotter(t_imp,
+                 system_imp,
+                 '.\\Figures\\system_impulse_response.svg')  # x position of the ball against time
