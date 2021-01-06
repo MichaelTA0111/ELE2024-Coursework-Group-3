@@ -1,51 +1,33 @@
+from Code.DynamicalSystem import DynamicalSystem
 from scipy.integrate import solve_ivp
 import numpy as np
 import matplotlib.pyplot as plt
-import control as ctrl
+from control import TransferFunction as Tf
 
 
-class LinearSystem:
+class LinearSystem(DynamicalSystem):
     """
     Class to define the LinearSystem
     """
 
-    def __init__(self, mass=0.425, gravity=9.81, phi=np.deg2rad(42), c_const=6.815, delta=0.65, k_spring=1880,
-                 d_length=0.42, b_damper=10.4, ell_0=0.12, ell_1=0.025, alpha=1.2, resistance=53, x_1_bar=0.,
-                 x_2_bar=0., i_bar=0., v_bar=0.):
+    def __init__(self, x_1_bar=0., x_2_bar=0., i_bar=0., v_bar=0.):
         """
-        Constructor for the LinearSystem
+        Constructor for the linear system class
         Parameters
         ----------
-        mass: Mass of the steel ball in Kg
-        gravity: acceleration due to gravity of the system in metres per second^2
-        phi: Angle of the slope in radians
-        c_const: Constant in gm/a^2s^2
-        delta: Distance between the centre of the electromagnet and the wall in metres
-        k_spring: Spring constant
-        d_length: Natural length of the spring in Newtons per metre
-        b_damper: Viscous damping coefficient in Newtons seconds per metre
-        ell_0: Nominal inductance in henrys
-        ell_1: Inductor constant in henrys
-        alpha: Constant in per metre
-        resistance: Resistance of the electromagnet in ohms
         x_1_bar: x position - equilibrium x position
         x_2_bar: x position - equilibrium x position
         i_bar: Current - equilibrium current
         v_bar: Input voltage - equilibrium voltage
         """
-        self.__x_1_e = 0.75 * (d_length + (mass * gravity * np.sin(phi) / k_spring)) + 0.25 * delta
-        self.__x_2_e = 0.
-        self.__i_e = np.sqrt((mass * gravity * np.sin(phi)
-                              - k_spring * (self.__x_1_e - d_length))
-                             / (-c_const)
-                             * (delta - self.__x_1_e) ** 2)
-        self.__v_e = self.__i_e * resistance
+        super().__init__()
 
-        self.__d = (5 / (3 * mass)) * (2 * c_const * self.__i_e / (delta - self.__x_1_e) ** 2)
-        self.__f = (5 / (3 * mass)) * (2 * c_const * self.__i_e ** 2 / (delta - self.__x_1_e) ** 3 - k_spring)
-        self.__h = (5 / (3 * mass)) * b_damper
-        self.__n = 1 / (ell_0 + ell_1 * np.exp(-alpha * (delta - self.__x_1_e)))
-        self.__p = resistance * self.__n
+        constant = 5 / (3 * self._mass)
+        self.__d = constant * (2 * self._c_const * self._i_e / (self._delta - self._x_1_e) ** 2)
+        self.__f = constant * (2 * self._c_const * self._i_e ** 2 / (self._delta - self._x_1_e) ** 3 - self._k_spring)
+        self.__h = constant * self._b_damper
+        self.__n = 1 / (self._ell_0 + self._ell_1 * np.exp(-self._alpha * (self._delta - self._x_1_e)))
+        self.__p = self._resistance * self.__n
 
         self.__x_1_bar = x_1_bar
         self.__x_2_bar = x_2_bar
@@ -107,7 +89,7 @@ class LinearSystem:
         Function to calculate the value of the transfer function of the liinear system
         :return: The value of the transfer function
         """
-        return ctrl.TransferFunction([self.__d * self.__n],
+        return Tf([self.__d * self.__n],
                                      [1,
                                       (self.__h + self.__p),
                                       (self.__h * self.__p - self.__f),
