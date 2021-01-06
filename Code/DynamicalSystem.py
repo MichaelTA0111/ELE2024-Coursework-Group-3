@@ -95,7 +95,8 @@ class DynamicalSystem:
         return self._v_e
 
     @staticmethod
-    def system_plotter(x_axis, y_axis, title=None, x_label=None, y_label=None, file_path=None):
+    def system_plotter(x_axis, y_axis, title=None, x_label=None, y_label=None, file_path=None,
+                       multiplot=False, labels=None):
         """
         Method to plot a graph of x_1 (m) against time (s)
         :param x_axis: Values of time to be plotted on the x-axis
@@ -104,12 +105,23 @@ class DynamicalSystem:
         :param x_label: The label of the x-axis
         :param y_label: The label of the y-axis
         :param file_path: The file path where the image will be saved
+        :param multiplot: Boolean to represent if multiple plots are to be made on one graph
+        :param labels: The labels to be used in a legend
         :return: None
         """
-        plt.title(title)
-        plt.plot(x_axis, y_axis)  # Plots the x-axis and y-axis values on a graph
-        plt.xlabel(x_label)
-        plt.ylabel(y_label)
+
+        plt.title(title)  # Create a title for the graph
+        if multiplot:
+            for i in range(0, len(y_axis)):
+                if labels:
+                    plt.plot(x_axis[i], y_axis[i], label=labels[i])  # Plot each line on the graph with a legend
+                    plt.legend(title="Starting Distance\nfrom Equilibrium")
+                else:
+                    plt.plot(x_axis[i], y_axis[i])  # Plot each line on the graph
+        else:
+            plt.plot(x_axis, y_axis)  # Plots the x-axis and y-axis values on a graph
+        plt.xlabel(x_label)  # Label the x-axis
+        plt.ylabel(y_label)  # Label the y-axis
         plt.grid()  # Produces a grid on the graph
         plt.savefig(file_path)  # Save the graph
         plt.show()  # Displays the graph

@@ -18,37 +18,39 @@ if __name__ == '__main__':
         'i': i_e
     }
 
-    # Simulating the linear and non-linear systems at equilibrium
-    ball_linear_equil = LinearSystem()  # Create a linear system at equilibrium
-    ball_nonlinear_equil = NonlinearSystem(states)  # Create a non-linear system at equilibrium
+    # Declare empty arrays
+    linear_x_axes = []
+    linear_y_axes = []
+    nonlinear_x_axes = []
+    nonlinear_y_axes = []
+    labels = []
 
-    linear_trajectory_equil = ball_linear_equil.move()  # Apply v_e for time 0 <= t <= 1, i.e. v_bar = 0
-    nonlinear_trajectory_equil = ball_nonlinear_equil.move(v_e)  # Apply v_e for all time 0 <= t <= 1
+    # Simulating the linear and non-linear systems a range of distances from the equilibrium position
+    for x in [0., 0.005, 0.01, 0.015, 0.02, 0.025, 0.03, 0.035]:
+        states['x_1'] = x_1_e + x
+        ball_linear = LinearSystem(x_1_bar=x)  # Create a linear system 3.5 cm from equilibrium
+        linear_trajectory = ball_linear.move()  # Apply v_e for time 0 <= t <= 1, i.e. v_bar = 0
+        linear_x_axes.append(linear_trajectory.t)  # Append to the time array
+        linear_y_axes.append(linear_trajectory.y[0].T)  # Append to the x_1_bar array
 
-    # Plot graphs of x position against time with initial conditions at equilibrium
-    ball_linear_equil.plotter(linear_trajectory_equil.t,
-                              linear_trajectory_equil.y[0].T,
-                              title='Linear System Starting at Equilibrium',
-                              file_path='.\\Figures\\linear_system_equil.svg')
-    ball_nonlinear_equil.plotter(nonlinear_trajectory_equil.t,
-                                 nonlinear_trajectory_equil.y[0].T,
-                                 title='Non-Linear System Starting at Equilibrium',
-                                 file_path='.\\Figures\\nonlinear_system_equil.svg')
+        ball_nonlinear = NonlinearSystem(states)  # Create a non-linear system 3.5 cm from equilibrium
+        nonlinear_trajectory = ball_nonlinear.move(v_e)  # Apply v_e for all time 0 <= t <= 1
+        nonlinear_x_axes.append(nonlinear_trajectory.t)  # Append to the time array
+        nonlinear_y_axes.append(nonlinear_trajectory.y[0].T)  # Append to the x_1 array
 
-    # Simulating the linear and non-linear systems 3.5 cm from the equilibrium position
-    states['x_1'] = x_1_e + 0.035
-    ball_linear = LinearSystem(x_1_bar=0.035)  # Create a linear system 3.5 cm from equilibrium
-    ball_nonlinear = NonlinearSystem(states)  # Create a non-linear system 3.5 cm from equilibrium
-
-    linear_trajectory = ball_linear.move()  # Apply V^e for all time t >= 0, i.e. v_bar = 0
-    nonlinear_trajectory = ball_nonlinear.move(v_e)  # Apply V^e for all time t >= 0
+        # Create a label for each plot (cm), using one decimal place
+        labels.append(str("{:.1f}".format(100 * x)) + ' cm')
 
     # Plot graphs of x position against time with initial x position 3.5 cm away from equilibrium
-    ball_linear.plotter(linear_trajectory.t,
-                        linear_trajectory.y[0].T,
-                        title='Linear System Starting 3.5cm from the Equilibrium',
-                        file_path='.\\Figures\\linear_system_3_5_cm.svg')
-    ball_nonlinear.plotter(nonlinear_trajectory.t,
-                           nonlinear_trajectory.y[0].T,
-                           title='Non-Linear System Starting 3.5cm from the Equilibrium',
-                           file_path='.\\Figures\\nonlinear_system_3_5_cm.svg')
+    ball_linear.plotter(linear_x_axes,
+                        linear_y_axes,
+                        title='Linear System Responses',
+                        file_path='.\\Figures\\linear_system.svg',
+                        multiplot=True,
+                        labels=labels)
+    ball_nonlinear.plotter(nonlinear_x_axes,
+                           nonlinear_y_axes,
+                           title='Non-Linear System Responses',
+                           file_path='.\\Figures\\nonlinear_system.svg',
+                           multiplot=True,
+                           labels=labels)
