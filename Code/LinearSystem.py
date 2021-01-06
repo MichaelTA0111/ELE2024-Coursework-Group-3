@@ -95,7 +95,6 @@ class LinearSystem(DynamicalSystem):
         :param file_path: The file path where the image will be saved
         :return: None
         """
-
         super(LinearSystem, LinearSystem).system_plotter(x_axis,
                                                          y_axis,
                                                          title=title,
