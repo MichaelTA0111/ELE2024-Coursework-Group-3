@@ -1,95 +1,54 @@
-from LinearSystem import *
-from NonlinearSystem import *
-import matplotlib.pyplot as plt
+from Code.DynamicalSystem import DynamicalSystem
+from Code.LinearSystem import LinearSystem
+from Code.NonlinearSystem import NonlinearSystem
 
+if __name__ == '__main__':
+    system = DynamicalSystem()  # Create a dynamical system
 
-def plotter(x_axis, y_axis, x_name, y_name, label=None, title=None, file_path=None):
-    """
-    Function that plots a graph
-    Parameters
-    ----------
-    x_axis: For values that are required to be plotted on the x-axis
-    y_axis: For values that are required to be plotted on the y-axis
-    x_name: Name of x-axis
-    y_name: Name of y-axis
-    title: Title for the graph
+    # Equilibrium values of x_1, x_2, current, and voltage
+    x_1_e = system.get_x_1_e()
+    x_2_e = system.get_x_2_e()
+    i_e = system.get_i_e()
+    v_e = system.get_v_e()
 
-    Returns: Nothing
-    -------
+    # Dictionary containing initial values for the non-linear system
+    states = {
+        'x_1': x_1_e,
+        'x_2': x_2_e,
+        'i': i_e
+    }
 
-    """
-    plt.xlabel(x_name)
-    plt.ylabel(y_name)
-    plt.title(title)
-    plt.grid(True, "both", "both")  # Produces a grid on the graph
-    plt.plot(x_axis, y_axis, label=label)  # Plots the x-axis and y-axis values on a graph
+    # Simulating the linear and non-linear systems at equilibrium
+    ball_linear_equil = LinearSystem()  # Create a linear system at equilibrium
+    ball_nonlinear_equil = NonlinearSystem(states)  # Create a non-linear system at equilibrium
 
-    if file_path:
-        save_plot(file_path)
+    linear_trajectory_equil = ball_linear_equil.move()  # Apply v_e for time 0 <= t <= 1, i.e. v_bar = 0
+    nonlinear_trajectory_equil = ball_nonlinear_equil.move(v_e)  # Apply v_e for all time 0 <= t <= 1
 
-def save_plot(file_path):
-    plt.savefig(file_path, format="svg")  # Save the graph
-    plt.show()  # Displays the graph
+    # Plot graphs of x position against time with initial conditions at equilibrium
+    ball_linear_equil.plotter(linear_trajectory_equil.t,
+                              linear_trajectory_equil.y[0].T,
+                              title='Linear System Starting at Equilibrium',
+                              file_path='.\\Figures\\linear_system_equil.svg')
+    ball_nonlinear_equil.plotter(nonlinear_trajectory_equil.t,
+                                 nonlinear_trajectory_equil.y[0].T,
+                                 title='Non-Linear System Starting at Equilibrium',
+                                 file_path='.\\Figures\\nonlinear_system_equil.svg')
 
+    # Simulating the linear and non-linear systems 3.5 cm from the equilibrium position
+    states['x_1'] = x_1_e + 0.035
+    ball_linear = LinearSystem(x_1_bar=0.035)  # Create a linear system 3.5 cm from equilibrium
+    ball_nonlinear = NonlinearSystem(states)  # Create a non-linear system 3.5 cm from equilibrium
 
-# Dictionary containing values for the Linear and Non-Linear System
-attributes = {
-    'mass': 0.425,
-    'gravity': 9.81,
-    'phi': np.deg2rad(42.0),
-    'c_const': 6.815,
-    'delta': 0.65,
-    'k_spring': 1880,
-    'd_length': 0.42,
-    'b_damper': 10.4,
-    'ell_0': 0.12,
-    'ell_1': 0.025,
-    'alpha': 1.2,
-    'resistance': 53,
-}
+    linear_trajectory = ball_linear.move()  # Apply V^e for all time t >= 0, i.e. v_bar = 0
+    nonlinear_trajectory = ball_nonlinear.move(v_e)  # Apply V^e for all time t >= 0
 
-# Equilibrium Values of x_1, current, voltage
-x_1_e = 0.75 * (attributes['d_length'] + (attributes['mass'] * attributes['gravity'] * np.sin(attributes['phi']) /
-                                             attributes['k_spring'])) + 0.25 * attributes['delta']
-i_e = np.sqrt(((attributes['mass'] * attributes['gravity'] * np.sin(attributes['phi']))
-               - (attributes['k_spring'] * (x_1_e - attributes['d_length']))) /
-              (-1 * attributes['c_const']) * ((attributes['delta'] - x_1_e)**2))
-v_e = i_e * attributes["resistance"]
-
-# Dictionary containing initial values for the Linear and Non-Linear System
-states = {
-    "x_1": x_1_e,
-    "x_2": 0.0,
-    "i": i_e
-}
-
-# Simulating the Linear and Non-Linear System's at Equilibrium
-linear = LinearSystem() # Creating Linear System
-non_linear = NonlinearSystem(states, attributes)  # Creating Non-Linear System
-
-linear_trajectory = linear.move(v_e, 1)  # Apply V^e for all time t >= 0
-non_linear_trajectory = non_linear.move(v_e, 1)  # Apply V^e for all time t >= 0
-
-# Plot the graph - x position against time - at equilibrium
-plotter(linear_trajectory.t, linear_trajectory.y[0].T, "t - time (s)", "$\overline{x}_1$ - position (m)", None, None, '.\\Figures\\b2_linear_system_equil.svg')
-plotter(non_linear_trajectory.t, non_linear_trajectory.y[0].T, "t - time (s)", "$x_1$ - position (m)", None, None, '.\\Figures\\b2_nonlinear_system_equil.svg')
-
-# Simulating the Linear x cm from the Equilibrium Position
-for x in [0.01, 0.02, 0.03, 0.035]:
-    states["x_1"] = x_1_e + x
-    linear = LinearSystem(x_1_bar=x)  # Creating Linear System
-    linear_trajectory = linear.move(v_e, 1)  # Apply V^e for all time t >= 0
-    plotter(linear_trajectory.t, linear_trajectory.y[0].T, "t - time (s)", "$\overline{x}_1$ - position (m)", label=f"{x*100:.1f}cm")
-plt.legend(title="Distance from Equilibrium Position")
-save_plot('.\\Figures\\b2_linear_system_dist.svg')
-
-# Simulating the Non-Linear System x cm from the Equilibrium Position
-for x in [0.01, 0.02, 0.03, 0.035]:
-    states["x_1"] = x_1_e + x
-    non_linear = NonlinearSystem(states, attributes)  # Creating Non-Linear System
-    non_linear_trajectory = non_linear.move(v_e)  # Apply V^e for all time t >= 0
-    plotter(non_linear_trajectory.t, non_linear_trajectory.y[0].T, "t - time (s)", "$x_1$ - position (m)", label=f"{x*100:.1f}cm")
-plt.legend(title="Distance from Equilibrium Position")
-save_plot('.\\Figures\\b2_nonlinear_system_dist.svg')
-
-print(LinearSystem().transfer_function())
+    # Plot graphs of x position against time with initial x position 3.5 cm away from equilibrium
+    ball_linear.plotter(linear_trajectory.t,
+                        linear_trajectory.y[0].T,
+                        title='Linear System Starting 3.5cm from the Equilibrium',
+                        file_path='.\\Figures\\linear_system_3_5_cm.svg')
+    ball_nonlinear.plotter(nonlinear_trajectory.t,
+                           nonlinear_trajectory.y[0].T,
+                           title='Non-Linear System Starting 3.5cm from the Equilibrium',
+                           file_path='.\\Figures\\nonlinear_system_3_5_cm.svg')
