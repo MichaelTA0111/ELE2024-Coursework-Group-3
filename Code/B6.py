@@ -30,4 +30,5 @@ if __name__ == '__main__':
     # Plot a graph for the impulse response
     ball.plotter(t_imp,
                  system_imp,
+                 title='Complete System Impulse Response',
                  file_path='.\\Figures\\system_impulse_response.svg')  # x position of the ball against time

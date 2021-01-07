@@ -46,6 +46,7 @@ class LinearSystem(DynamicalSystem):
                                  self.ball_dynamics(time, z, voltage),
                                  [0, dt],
                                  initial_values,
+                                 method='Radau',
                                  t_eval=np.linspace(0, dt, num_points))
 
         final_state = state_values.y.T[-1]
@@ -86,13 +87,15 @@ class LinearSystem(DynamicalSystem):
         return self.__x_1_bar
 
     @staticmethod
-    def plotter(x_axis, y_axis, title=None, file_path=None):
+    def plotter(x_axis, y_axis, title=None, file_path=None, multiplot=False, labels=None):
         """
         Method to plot a graph of x_1_bar (m) against time (s)
         :param x_axis: Values of time to be plotted on the x-axis
         :param y_axis: Values of x_1_bar to be plotted on the y-axis
         :param title: The title of the graph
         :param file_path: The file path where the image will be saved
+        :param multiplot: Boolean to represent if multiple plots are to be made on one graph
+        :param labels: The labels to be used in a legend
         :return: None
         """
         super(LinearSystem, LinearSystem).system_plotter(x_axis,
@@ -100,7 +103,9 @@ class LinearSystem(DynamicalSystem):
                                                          title=title,
                                                          file_path=file_path,
                                                          x_label='Time (s)',
-                                                         y_label='$\overline{x}_1$ (m)')
+                                                         y_label='$\overline{x}_1$ (m)',
+                                                         multiplot=multiplot,
+                                                         labels=labels)
 
 
 if __name__ == '__main__':
