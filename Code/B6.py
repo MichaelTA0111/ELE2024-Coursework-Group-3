@@ -6,6 +6,7 @@ from control import step_response as sr
 from control import feedback as fb
 import numpy as np
 import sympy as sym
+import matplotlib.pyplot as plt
 
 #https://github.com/alchemyst/Dynamics-and-Control/blob/master/tbcontrol/symbolic.py
 def routh(p):
@@ -103,6 +104,7 @@ def part2(kp, kd, ki):
         return False
 
 if __name__ == '__main__':
+    part1()
     print(part2(kp=.00125, kd=0.00008, ki=0.001))
 
     # Declare time variables
