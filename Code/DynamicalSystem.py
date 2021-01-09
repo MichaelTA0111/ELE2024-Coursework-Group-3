@@ -100,7 +100,7 @@ class DynamicalSystem:
 
     @staticmethod
     def system_plotter(x_axis, y_axis, title=None, x_label=None, y_label=None, file_path=None,
-                       multiplot=False, labels=None):
+                       multiplot=False, labels=None, label_title=None, h_lines=None):
         """
         Method to plot a graph of x_1 (m) against time (s)
         :param x_axis: Values of time to be plotted on the x-axis
@@ -111,6 +111,8 @@ class DynamicalSystem:
         :param file_path: The file path where the image will be saved
         :param multiplot: Boolean to represent if multiple plots are to be made on one graph
         :param labels: The labels to be used in a legend
+        :param label_title: The title of the legend
+        :param h_lines: Horizontal lines to be drawn on the graph
         :return: None
         """
 
@@ -118,12 +120,18 @@ class DynamicalSystem:
         if multiplot:
             for i in range(0, len(y_axis)):
                 if labels:
-                    plt.plot(x_axis[i], y_axis[i], label=labels[i])  # Plot each line on the graph with a legend
-                    plt.legend(title="Starting Distance\nfrom Equilibrium")
+                    plt.plot(x_axis[i], y_axis[i], label=labels[i])  # Plot each line on the graph with labels
                 else:
                     plt.plot(x_axis[i], y_axis[i])  # Plot each line on the graph
         else:
             plt.plot(x_axis, y_axis)  # Plots the x-axis and y-axis values on a graph
+        if h_lines is not None:
+            for i in range(0, len(h_lines)):  # Plot any horizontal lines on the graph
+                plt.axhline(h_lines[i][0], h_lines[i][1], color='r', linestyle='--', label=h_lines[i][2])
+        if label_title:
+            plt.legend(title=label_title)  # Insert the legend with a title
+        else:
+            plt.legend()  # Insert the legend
         plt.xlabel(x_label)  # Label the x-axis
         plt.ylabel(y_label)  # Label the y-axis
         plt.grid()  # Produces a grid on the graph

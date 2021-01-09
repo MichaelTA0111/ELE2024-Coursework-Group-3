@@ -46,9 +46,11 @@ if __name__ == '__main__':
                         linear_y_axes,
                         file_path='.\\Figures\\linear_system.svg',
                         multiplot=True,
-                        labels=labels)
+                        labels=labels,
+                        label_title='Starting Distance\nfrom Equilibrium')
     ball_nonlinear.plotter(nonlinear_x_axes,
                            nonlinear_y_axes,
                            file_path='.\\Figures\\nonlinear_system.svg',
                            multiplot=True,
-                           labels=labels)
+                           labels=labels,
+                           label_title='Starting Distance\nfrom Equilibrium')

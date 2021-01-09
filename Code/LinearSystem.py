@@ -87,7 +87,8 @@ class LinearSystem(DynamicalSystem):
         return self.__x_1_bar
 
     @staticmethod
-    def plotter(x_axis, y_axis, title=None, file_path=None, multiplot=False, labels=None):
+    def plotter(x_axis, y_axis, title=None, file_path=None, multiplot=False, labels=None, label_title=None,
+                h_lines=None):
         """
         Method to plot a graph of x_1_bar (m) against time (s)
         :param x_axis: Values of time to be plotted on the x-axis
@@ -96,6 +97,8 @@ class LinearSystem(DynamicalSystem):
         :param file_path: The file path where the image will be saved
         :param multiplot: Boolean to represent if multiple plots are to be made on one graph
         :param labels: The labels to be used in a legend
+        :param label_title: The title of the legend
+        :param h_lines: Horizontal lines to be drawn on the graph
         :return: None
         """
         super(LinearSystem, LinearSystem).system_plotter(x_axis,
@@ -105,7 +108,9 @@ class LinearSystem(DynamicalSystem):
                                                          x_label='Time (s)',
                                                          y_label='$\overline{x}_1$ (m)',
                                                          multiplot=multiplot,
-                                                         labels=labels)
+                                                         labels=labels,
+                                                         label_title=label_title,
+                                                         h_lines=h_lines)
 
 
 if __name__ == '__main__':
