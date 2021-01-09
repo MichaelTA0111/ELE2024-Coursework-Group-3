@@ -18,9 +18,7 @@ if __name__ == '__main__':
     # Plot graphs for the impulse and step responses
     ball.plotter(t_imp,
                  ball_imp,
-                 title='Impulse Response',
                  file_path='.\\Figures\\impulse_response.svg')  # Impulse, x position of the ball against time
     ball.plotter(t_step,
                  ball_step,
-                 title='Step Response',
                  file_path='.\\Figures\\step_response.svg')  # Step, x position of the ball against time

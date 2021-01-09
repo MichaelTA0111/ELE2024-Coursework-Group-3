@@ -29,5 +29,4 @@ if __name__ == '__main__':
     # Plot a graph of x_1_bar (m) against time (s)
     ball.plotter(t_span,
                  x_cache,
-                 title='PID Controlled System',
                  file_path='.\\Figures\\pid_controlled_system.svg')

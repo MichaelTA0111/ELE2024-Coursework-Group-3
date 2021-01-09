@@ -23,7 +23,7 @@ class DynamicalSystem:
     Class to define the dynamical system
     """
 
-    def __init__(self, attributes=None):
+    def __init__(self, attributes=None, x_1_e=None):
         """
         Constructor for the dynamical system parent class
         :param attributes: dictionary containing the following;
@@ -39,6 +39,7 @@ class DynamicalSystem:
             ell_1: Inductor constant in henrys
             alpha: Constant in per metre
             resistance: Resistance of the electromagnet in ohms
+        :param x_1_e: The equilibrium value of x_1 in metres
         """
         if attributes is None:
             attributes = constants
@@ -56,7 +57,10 @@ class DynamicalSystem:
         self._alpha = attributes['alpha']
         self._resistance = attributes['resistance']
 
-        self._x_1_e = 0.75 \
+        if x_1_e is not None:
+            self._x_1_e = x_1_e
+        else:
+            self._x_1_e = 0.75 \
                       * (self._d_length + (self._mass * self._gravity * np.sin(self._phi) / self._k_spring)) \
                       + 0.25 * self._delta
         self._x_2_e = 0.
