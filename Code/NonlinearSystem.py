@@ -74,7 +74,7 @@ class NonlinearSystem(DynamicalSystem):
     @staticmethod
     def plotter(x_axis, y_axis, title=None, file_path=None, multiplot=False, labels=None, label_title=None):
         """
-        Method to plot a graph of x_1 (m) against time (s)
+        Static method to plot a graph of x_1 (m) against time (s)
         :param x_axis: Values of time to be plotted on the x-axis
         :param y_axis: Values of x_1 to be plotted on the y-axis
         :param title: The title of the graph

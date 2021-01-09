@@ -102,7 +102,7 @@ class DynamicalSystem:
     def system_plotter(x_axis, y_axis, title=None, x_label=None, y_label=None, file_path=None,
                        multiplot=False, labels=None, label_title=None, h_lines=None):
         """
-        Method to plot a graph of x_1 (m) against time (s)
+        Static method to plot a graph of x_1 (m) against time (s)
         :param x_axis: Values of time to be plotted on the x-axis
         :param y_axis: Values of x_1 to be plotted on the y-axis
         :param title: The title of the graph
@@ -119,7 +119,7 @@ class DynamicalSystem:
         plt.title(title)  # Create a title for the graph
         if multiplot:
             for i in range(0, len(y_axis)):
-                if labels:
+                if labels is not None:
                     plt.plot(x_axis[i], y_axis[i], label=labels[i])  # Plot each line on the graph with labels
                 else:
                     plt.plot(x_axis[i], y_axis[i])  # Plot each line on the graph
@@ -128,10 +128,11 @@ class DynamicalSystem:
         if h_lines is not None:
             for i in range(0, len(h_lines)):  # Plot any horizontal lines on the graph
                 plt.axhline(h_lines[i][0], h_lines[i][1], color='r', linestyle='--', label=h_lines[i][2])
-        if label_title:
-            plt.legend(title=label_title)  # Insert the legend with a title
-        else:
-            plt.legend()  # Insert the legend
+        if labels is not None:
+            if label_title is not None:
+                plt.legend(title=label_title)  # Insert the legend with a title
+            else:
+                plt.legend()  # Insert the legend
         plt.xlabel(x_label)  # Label the x-axis
         plt.ylabel(y_label)  # Label the y-axis
         plt.grid()  # Produces a grid on the graph
