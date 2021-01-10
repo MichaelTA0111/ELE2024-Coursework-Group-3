@@ -1,4 +1,59 @@
 \bigskip
 \subsection{Problem C3}\label{sec:qc3}\hfill
 
+% \medskip
+% 1) f(x) = sin, cos, exp, asin, acos, atan tan {this probably wont work}. Add on more as you please.
+% 2) Get the taylor of these.
+
+% C3 i) solved.
+
+% C3 ii) sin, cos, exp defo have laplace transforms. So thier taylors should also have lap transforms.
+% Need to confirm this.
+
+% C3 iii) sin, cos, exp defo have laplace transforms. This is the question!!!
+
+% sin and it's taylor have same lap transform. I found this when I did the sum to infty of the resulting geometric series of taylor of sin.//
+
+\subsubsection{C3 i)}\hfill
+
 \medskip
+\noindent There are many functions, $f_n$, that converge pointwise to a function $f$, for all $t \geq 0$. They are found, by finding $f$, and performing Taylor's Approximation. This gives a function $(f_{n})_{\in \mathbb{N}}$, which converges pointwise to $f$. Examples include:
+\begin{itemize}
+    \item $f = e^t$, then $f_n = \sum\limits_{k = 0}^{n} \frac{t^{k}}{k!}$ for $t \geq 0$
+    \item $f = \sin t$, then $f_n = \sum\limits_{k = 0}^{n} \frac{t^{2k+1}}{\left(2k+1\right)!} \left(-1\right)^k$, for $t \geq 0$
+    \item $f = \cos t$, then $f_n = \sum\limits_{k = 0}^{n} \frac{t^{2k}}{\left(2k\right)!} \left(-1\right)^k$, for $t \geq 0$
+    \item $f = \frac{1}{1+t}$, then $f_n = \sum\limits_{k = 0}^{n} \left(-t\right)^k$, for $t \geq 0$
+\end{itemize}
+
+\medskip
+\subsubsection{C3 ii)}\hfill
+
+\medskip
+\noindent All these functions, $f_n$ have a Laplace transform, $F_n$. The Laplace transform of the previous functions are:
+\begin{itemize}
+    \item $F_n = \lap\{\sum\limits_{k = 0}^{n} \frac{t^{k}}{k!}\}(s) = \sum\limits_{k = 0}^{n} \frac{1}{s^{k+1}}$ for $|s| > 1$
+    \item $F_n = \lap\{\sum\limits_{k = 0}^{n} \left(-1\right)^k \frac{t^{2k+1}}{\left(2k+1\right)!}\} = \sum\limits_{k = 0}^{n} \frac{\left(-1\right)^k}{s^{2k+2}}$ for $|s| > 0$
+    \item $F_n = \lap\{\sum\limits_{k = 0}^{n} \left(-1\right)^k \frac{t^{2k}}{\left(2k\right)!}\}  = \sum\limits_{k = 0}^{n} \frac{\left(-1\right)^k}{s^{2k+1}}$ for $|s| > 0$
+    \item $F_n = \lap\{\sum\limits_{k = 0}^{n} \left(-t\right)^k\} = \sum\limits_{k = 0}^{n} (-1)^k \frac{k!}{s^{k+1}}$ for $|s| > 0$
+\end{itemize}
+
+\medskip
+\subsubsection{C3 iii)}\hfill
+
+\medskip
+% \noindent If $f$ has a Laplace transform $F$, then $\lim\limits_{n \rightarrow \infty} (\lap f_n)(s)$ must equal, $(\lap f)(s) = F$.\\
+% This can be seen when the functions when the Laplace transform of the Taylor approximation of equations are taken, when the original equation does not have a Laplace transform.\\
+% For the function, $f = \frac{1}{1-t}$, the Laplace transform, $F$ doesn't exist. It's Taylor approximation can be found as, $f_n = \sum\limits_{k = 0}^{n} t^k$. The Laplace transform of this Taylor approximation can be found as, $F_n = \sum\limits_{k = 0}^{n} \frac{k!}{s^{k+1}}$. Everything looks normal so far. This even looks similar to $\lap\{\frac{1}{1+t}\} = \lap\{\sum\limits_{k = 0}^{n} \left(-t\right)^k\}$. The key difference is, $\sum\limits_{k = 0}^{n} (-1)^k \frac{k!}{s^{k+1}}$ converges to a function, as $n \rightarrow \infty$. Whereas $\lap\{\frac{1}{1-t}\}$ doesn't converge to a function.
+\noindent The functions, $f$, converge to $F$:
+\begin{itemize}
+    \item $f = e^t$, then $F = \frac{1}{s-1}$, for $|s| \geq 1$
+    \item $f = \sin t$, then $F = \frac{1}{s^2 + 1}$, for $|s| > 0$
+    \item $f = \cos t$, then $F = \frac{s}{s^2 + 1}$, for $|s| > 0$
+    \item $f = \frac{1}{1+t}$, then $F = -e^s \text{Ei}(-s)$, for $|s| > 0$
+\end{itemize}
+
+\medskip
+\noindent It is possible that, $\lim\limits_{n \rightarrow \infty} (\lap f_n)(s) = (\lap f)(s)$, is not true. An example of this would be the function, $f = \frac{1}{1-t}$. The Laplace transform of $F$ is undefined. It's Taylor approximation can be found as, $f_n = \sum\limits_{k = 0}^{n} t^k$. The Laplace transform of this Taylor approximation can be found as, $F_n = \sum\limits_{k = 0}^{n} \frac{k!}{s^{k+1}}$. This looks similar to $\lap\{\frac{1}{1+t}\} = \sum\limits_{k = 0}^{\infty} (-1)^k \frac{k!}{s^{k+1}}$. The key difference is, $\sum\limits_{k = 0}^{\infty} (-1)^k \frac{k!}{s^{k+1}}$ converges to a function. Whereas $\sum\limits_{k = 0}^{\infty} \frac{k!}{s^{k+1}}$ doesn't converge to a function.
+
+\medskip
+\noindent The equation $\lim\limits_{n \rightarrow \infty} (\lap f_n)(s) = (\lap f)(s)$ is valid as long as $f$ has a Laplace transform $F$, and $F_n$ converges to $F$ as $n \rightarrow \infty$.

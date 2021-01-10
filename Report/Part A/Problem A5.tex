@@ -1,79 +1,38 @@
 \bigskip
 \subsection{Problem A5}\label{sec:qa5}\hfill
 
-\begin{equation*}
-\underbar{$\dot{\bar{x}}$}
-=
-\begin{bmatrix}
-\bar{x_{2}} \cr
- \left( \frac{5}{3m} \right) 
- \left( 
-\left( 2c \right)
-\frac
-{{ \left( \frac{V^{e}}{R} \right) }^2}
-{{ \left( \delta -  x_{1}^{e} \right) }^{3}}
- \left( \bar{x_{1}} \right)  
-+ \left( 2c \right)
-\frac
-{ \left( \frac{V^{e}}{R^{2}} \right) }
-{{ \left( \delta - x_{1}^{e} \right) }^{2}}
- \left( \bar{V} \right)
-- k \left( \bar{x_{1}} \right)  
-- b \left( \bar{x_{2}} \right)  \right)  \cr
-\end{bmatrix}
-\end{equation*}
-
 \medskip
-\noindent Apply Laplace Transform to equation (30), with all initial conditions equalling zero:
-
+\noindent Apply the Laplace Transform theorem to equation \eqref{a4:linear_system}, with all the initial conditions equal to zero:
 \begin{align}
-    \lap \{\dot{\bar{x}}_1\} &= \lap \{\bar{x}_2\} \cr
-    s \bar{X}_1 - \bar{x}_1 (0^+) &= \bar{X}_2 \cr
-    s \bar{X}_1 &= \bar{X}_2
+    &\lap \{\dot{\bar{x}}_1 (t) \} = \lap \{\bar{x}_2 (t) \} \cr
+    \Longrightarrow &s \bar{X}_1 (s) - \bar{x}_1 (0^+) = \bar{X}_2 (s) \cr
+    &s \bar{X}_1 (s) = \bar{X}_2 (s) \label{a5:laplace_x1_dot} \\ \vspace{1cm}
+    &\lap \{ \dot{\bar{x}}_2 (t) \} = \lap \{D \bar{I} (t) + F \bar{x}_1 (t) - H \bar{x}_2 (t) \} \cr
+    % \Longrightarrow &\lap \{ \dot{\bar{x}}_2 \} = D \lap \{ \bar{I}(t) \} + F \lap \{\bar{x}_1 \} - H \lap \{ \bar{x}_2 \} \cr
+    \Longrightarrow &s \bar{X}_2 (s) - \bar{x}_2 (0^+) = D \bar{I}(s) + F \bar{X}_1 (s) - H \bar{X}_2 (s) \cr
+    &s \bar{X}_2 (s) = D \bar{I}(s) + F \bar{X}_1 (s) - H \bar{X}_2 (s) \label{a5:laplace_x2_dot} \\ \vspace{1cm}
+    &\lap \{ \dot{\bar{I}} (t)\} = \lap \{ N \bar{V} (t) - P \bar{I} (t) \} \cr
+    \Longrightarrow &s \bar{I} (s) - \bar{I} (0^+) = N \bar{V} (s) - P \bar{I} (s) \cr
+    &s \bar{I} (s) = N \bar{V} (s) - P \bar{I} (s) \cr
+    &s \bar{I} (s) = N \bar{V} (s) - P \bar{I} (s) \cr
+    &s \bar{I} (s) + P \bar{I} (s) = N \bar{V} (s) \cr
+    &\bar{I} (s) = \frac{N \bar{V}(s)}{\left( s + P \right)} \label{a5:laplace_i_dot_0}
 \end{align}
-
-\begin{align}
-    \lap \{ \dot{\bar{x}}_2 \} &= \lap \{D \bar{I} + F \bar{x}_1 - H \bar{x}_2 \} \cr
-    \lap \{ \dot{\bar{x}}_2 \} &= D \lap \{ \bar{I} \} + F \lap \{\bar{x}_1 \} - H \lap \{ \bar{x}_2 \} \cr
-    s \bar{X}_2 - \bar{x}_2 (0^+) &= D \bar{I} + F \bar{X}_1 - H \bar{X}_2 \cr
-    s \bar{X}_2 &= D \bar{I} + F \bar{X}_1 - H \bar{X}_2
+\noindent Substitute equation \eqref{a5:laplace_x1_dot} into equation \eqref{a5:laplace_x2_dot}:
+\begin{align} \label{a5:laplace_i_dot_1}
+    &s \bar{X}_2 (s) = D \bar{I} (s) + F \bar{X}_1 (s) - H \bar{X}_2 (s) \cr
+    \Longrightarrow &s^2 \bar{X}_1 (s) = D \bar{I} (s) + F \bar{X}_1 (s) - H s \bar{X}_1 (s) \cr
+    &D \bar{I} (s) = s^2 \bar{X}_1 (s) + H s \bar{X}_1 (s) - F \bar{X}_1 \cr
+    &\bar{I} (s) = \bar{X}_1 (s) \frac{ s^2 + H s - F }{D}
 \end{align}
-
-\begin{align}
-    \lap \{ \dot{\bar{I}} \} &= \lap \{ N \bar{V} - P \bar{I} - Q \bar{x}_1 \} \cr
-    \lap \{ \dot{\bar{I}} \} &= N \lap \{ \bar{V} \} - P \lap \{\bar{I} \} - Q \lap \{ \bar{x}_1 \} \cr
-    s \bar{I} - \bar{I} (0^+) &= N \bar{V} - P \bar{I} - Q \bar{X}_1 \cr
-    s \bar{I} &= N \bar{V} - P \bar{I} - Q \bar{X}_1
+\noindent Find the transfer function, $G_{x}$, with input $\bar{V}$ and output $\bar{X}_1$.
+Equations \eqref{a5:laplace_i_dot_0} and \eqref{a5:laplace_i_dot_1} are equal, with all their inputs/outputs in the s-domain: 
+\begin{align} \label{a5:tranfer_function}
+    \Longrightarrow &\frac{N \bar{V}}{\left( s + P \right)} = \bar{X}_1 \frac{ s^2 + H s - F }{D} \cr
+    &D N \bar{V} = \bar{X}_1 \left( s^2 + H s - F \right) \left( s + P \right) \cr
+    &D N \bar{V} = \bar{X}_1 \left( s^3 + \left( H + P \right) s^2 + \left( HP - F \right) s - FP \right) \cr
+    &G_x = \frac{\bar{X}_1}{\bar{V}} = \frac{D N}{s^3 + \left( H + P \right) s^2 + \left( HP - F \right) s - FP}
 \end{align}
 
 \medskip
-\noindent Find the transfer function
-
-\noindent Rearrange equation (33): 
-\begin{align}
-    s \bar{I} &= N \bar{V} - P \bar{I} - Q \bar{X}_1 \cr
-    s \bar{I} + P \bar{I} &= N \bar{V} - Q \bar{X}_1 \cr
-    \bar{I} \left( s + P \right) &= N \bar{V} - Q \bar{X}_1 \cr
-    \bar{I} &= \frac{N \bar{V} - Q \bar{X}_1}{\left( s + P \right)}
-\end{align}
-
-\noindent Substitute equation (31) into (32): 
-\begin{align}
-    s \bar{X}_2 &= D \bar{I} + F \bar{X}_1 - H \bar{X}_2 \cr
-    s^2 \bar{X}_1 &= D \bar{I} + F \bar{X}_1 - H s \bar{X}_1 \cr
-    D \bar{I} &= s^2 \bar{X}_1 + H s \bar{X}_1 - F \bar{X}_1 \cr
-    \bar{I} &= \frac{s^2 \bar{X}_1 + H s \bar{X}_1}{D} - F \bar{X}_1 \cr
-    \bar{I} &= \bar{X}_1 \frac{ s^2 + H s - F }{D}
-\end{align}
-
-\noindent Equation (34) equals equation (35): 
-\begin{align}
-    \bar{I} &= \bar{I} \cr
-    \frac{N \bar{V} - Q \bar{X}_1}{\left( s + P \right)} &= \bar{X}_1 \frac{ s^2 + H s - F }{D} \cr
-    D N \bar{V} - D Q \bar{X}_1 &= \bar{X}_1 \left( s^2 + H s - F \right) \left( s + P \right) \cr
-    D N \bar{V} &= \bar{X}_1 \left( \left( s^2 + H s - F \right) \left( s + P \right) + D Q \right) \cr
-    D N \bar{V} &= \bar{X}_1 \left( s^3 + \left( H + P \right) s^2 + \left( HP - F \right) + DQ - FP \right) \cr
-    \frac{\bar{X}_1}{\bar{V}} &= \frac{D N}{s^3 + \left( H + P \right) s^2 + \left( HP - F \right) + DQ - FP} \cr
-\end{align}
-
-\noindent Equation (36) shows the transfer function of the system. There are 3 poles in the system.
+\noindent Equation \eqref{a5:tranfer_function} shows the transfer function of the system. There are 3 poles in the system. For the system to be oscillatory under impulse response, the poles of the denominator, $s^3 + \left( H + P \right) s^2 + \left( HP - F \right) s - FP$, have to have negative real coefficients.

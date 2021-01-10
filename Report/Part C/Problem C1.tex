@@ -1,4 +1,24 @@
-\bigskip
 \subsection{Problem C1}\label{sec:qc1}\hfill
 
 \medskip
+\noindent The Laplace transform of $f(t) = \ln t^3$, for $t > 0$:
+% \begin{equation} \label{c1:dt}
+%     u = st \therefore \mathrm{d}t = \frac{1}{s} \mathrm{d}u 
+% \end{equation}
+\begin{align}
+    u = st &\therefore \mathrm{d}t = \frac{1}{s} \mathrm{d}u \cr
+    \Longrightarrow \lap \{ \ln t^3 \} &= 3\lap \{ \ln t \} \cr
+    &= 3\int_{0}^{\infty} \ln(t) e^{-st} \mathrm{d}t \cr
+    &= 3\int_{0}^{\infty} \ln\left(\frac{u}{s}\right) e^{-u} \frac{1}{s} \mathrm{d}u \cr
+    &= \frac{3}{s} \int_{0}^{\infty} \ln(u) e^{-u} \mathrm{d}t - \ln(s) e^{-u} \mathrm{d}t \cr
+    &= \frac{3}{s}\int_{0}^{\infty} \ln(u) e^{-u} \mathrm{d}t - \frac{3}{s}\int_{0}^{\infty} \ln(s) e^{-u} \mathrm{d}t \cr
+    &= \frac{-3}{s}\gamma - \frac{3}{s}\int_{0}^{\infty} \ln(s) e^{-u} \mathrm{d}t \cr
+    &= \frac{-3}{s}\gamma - \frac{3\ln s}{s}\int_{0}^{\infty} e^{-u} \mathrm{d}t \cr
+    % &= \frac{-3}{s}\gamma - \frac{3\ln(s)}{s}\left[ -e^{-u} \right]_{0}^{\infty}\cr
+    % &= \frac{-3}{s}\gamma - \frac{3\ln(s)}{s}\left[ -e^{-\infty} - -e^{0} \right]\cr
+    % &= \frac{-3}{s}\gamma - \frac{3\ln(s)}{s}\left[ 0 + 1 \right]\cr
+    % &= \frac{-3 \gamma - 3\ln(s)}{s}\cr
+    &= \frac{-3}{s}\left({\gamma + \ln s}\right)
+\end{align}
+
+\noindent The Laplace transform of $f(t) = \ln t^3$, $t \geq 0$ is $\frac{-3}{s}\left({\gamma + \ln(s)}\right)$, for $s \ne 0$, where $\gamma$ is the Euler–Mascheroni constant

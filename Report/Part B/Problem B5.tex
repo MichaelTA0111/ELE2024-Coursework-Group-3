@@ -2,3 +2,7 @@
 \subsection{Problem B5}\label{sec:qb5}\hfill
 
 \medskip
+\noindent The desired characteristics of the controller would be, that under an impulse response or step response, ${x}_1$ remains within $\pm$ 1 cm of the set-point, $x$\textsuperscript{sp}, at all times. Also, the ball must not deviate more than $\pm$ 1 mm of $x$\textsuperscript{sp} after 0.3 s.
+
+\medskip
+\noindent Evidence needed to prove that the controller is good would be that the transfer function of the overall ball-controller-laser system should be BIBO stable. BIBO stability requires the impulse response, $g(t)$, to be be absolutely integrable, i.e. $\int_0^\infty |g( \xi )| d\xi $ converges to a finite value. Also, the system should be described by a proper rational fraction transfer function in the s-domain. The denominator of this transfer function should be a polynomial with all coefficients sharing the same sign and no coefficient should be zero. Also, every pole of this transfer function should have a negative real coefficient, which can be proven by the Routh-Hurwitz tabulation method. When a bounded input is applied to the controller, the output should also be bounded.

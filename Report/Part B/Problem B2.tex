@@ -2,3 +2,57 @@
 \subsection{Problem B2}\label{sec:qb2}\hfill
 
 \medskip
+\noindent The system linearisation has been simulated about the equilibrium point corresponding to:
+\begin{equation} \label{b2:x1e}
+    x_1^e = 0.75 \left( d + \frac{mg \sin \phi }{k} \right) + 0.25 \delta
+\end{equation}
+
+\medskip
+\noindent To verify the system linearisation shown in equation \eqref{a4:linear}, a Python program was written to simulate both the linear and non-linear system. Seven different starting distances away from the equilibrium position were used in this simulation, and the responses of both systems were plotted to compare the responses.
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includesvg[width=1\linewidth]{nonlinear_system.svg}
+        \caption{Graph showing the the response of the nonlinear system at different starting positions.}
+        \label{fig:nonlinear}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includesvg[width=1\linewidth]{linear_system.svg}
+        \caption{Graph showing the response of the linear system at different starting positions.}
+        \label{fig:linear}
+    \end{minipage}
+\end{figure}
+\newline \noindent According to Figures \ref{fig:nonlinear} and \ref{fig:linear}, both systems oscillate about the equilibrium position with decreasing amplitude for each oscillation. The systems both come to rest at approximately the same time whenever the starting distance is close to the equilibrium position. The linear system will always oscillate with the same frequency regardless of the starting position. However, the non-linear system will oscillate at a lower frequency as the starting distance from the equilibrium increases.
+
+\medskip
+\noindent To confirm that the Hartman-Grobman theorem applies to this system, the stability of the system needs to be determined. Substituting the numerical values determined by equations \eqref{constant:N} and \eqref{constant:D} through \eqref{constant:P} into the transfer function given in \eqref{a5:tranfer_function} produces the the following:
+\begin{equation} \label{b2:G_x}
+    G_x = \frac{3781}{s^3 + 395.1 s^2 + 7654 s + 3.977 \cdot 10^5}
+\end{equation}
+
+\medskip
+\noindent The Routh-Hurwitz tabulation method can then be used to determine the stability of the system:
+\begin{center}
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+                $s^3$ & \text{1.0} & 7654\\
+                \hline
+                $s^2$ & \text{395.1} & 397700 \\
+                \hline
+                $s^1$ & \text{6647} & 0.0\\
+                \hline
+                $s^0$ & \text{397700} & 0.0\\
+            \hline
+        \end{tabular}
+        \caption{Routh-Hurwitz table for the transfer function shown in \eqref{b2:G_x}.}
+        \label{tab:routh_tabulation}
+    \end{table}
+\end{center} \vspace{-1.2cm}
+\noindent As shown in Table \ref{tab:routh_tabulation}, there is no change of sign between any of the numbers in column 2, therefore all poles of the transfer function given in \eqref{b2:G_x} are negative. Hence, the linearised system is BIBO stable.
+
+\medskip
+\noindent As shown in Figures \ref{fig:nonlinear} and \ref{fig:linear}, the responses of both systems close to the equilibrium point are similar.  Therefore, this agrees with the Hartman-Grobman theorem which states that the if linearised system is stable, then the non-linear system should behave like a stable system close to the equilibrium point.

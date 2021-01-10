@@ -2,3 +2,45 @@
 \subsection{Problem B6}\label{sec:qb6}\hfill
 
 \medskip
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \includesvg[width=1\linewidth]{control_system.svg}
+        \caption{The overall control system.}
+        \label{fig:control_system}
+    \end{minipage}
+\end{figure}
+
+\begin{flalign} \label{b6:G_pid}
+    \text{The transfer function of the PID controller is } G_{pid}(s) = \frac{k_{d} s^2 + k_{p} s + k_{i}}{s},&&
+\end{flalign}
+\noindent where $k_{d}$, $k_{p}$, and $k_{i}$ are the differential, proportional, and integral controller constants respectively.
+
+\begin{flalign} \label{b6:G_laser}
+    \text{The transfer function of the laser sensor is } G_{laser}(s) = \frac{1}{\tau s + 1},&&
+\end{flalign}
+\noindent where $\tau$ is the time constant of the system, 30 ms.
+
+\noindent From equations \eqref{b2:G_x}, \eqref{b6:G_pid}, and \eqref{b6:G_laser}, the transfer function of the whole system can be determined as follows:
+\begin{flalign} \label{b6:G_system}
+    G_{system}(s) &= \frac{G_{pid} G_x}{1 + G_{pid} G_x G_{laser}} \cr
+    &= \frac{113.4 k_{d} s^3 + \left(3781 k_{d} + 113.4 k_{p}\right)s^2 + \left(113.4 k_{i} + 3781 k_{p}\right)s + 3781 k_{i}}{0.03 s^5 + 12.85 s^4 + 624.7 s^3 + \left(3781 k_{d} + 1959\right)s^2 + \left(3781 k_{p} + 397700\right)s + 3781 k_{i}}&&
+\end{flalign}
+\noindent Equation \eqref{b6:G_system} is a strictly proper transfer function, therefore it could be BIBO stable. To check for BIBO stability, the Routh-Hurwitz tabulation method can be used. The Routh-Hurwitz tabulation is performed using the SymPy Python module. The resulting table is too large to meaningfully put on this report.
+
+\medskip
+\noindent The first column of the Routh-Hurwitz tabulation produces six complicated equations for 3 unknowns, $k_p$, $k_d$, and $k_i$, making them over defined. This can make it difficult to obtain ranges of $k_p$, $k_d$, and $k_i$ for which the system is BIBO stable by hand. Also, SymPy cannot solve multivariate inequalities. Therefore, trial and error is used to obtain values of $k_p$, $k_d$, and $k_i$ which will allow all elements in this column to be positive. The PID values chosen for this controller are $k_p=0.0001$, $k_d = 0.000001$, and $k_i=0.000001$, which makes the first column exclusively contain positive numbers. Therefore, the system is BIBO stable. This aligns with the characteristics given in section \ref{sec:qb5} for creating a good controller.
+
+\medskip
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \includesvg[width=1\linewidth]{system_responses.svg}
+        \caption{Graph showing the impulse and step responses of the system. The dashed red line indicates the limits of $\pm$ 1 mm of $x$\textsuperscript{sp}.}
+        \label{fig:system_response}
+    \end{minipage}
+\end{figure}
+
+\noindent Figure \ref{fig:system_response} shows the impulse and step responses of the system, with the value of $x$\textsuperscript{sp} is \SI{0}{\metre}. As can be seen from the graph, when an impulse or step response is simulated, the value of $x_1$ is always within $\pm$ 1 cm of $x$\textsuperscript{sp} and after 0.3 s the value of $x_1$ is always within $\pm$ $\SI{1}{\milli \metre}$ of $x$\textsuperscript{sp}. It can also be seen that the impulse response converges to 0 m from the set-point. Therefore, the system is BIBO stable, so for any bounded input the system will have a bounded output. Therefore, the controller meets all of the criteria outlined in section \ref{sec:qb5}.

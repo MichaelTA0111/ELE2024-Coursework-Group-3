@@ -1,4 +1,62 @@
-\bigskip
 \subsection{Problem B1}\label{sec:qb1}\hfill
 
+\begin{flalign} \label{b1:positions}
+    &\text{For: } x_{min} < x^e < x_{max} \text{,}\cr
+    &\text{Prove: } d + \frac{m g \sin \phi}{k} < x^e < \delta&&
+\end{flalign}
+\noindent The ball of mass m is attached to a spring, at equilibrium:
+\begin{align}
+    &k \left( x_{min} - d \right) = m g \sin \phi \cr
+    \Longrightarrow &x_{min} - d = \frac{m g \sin \phi}{k} \cr
+    &x_{min} = d + \frac{m g \sin \phi}{k}
+\end{align}
+\noindent If $x > \delta$, then according to \eqref{a1:y}, $y$ will become negative and the centre of the ball will be on the opposite side of the electromagnet. This will make the force on the ball due to the electromagnet act in the opposite direction, i.e. up the plane, invalidating the system of equations.
+
 \medskip
+\noindent Determine the equilibrium velocity, current, and voltage of the system as a function of $x_1^e$ using equations \eqref{a3:equil_current} and \eqref{a3:equilibrium_1}:
+\begin{equation} \label{b1:x2e}
+    x_{2}^e = 0
+\end{equation}
+\begin{align}
+    0 &=
+     mg\sin \phi
+    + c \frac{ \left(I^{e} \right)^2}{ \left( \delta - x_{1}^e
+    \right)^2 }
+    - k \left( x_{1}^e - d \right) \cr
+    - c \frac{ \left(I^{e} \right)^2}{ \left( \delta - x_{1}^e
+    \right)^2 } 
+    &=
+     mg\sin \phi
+    - k \left( x_{1}^e - d \right) \cr
+    \left(I^{e} \right)^2
+    &=
+    \frac{\left( mg\sin \phi
+    - k \left( x_{1}^e - d \right) \right)}{-c} \left( \delta - x_{1}^e
+    \right)^2 \cr
+    I^{e}
+    &=
+    \sqrt{\frac{\left( mg\sin \phi
+    - k \left( x_{1}^e - d \right) \right)}{-c} \left( \delta - x_{1}^e
+    \right)^2} \label{b1:ie}
+\end{align}
+\begin{align} \label{b1:ve}
+    0 &= V^e - I^e R \cr
+    V^e &= I^e R\cr
+    V^e &=
+    \left( \sqrt{\frac{\left( mg\sin \phi
+    - k \left( x_{1}^e - d \right) \right)}{-c} \left( \delta - x_{1}^e
+    \right)^2} \right) R
+\end{align}
+
+\medskip
+\noindent The position, $x_\star^e$, of the ball at the maximum equilibrium voltage can be determined from a graph of $V^e$ against $x_1^e$:
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \includesvg[width=1\linewidth]{ve_against_x1e.svg}
+        \caption{Graph showing the $V^e$ against $x_{1}^e$.}
+        \label{fig:ve_against_x1e}
+    \end{minipage}
+\end{figure}
+\newline \noindent From Figure \ref{fig:ve_against_x1e}, it can be measured that at the maximum equilibrium voltage the ball occurs when $x_1^e$ is approximately 0.5 m. Using the Python code which plotted Figure \ref{fig:ve_against_x1e}, a more precise value for $x_\star^e$ was calculated to be 0.4976 m.

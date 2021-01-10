@@ -1,4 +1,72 @@
-\bigskip
 \subsection{Problem B4}\label{sec:qb4}\hfill
 
 \medskip
+\noindent The amplitude ratio of the transfer function given in equation \eqref{b2:G_x} is determined as follows:
+
+\begin{align} \label{b4:amplitude_ratio}
+    R_{\infty} = \left| G_{x}{ \left( j \omega \right)} \right| &= \left| \frac{3781}{(\left( j \omega \right) ^3 + 395.1 \left( j \omega \right) ^2 + 7654 \left( j \omega \right) + 3.977 \cdot 10^{5}} \right| \cr
+    &= \frac{|3781|}{\left| \left( \left( j \omega \right) ^2 + 17.48 j \omega + 1053 \right) \left( j \omega + 377.6 \right) \right| } \cr
+    &= \frac{3781}{\sqrt{ \left( 17.48 \omega \right) ^2 + \left( 1053 - \omega ^2 \right) ^2} \sqrt{ \left( \omega ^2 + 377.6 ^2 \right) }}
+\end{align}
+
+\medskip
+\noindent The amplitude ratio in dB:
+\begin{align} \label{b4:amplitude_ratio_db}
+    |G_{x} \left( j \omega \right)|_{dB} &= 20 \log|G_{x}\left( j \omega \right)| \cr
+    &= 20 \log 3781 - 10 \log \left( \left( 17.48 \omega \right) ^2 + \left( 1053 - \omega ^2 \right) ^2 \right) - 10 \log \left( \omega ^2 + 377.6 ^2 \right) 
+\end{align}
+
+\medskip
+\noindent For low frequency asymptote, $\omega <<$ 1: 
+\begin{align} \label{b4:amplitude_ratio_db_low}
+    |G_{x} \left( j \omega \right)|_{dB} &\approx 20 \log 3781 - 10 \log \left( 1053^2 \right) - 10 \log \left( 337.6 ^2 \right) \cr
+    &= 20 \log 3781 - 20 \log 1053 - 20 \log 337.6 \cr
+    &\approx -39.46 \text{ dB}
+\end{align}
+
+\medskip
+\noindent For high frequency asymptote, $\omega >> 1$: 
+\begin{align} \label{b4:amplitude_ratio_db_high}
+    |G_{x} \left( j \omega \right)|_{dB} &\approx -10 \log \left( \omega ^4 \right) -10 \log \left( \omega ^2 \right) \cr
+    &= -10 \log \left( \omega ^6 \right) \cr
+    &= -60 \log \omega
+\end{align}
+
+\medskip
+\noindent Find the phase lag:
+\begin{align} \label{b4:phase_lag}
+    \phi_0 &\approx \arg \frac{3781}{\left( 17.48 j \omega + 1053 - \omega ^2 \right) \left( j \omega + 377.6 \right)} \cr
+    &= \arg 3781 - \arg \left( 17.48 j \omega + 1053 - \omega ^2 \right) - \arg \left( j \omega + 377.6 \right) \cr
+    &= - \mathrm{atan2} \left( 17.48 \omega , 1053 - \omega ^2 \right) - \mathrm{atan2} \left( \omega , 377.6 \right)
+\end{align}
+
+\medskip
+\noindent For low frequency asymptote, $\omega <<$ 1: 
+\begin{align} \label{b4:phase_lag_low}
+    \phi_0 &\approx - \mathrm{atan2} \left( 0 , 1053 \right) - \mathrm{atan2} \left( 0 , 377.6 \right) \cr
+    &= 0 \text{ rad} 
+\end{align}
+
+\medskip
+\noindent For high frequency asymptote, $\omega >>$ 1: 
+\begin{align} \label{b4:phase_lag_high}
+    \phi_0 &\approx - \mathrm{atan2} \left( 17.48 \omega , - \omega ^2 \right) - \mathrm{atan2} \left( \omega , 377.6 \right) \cr
+    &= - \left( \mathrm{atan} \frac{17.48 \omega}{- \omega^2} - \pi \right) - \mathrm{atan} \frac{\omega}{377.6} \cr
+    &= \pi - \mathrm{atan} \frac{17.48}{-\omega} - \mathrm{atan} \frac{\omega}{377.6}
+    % \\ &\text{As } \omega \to \infty \text{, } \phi_0 \text{ tends to } \pi - 0 - \frac{\pi}{2} = \frac{\pi}{2} \cr
+\end{align}
+
+\medskip
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \includesvg[width=1\linewidth]{bode_plot.svg}
+        \caption{Bode plot of the transfer function of the linearised system.}
+        \label{fig:bode_plot}
+    \end{minipage}
+\end{figure}
+
+\medskip
+\noindent From Figure \ref{fig:bode_plot} (shown on the next page), it can be seen that the magnitude is approximately constant at -40 dB for low frequencies and rolling off at approximately 60 dB/decade for high frequencies. These results agree with the derivations shown in equations \eqref{b4:amplitude_ratio_db_low} and \eqref{b4:amplitude_ratio_db_high}.
+Figure \ref{fig:bode_plot} also shows that the initial phase angle is approximately $\ang{0} = 0$ rad and the phase angle at high frequencies is approximately $\ang{-270} = \ang{90} = \frac{\pi}{2}$ rad. These values correspond to the high and low frequency phase angles which were derived in equations \eqref{b4:phase_lag_low} and \eqref{b4:phase_lag_high}.

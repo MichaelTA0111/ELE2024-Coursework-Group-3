@@ -1,50 +1,42 @@
-\bigskip
 \subsection{Problem A2}\label{sec:qa2}\hfill
 
 \medskip
-\noindent Equation (11) is a 2\textsuperscript{nd} order ODE $\therefore$ introduce 2 new variables:
-\begin{align*}
-    x_1 &= x\\
-    x_2 &= \dot{x}_1\\
-    \dot{x}_2 &= \ddot{x}_1\\
-    \Longrightarrow \underbar{$x$} &= 
+\noindent Equation \eqref{a1:solution} is a second order ODE $\therefore$ Introduce the variables $x_1 = x$ and $x_2 = \dot{x}_1$, such that $\dot{x}_2 = \ddot{x}_1$.
+\begin{align}
+    \underbar{$x$}
+    =
     \begin{bmatrix}
         x_1 \cr
         x_2 \cr
-        I \cr
-    \end{bmatrix}\\
-    \underbar{$\dot{x}$} &= 
+        I
+    \end{bmatrix}
+    \Longrightarrow \underbar{$\dot{x}$}
+    = 
     \begin{bmatrix}
         \dot{x}_1 \cr
         \dot{x}_2 \cr
-        \dot{I} \cr
+        \dot{I}
     \end{bmatrix}
-\end{align*}
-
-\begin{equation}
-    \underbar{$\dot{x}$} =
-    \begin{bmatrix}
+    =
+    \begin{bmatrix} \label{a2:ssr}
         x_2 \cr
-        \left( \frac{5}{3m} \right)
-        \left( mg\sin \left( \phi \right)
+        \left( \frac{5}{7m} \right)
+        \left( mg\sin \phi
         + c \frac{I^2}{ \left( \delta - x_1 \right)^2 }
         - k \left( x_1 - d \right)
-        - b x_2 \right)\cr
+        - b x_2 \right) \cr
         \frac{1}{L_0 + L_1 e^{-\alpha \left( \delta - x_1 \right)}} \left(V - I R \right)
     \end{bmatrix}
-\end{equation}
+\end{align}
 
 \medskip
-\noindent Equation (12) is the state space representation of the system.
-
-\bigskip
-\noindent The states of the system are
-$
+\noindent Equation \eqref{a2:ssr} is the state space representation of the system. The states of the system are
+\begin{math}
     \underbar{$x$} = 
     \begin{bmatrix}
     x_1 \cr
     x_2 \cr
-    I \cr
+    I
     \end{bmatrix}
-$.\\
-The input to the system is $V$.
+\end{math}
+and the input to the system is $V$.
