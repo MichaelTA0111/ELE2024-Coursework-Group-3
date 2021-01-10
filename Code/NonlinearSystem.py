@@ -60,13 +60,13 @@ class NonlinearSystem(DynamicalSystem):
         """
         x_1_dot = states[1]
 
-        x_2_dot = (5.0 / (3.0 * self._mass)) * \
+        x_2_dot = (5. / (7. * self._mass)) * \
                   (self._mass * self._gravity * np.sin(self._phi)
                    + self._c_const * ((states[2]) / (self._delta - states[0])) ** 2
                    - self._k_spring * (states[0] - self._d_length)
                    - self._b_damper * states[1])
 
-        i_dot = (1.0 / (self._ell_0 + self._ell_1 * np.exp(-1.0 * self._alpha * (self._delta - states[0])))) * \
+        i_dot = (1. / (self._ell_0 + self._ell_1 * np.exp(-1. * self._alpha * (self._delta - states[0])))) * \
                 (voltage - (states[2] * self._resistance))
 
         return [x_1_dot, x_2_dot, i_dot]

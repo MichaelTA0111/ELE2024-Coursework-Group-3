@@ -20,11 +20,11 @@ class LinearSystem(DynamicalSystem):
         super().__init__()  # Construct a dynamical system to inherit from
 
         # Calculate constants used in the linear equations
-        constant = 5 / (3 * self._mass)
+        constant = 5. / (7. * self._mass)
         self.__d = constant * (2 * self._c_const * self._i_e / (self._delta - self._x_1_e) ** 2)
         self.__f = constant * (2 * self._c_const * self._i_e ** 2 / (self._delta - self._x_1_e) ** 3 - self._k_spring)
         self.__h = constant * self._b_damper
-        self.__n = 1 / (self._ell_0 + self._ell_1 * np.exp(-self._alpha * (self._delta - self._x_1_e)))
+        self.__n = 1. / (self._ell_0 + self._ell_1 * np.exp(-self._alpha * (self._delta - self._x_1_e)))
         self.__p = self._resistance * self.__n
 
         # Set the initial conditions of the system
