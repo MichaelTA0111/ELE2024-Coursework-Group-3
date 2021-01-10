@@ -18,7 +18,7 @@ if __name__ == '__main__':
     num_points = 2  # Resolution of the graph, 2 is sufficient here
 
     x_cache = np.array([ball.get_x_1_bar()])  # Array to store the x_1_bar cache
-    pid = PidCtrl(kp=2, kd=1.9, ki=500, ts=t_sampling)  # PID controller
+    pid = PidCtrl(kp=70, kd=5.5, ki=450, ts=t_sampling)  # PID controller
 
     # Simulation of the ball using the PID controller
     for t in range(ticks):

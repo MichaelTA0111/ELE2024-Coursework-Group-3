@@ -109,14 +109,14 @@ if __name__ == '__main__':
     # print(part2(kp=.00125, kd=0.00008, ki=0.001))
 
     # Declare time variables
-    pid_t_sampling = 0.03  # Time between the consecutive samples in seconds
+    pid_t_sampling = 0.001  # Time between the consecutive samples in seconds
     dt = 1  # Time for the simulation of the system in seconds
     num_points = 1001  # Resolution of the graph
     t_span = np.linspace(0, dt, num_points)  # All values of time which were used for sampling
 
     # Declare all systems
     ball = LinearSystem()  # Create a linear system
-    pid = PidCtrl(kp=0.00125, kd=0.00008, ki=0.001, ts=pid_t_sampling)  # PID controller
+    pid = PidCtrl(kp=0.0001, kd=0.000001, ki=0., ts=pid_t_sampling)  # PID controller
     laser_t_sampling = 0.03  # Sampling time of the laser measurement system
 
     # Declare all transfer functions
@@ -134,7 +134,7 @@ if __name__ == '__main__':
     x_axis = [t_imp, t_step]
     y_axis = [system_imp, system_step]
     labels = ['Impulse Response', 'Step Response']
-    h_lines = [[0.001, 0.3, '±0.1 cm'], [-0.001, 0.3, None]]
+    h_lines = [[0.001, 0.3, '±1 mm'], [-0.001, 0.3, None]]
 
     ball.plotter(x_axis,
                  y_axis,
