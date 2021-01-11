@@ -35,12 +35,16 @@ class Routh:
         :return: The Routh-Hurwitz tabulation of g_system
         """
         # Print the transfer function
+        print('Transfer Function:')
+        print(g_system)
+        print('LaTeX Format:')
         print(sym.latex(g_system))
 
         # Calculate the routh tabulation
         tf_denom = sym.Poly(sym.fraction(g_system)[1], s)  # Denominator of the transfer function
         routh_tab = Routh.routh(tf_denom)  # Routh-Hurwitz tabulation
         routh_latex = sym.latex(routh_tab).replace("\\\\", "\\\\\n\t")  # LaTeX format which can be directly copied
+        print('Routh-Hurwitz Tabulation:')
         print(routh_latex)
 
         return routh_tab
