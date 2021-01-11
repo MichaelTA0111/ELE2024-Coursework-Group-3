@@ -86,9 +86,9 @@ class Routh:
         Routh.printer(g_system_sym, s)
 
         # Substitute numerical values of kp, kd, and ki into the system transfer function
-        g_system_num = g_system_sym.subs(k_p, kp)
-        g_system_num = g_system_num.subs(k_d, kd / pid_t_sampling)
-        g_system_num = g_system_num.subs(k_i, ki * pid_t_sampling)
+        g_system_num = g_system_sym.subs([(k_p, kp),
+                                          (k_d, kd / pid_t_sampling),
+                                          (k_i, ki * pid_t_sampling)])
 
         # Print information about g_system_num
         routh_tab = Routh.printer(g_system_num, s)
