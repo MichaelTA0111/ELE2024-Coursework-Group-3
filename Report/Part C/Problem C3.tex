@@ -33,7 +33,7 @@
 % For the function, $f = \frac{1}{1-t}$, the Laplace transform, $F$ doesn't exist. It's Taylor approximation can be found as, $f_n = \sum\limits_{k = 0}^{n} t^k$. The Laplace transform of this Taylor approximation can be found as, $F_n = \sum\limits_{k = 0}^{n} \frac{k!}{s^{k+1}}$. Everything looks normal so far. This even looks similar to $\lap\{\frac{1}{1+t}\} = \lap\{\sum\limits_{k = 0}^{n} \left(-t\right)^k\}$. The key difference is, $\sum\limits_{k = 0}^{n} (-1)^k \frac{k!}{s^{k+1}}$ converges to a function, as $n \rightarrow \infty$. Whereas $\lap\{\frac{1}{1-t}\}$ doesn't converge to a function.
 \noindent The functions, $f$, converge to $F$:
 \begin{itemize}
-    \item $f = e^t$, then $F = \frac{1}{s-1}$, for $|s| \geq 1$
+    \item $f = e^t$, then $F = \frac{1}{s-1}$, for $|s| > 1$
     \item $f = \sin t$, then $F = \frac{1}{s^2 + 1}$, for $|s| > 0$
     \item $f = \cos t$, then $F = \frac{s}{s^2 + 1}$, for $|s| > 0$
     \item $f = \frac{1}{1+t}$, then $F = -e^s \text{Ei}(-s)$, for $|s| > 0$, where Ei represents the exponential integral.

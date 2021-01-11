@@ -2,55 +2,58 @@
 \subsection{Problem C2}\label{sec:qc2}\hfill
 
 \medskip
-\noindent The Laplace transform of $f(t) = |\cos \omega t|, t \geq 0, \omega > 0$ is:
+\noindent Function $f(t) = | \cos ( \omega t ) |$, $t \geq 0$, $\omega > 0$ has a period $T = \frac{\pi}{\omega}$.
 \begin{equation} \label{c2:piecewise}
-|\cos \omega t| = 
+| \cos ( \omega t ) | = 
     \begin{cases} 
-      \cos \omega t & 0 + k\pi \leq t \leq \frac{\pi}{2} + k \text{,\; $k \in \mathbb{Z}$} \\
-      -\cos \omega t & \frac{\pi}{2} + k\pi \leq t \leq \pi \text{,\; $k \in \mathbb{Z}$}
+      \cos ( \omega t ) & \text{for } t \in \left[ 0 , \frac{\pi}{2 \omega} \right] \\
+      -\cos ( \omega t ) & \text{for } t \in \left[ \frac{\pi}{2 \omega} , \frac{\pi}{\omega} \right]
    \end{cases}
 \end{equation}
-% \noindent Since $|\cos(\omega t)|$ is periodic, equation \eqref{c2:heaviside} with $k = 0$ can be used in conjunction with Theorem 4.23 from the textbook.
-% \noindent \eqref{c2:piecewise} can be rewritten in terms of the Heaviside function as,
-% \begin{equation} \label{c2:heaviside}
-%     |cos(\omega t)| = 
-%     \cos(\omega t) +
-%     (
-%         -\cos(\omega t)
-%         -\cos(\omega t)
-%     )H_{\frac{\pi}{2} + k\pi, k \in \mathbb{W}}
-% \end{equation}
-
-\begin{equation} \label{c2:laplaceEqn}
-    \Longrightarrow \lap \{ |\cos \omega t| \} 
+Therefore, the Laplace transform of $f(t)$ is:
+\begin{equation} \label{c2:laplace_eqn}
+    \lap \{ | \cos ( \omega t ) | \} 
     = 
     \frac{1}{1 - e^{- \pi s}}
     \left(
-        \int^{\frac{\pi}{2}}_{0}
+        \int^{\frac{\pi}{2 \omega}}_{0}
         e^{-st} \cos \omega t \; \mathrm{d}t
         -
-        \int^{\pi}_{\frac{\pi}{2}}
+        \int^{\frac{\pi}{\omega}}_{\frac{\pi}{2 \omega}}
         e^{-st} \cos \omega t \; \mathrm{d}t
     \right)
 \end{equation}
+where $\lap$ is the Laplace transform of a function
 
+\medskip
 \noindent To find the Laplace of $f(t)$ use the following identity:
 \begin{equation} \label{c2:integration}
     \int e^{-st} \cos \omega t \; \mathrm{d}t = \frac{e^{-st}\left(\omega \sin \omega t -s\cos \omega t\right)}{s^2 + \omega^2} + C
 \end{equation}
 
-\noindent Substitute equation \eqref{c2:integration} into equation \eqref{c2:laplaceEqn}:
-\begin{equation}
-    \lap \{ |\cos \omega t| \} 
-    = 
-    \frac{1}{1 - e^{- \pi s}}
+\noindent Substitute equation \eqref{c2:integration} into equation \eqref{c2:laplace_eqn}:
+\begin{align}
+    \lap \{ |\cos \omega t| \}
+    &=
+    \frac{1}{1 - e^{\frac{- \pi s}{\omega}}}
     \left(
-        \frac{s}{s^2 + \omega^2}
-        + \frac{2\omega \sin \frac{\pi}{2} \omega
-            - 2s \cos \frac{\pi}{2} \omega}
-            {e^{\frac{\pi}{2}s}(s^2 + \omega^2)}
-        - \frac{\omega \sin \pi \omega
-            - s \cos \pi \omega}
-            {e^{\pi s}(s^2 + \omega^2)}
-    \right)
-\end{equation}
+        \left[
+            \frac{e^{\frac{- \pi s}{2 \omega}} \left( \omega \right) }
+            {s^2 + \omega^2}
+            -
+            \frac{e^0 \left( - s \right) }
+            {s^2 + \omega^2}
+        \right]
+        -
+        \left[
+            \frac{e^{\frac{- \pi s}{ \omega}} \left( s \right) }
+            {s^2 + \omega^2}
+            -
+            \frac{e^{\frac{- \pi s}{2 \omega}} \left( \omega \right) }
+            {s^2 + \omega^2}
+        \right]
+    \right) \cr
+    &=
+    \frac{s + 2 \omega e^{\frac{- \pi s}{2 \omega}} - s e^{\frac{- \pi s}{\omega}}}
+    {\left( 1 - e^{\frac{- \pi s}{\omega}} \right) \left( s^2 + \omega^2 \right)}
+\end{align}

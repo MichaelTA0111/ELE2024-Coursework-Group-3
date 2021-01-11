@@ -57,13 +57,13 @@ def part1():
     G_system = sym.simplify(G_system)
     G_system = sym.collect(G_system, s)
     print(sym.latex(G_system))
-    print(G_system)
+    # print(G_system)
 
     tf_denom = sym.Poly(sym.fraction(G_system)[1], s)  # Denominator of the Transfer Function
-    print(sym.latex(tf_denom))
+    # print(sym.latex(tf_denom))
     routhTabu = routh(tf_denom)  # Routh-Hurwitz Tabulation
     routhLaTeX = sym.latex(routhTabu).replace("\\\\", "\\\\\n\t")  # LaTeX pastable code
-    print(routhLaTeX)
+    # print(routhLaTeX)
 
 
 def part2(kp, kd, ki):
