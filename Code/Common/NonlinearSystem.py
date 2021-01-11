@@ -1,4 +1,4 @@
-from Code.DynamicalSystem import DynamicalSystem
+from Code.Common.DynamicalSystem import DynamicalSystem
 from scipy.integrate import solve_ivp
 import numpy as np
 

@@ -1,5 +1,5 @@
-from Code.LinearSystem import LinearSystem
-from Code.PidController import PidController as PidCtrl
+from Code.Common.LinearSystem import LinearSystem
+from Code.Common.PidController import PidController as PidCtrl
 import numpy as np
 
 

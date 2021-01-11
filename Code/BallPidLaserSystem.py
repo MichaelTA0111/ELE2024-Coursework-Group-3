@@ -1,11 +1,12 @@
-from Code.LinearSystem import LinearSystem
-from Code.PidController import PidController as PidCtrl
-from Code.Routh import Routh
+from Code.Common.LinearSystem import LinearSystem
+from Code.Common.PidController import PidController as PidCtrl
+from Code.Common.Routh import Routh
 from control import TransferFunction as Tf
 from control import impulse_response as ir
 from control import step_response as sr
 from control import feedback as fb
 import numpy as np
+
 
 if __name__ == '__main__':
     # Declare time variables

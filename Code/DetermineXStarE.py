@@ -1,4 +1,4 @@
-from Code.DynamicalSystem import DynamicalSystem, constants
+from Code.Common.DynamicalSystem import DynamicalSystem, constants
 import numpy as np
 
 

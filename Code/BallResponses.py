@@ -1,7 +1,8 @@
-from Code.LinearSystem import LinearSystem
+from Code.Common.LinearSystem import LinearSystem
 import numpy as np
 from control import impulse_response as ir
 from control import step_response as sr
+
 
 if __name__ == '__main__':
     dt = 1  # Time for the simulation of the system in seconds

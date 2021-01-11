@@ -1,8 +1,8 @@
-from LinearSystem import *
+from Code.Common.LinearSystem import LinearSystem
 import numpy as np
 import matplotlib.pyplot as plt
-from control import TransferFunction as Tf
 import control as ctrl
+
 
 if __name__ == '__main__':
     ball = LinearSystem()

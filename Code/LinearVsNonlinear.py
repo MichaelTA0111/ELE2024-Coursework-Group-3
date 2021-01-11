@@ -1,6 +1,7 @@
-from Code.DynamicalSystem import DynamicalSystem
-from Code.LinearSystem import LinearSystem
-from Code.NonlinearSystem import NonlinearSystem
+from Code.Common.DynamicalSystem import DynamicalSystem
+from Code.Common.LinearSystem import LinearSystem
+from Code.Common.NonlinearSystem import NonlinearSystem
+
 
 if __name__ == '__main__':
     system = DynamicalSystem()  # Create a dynamical system
